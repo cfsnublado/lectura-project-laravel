@@ -27,10 +27,12 @@ class Locale
             if (!array_key_exists($locale, $languages)) {
                 abort(404);
             }
-            
-            Session::put('app.locale', $locale);
-            App::setLocale($locale);
+        } else {
+            $locale = Config::get('app.fallback_language', 'en');
         }
+
+        Session::put('app.locale', $locale);
+        App::setLocale($locale);
 
         return $next($request);
     }
