@@ -9,6 +9,7 @@ return [
     'label_projects' => 'Projects',
     'label_general' => 'General',
     'label_language' => 'Language',
+    'label_login' => 'Login',
 
     'msg_project_banner_desc' => 'Share readings and practice your pronunciation.',
     'msg_lectura_at_a_glance' => 'Lectura at a glance',

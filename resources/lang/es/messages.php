@@ -6,6 +6,7 @@ return [
     'label_projects' => 'Proyectos',
     'label_general' => 'General',
     'label_language' => 'Idioma',
+    'label_login' => 'Iniciar sesión',
 
     'msg_project_banner_desc' => 'Comparte lecturas y practica tu pronunciación.',
     'msg_lectura_at_a_glance' => 'Un vistazo a Lectura',

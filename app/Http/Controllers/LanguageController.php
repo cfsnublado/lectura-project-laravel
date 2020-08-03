@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\URL;
 
-
 class LanguageController extends Controller
 {
-    public function setLocale($locale='en') {
+    public function setLocale($locale='en')
+    {
         $url = URL::previous();
         $parsed = parse_url($url);
         $pathArray = explode('/', $parsed['path']);

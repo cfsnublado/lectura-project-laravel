@@ -56,7 +56,7 @@ ref="navbarMenu"
 >
 
 <div class="navbar-end">
-
+@include('includes.user_nav')
 </div><!-- navbar -->
 
 </div><!-- navbar-menu -->
