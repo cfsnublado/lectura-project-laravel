@@ -19,16 +19,12 @@ class Locale
      */
     public function handle($request, Closure $next)
     {
-        $locale = $request->route('url_locale');
+        $locale = $request->segment(1);
         $languages = Config::get('app.available_languages', ['en' => 'English']);
 
-        if ($locale) {
-            if (!array_key_exists($locale, $languages)) {
-                abort(404);
-            }
-        } else {
+        if (!array_key_exists($locale, $languages)) {
             $locale = Config::get('app.fallback_language', 'en');
-        }
+        } 
 
         Session::put('app.locale', $locale);
         App::setLocale($locale);

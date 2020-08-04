@@ -20,7 +20,11 @@ class LanguageController extends Controller
         if ($pathArray[1] == '') {
             $parsed['path'] = ($locale != $defaultLocale) ? '/' . $locale : '';
         } elseif (array_key_exists($pathArray[1], $locales)) {
-            $pathArray[1] = ($locale != $defaultLocale) ? $locale : '';
+            if ($locale != $defaultLocale) {
+                $pathArray[1] = $locale;
+            } else {
+                unset($pathArray[1]);
+            }
             $parsed['path'] = implode('/', $pathArray);
         } else {
             $pathArray[0] = ($locale != $defaultLocale) ? '/' . $locale : '';

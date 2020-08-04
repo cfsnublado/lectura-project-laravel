@@ -7,7 +7,14 @@ Route::get(
     ['as' => 'language.set_locale', 'uses'=>'LanguageController@setLocale']
 );
 
-Route::middleware(['locale', 'default.url.locale'])->prefix('{url_locale?}')->group(function () {
+$locales = Config::get('app.available_languages');
+$locale = Request::segment(1);
+
+if (!array_key_exists($locale, $locales)) {
+    $locale = '';
+}
+
+Route::middleware(['locale'])->prefix($locale)->group(function () {
     Route::get('/', ['as' => 'app.home', 'uses' => 'AppController@home']);
     
     Route::prefix('security')->group(function() {
