@@ -20,21 +20,11 @@ class AppTest extends TestCase
 
         $response = $this->get('/');
         $response->assertStatus(200);
-        $response->assertViewIs('home');
+        $response->assertViewIs('app.home');
     }
 
-    public function testSessionLocale()
+    public function testShit()
     {
-        $response = $this->get('/');
-        $response->assertSessionHas('app.locale', 'en');
-
-        $response = $this->get('/en');
-        $response->assertSessionHas('app.locale', 'en');
-
-        $response = $this->get('/es');
-        $response->assertSessionHas('app.locale', 'es');
-
-        $response = $this->get('/ex');
-        $response->assertStatus(404);
+        $response = $this->get('/security/login');
     }
 }

@@ -20,7 +20,7 @@ class Locale
     public function handle($request, Closure $next)
     {
         $locale = $request->segment(1);
-        $languages = Config::get('app.available_languages', ['en' => 'English']);
+        $languages = Config::get('app.available_languages');
 
         if (!array_key_exists($locale, $languages)) {
             $locale = Config::get('app.fallback_language', 'en');

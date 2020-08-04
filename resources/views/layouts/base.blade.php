@@ -183,7 +183,7 @@ dropdown-classes="is-up"
 
 @foreach (config('app.available_languages') as $key => $language)
   <a 
-  id="sidebar-{{ $language }}" 
+  id="sidebar-language-{{ $key }}" 
   class="dropdown-item" 
   href="{{ route('language.set_locale', $key) }}"
   >
