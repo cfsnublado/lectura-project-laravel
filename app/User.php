@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name', 'last_name', 'email', 'password',
     ];
 
     /**
@@ -40,9 +40,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function username()
+    {
+        return 'username';
+    }
+
     /**
      * Relationships
      */
+    public function profile()
+    {
+        return $this->hasOne('App\Profile', 'user_id');
+    }
 
     public function projects()
     {

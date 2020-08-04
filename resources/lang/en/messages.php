@@ -19,4 +19,5 @@ return [
     'msg_block_2_desc' => 'Add narrations to posts of other members in your group.',
 
     'page_home_title' => 'Home',
+    'page_login_title' => 'Login',
 ];

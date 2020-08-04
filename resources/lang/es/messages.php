@@ -16,4 +16,5 @@ return [
     'msg_block_2_desc' => 'Agrega narrraciones a las entradas de los demás miembros de tu equipo.',
     
     'page_home_title' => 'Inicio',
+    'page_home_title' => 'Iniciar sesión',
 ];

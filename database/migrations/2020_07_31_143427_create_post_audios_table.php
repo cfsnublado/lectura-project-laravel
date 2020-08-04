@@ -25,7 +25,7 @@ class CreatePostAudiosTable extends Migration
             ->onDelete('cascade');
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('audio_url');
             $table->timestamps();
         });

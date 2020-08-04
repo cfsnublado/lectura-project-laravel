@@ -22,6 +22,13 @@ class ProfileImage extends Component
     public $size;
 
     /**
+     * The border radius of the image in pixels.
+     *
+     * @var int
+     */
+    public $borderRadius;
+
+    /**
      * Create a new component instance.
      * @param  User  $user
      * @param  int  $size
@@ -31,6 +38,7 @@ class ProfileImage extends Component
     {
         $this->user = $user;
         $this->size = $size;
+        $this->borderRadius = (int)($this->size / 2);
     }
 
     /**
