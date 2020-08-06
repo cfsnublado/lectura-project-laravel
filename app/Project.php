@@ -10,6 +10,7 @@ class Project extends Model
 
     protected $table = 'projects';
     protected $primaryKey = 'id';
+    protected $with = ['owner.profile'];
 
     /**
      * Relationships

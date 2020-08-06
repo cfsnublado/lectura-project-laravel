@@ -31,7 +31,7 @@
 
     <hr class="navbar-divider">
 
-    <a class="navbar-item" href="{% url 'users:profile_update' user.username %}">
+    <a class="navbar-item" href="">
     <span class="user-menu-icon">
     <i class="fas fa-edit fa-fw"></i>
     </span>
@@ -40,7 +40,7 @@
 
     <hr class="navbar-divider">
 
-    <a class="navbar-item logout-link" href="{% url 'security:logout' %}">
+    <a class="navbar-item logout-link" href="{{ route('security.logout') }}">
     <span class="user-menu-icon">
     <i class="fas fa-sign-out-alt fa-fw"></i>
     </span>

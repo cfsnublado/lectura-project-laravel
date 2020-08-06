@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get(
     'locale/{locale}',
-    ['as' => 'language.set_locale', 'uses'=>'LanguageController@setLocale']
+    [
+        'as' => 'language.set_locale',
+        'uses'=>'LanguageController@setLocale'
+    ]
 );
 
 $locales = Config::get('app.available_languages');
@@ -15,9 +18,29 @@ if (!array_key_exists($locale, $locales)) {
 }
 
 Route::middleware(['locale'])->prefix($locale)->group(function () {
-    Route::get('/', ['as' => 'app.home', 'uses' => 'AppController@home']);
+    Route::get('/', ['as' => 'app.home', 'uses' => 'App\AppController@home']);
     
     Route::prefix('security')->group(function() {
-        Route::get('login', ['as' => 'security.login', 'uses' => 'SecurityController@showLogin']);
+        Route::get(
+            'login',
+            [
+                'as' => 'security.login',
+                'uses' => 'Security\LoginController@showLogin'
+            ]
+        );
+        Route::post(
+            'authenticate',
+            [
+                'as' => 'security.authenticate',
+                'uses' => 'Security\LoginController@authenticate'
+            ]
+        ); 
+        Route::get(
+            'logout', 
+            [
+                'as' => 'security.logout',
+                'uses' => 'Security\LoginController@logout'
+            ]
+        );
     });
 });

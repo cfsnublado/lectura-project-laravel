@@ -16,18 +16,21 @@ class AppTest extends DuskTestCase
     public function testLanguageChanger()
     {
         $this->browse(function (Browser $browser) {
+            $headerEn = 'Share readings and practice your pronunciation.';
+            $headerEs = 'Comparte lecturas y practica tu pronunciación.';
+            
             $browser->visit('/')
-            ->assertSee('Lectura')
+            ->assertSee($headerEn)
             ->openSidebar()
             ->click('#sidebar-language-selector')
             ->waitFor('#sidebar-language-es')
             ->click('#sidebar-language-es')
-            ->assertSee('Comparte lecturas y practica tu pronunciación.')
+            ->assertSee($headerEs)
             ->openSidebar()
             ->click('#sidebar-language-selector')
             ->waitFor('#sidebar-language-en')
             ->click('#sidebar-language-en')
-            ->assertSee('Share readings and practice your pronunciation.');
+            ->assertSee($headerEn);
         });
     }
 }

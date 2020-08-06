@@ -20,5 +20,11 @@ class DuskServiceProvider extends ServiceProvider
 
             return $this;
         });
+
+        Browser::macro('closeSidebar', function ($element = null) {
+            $this->click('#sidebar-trigger');
+
+            return $this;
+        });
     }
 }

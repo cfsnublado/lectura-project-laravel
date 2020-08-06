@@ -12,6 +12,10 @@ class User extends Authenticatable
 
     protected $table = 'users';
     protected $primaryKey = 'id';
+    protected $with = ['profile'];
+    protected $dispatchesEvents = [
+        'created' => \App\Events\UserCreated::class,
+    ];
 
     /**
      * The attributes that are mass assignable.

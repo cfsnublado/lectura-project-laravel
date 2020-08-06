@@ -56,7 +56,7 @@ ref="navbarMenu"
 >
 
 <div class="navbar-end">
-@include('includes.user_nav')
+@include('app.includes.user_nav')
 </div><!-- navbar -->
 
 </div><!-- navbar-menu -->
@@ -203,7 +203,7 @@ dropdown-classes="is-up"
 
 @yield('full_width_sections')
 
-@section('content-container')
+@section('content_container')
 <section class="section main-content">
 
 <div class="columns">

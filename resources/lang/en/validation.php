@@ -118,6 +118,10 @@ return [
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
+    // Custom
+    'error_credentials' => 'Error logging in with the given credentials.',
+
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

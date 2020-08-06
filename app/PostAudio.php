@@ -10,6 +10,8 @@ class PostAudio extends Model
 
     protected $table = 'post_audios';
     protected $primaryKey = 'id';
+    protected $with = ['creator.profile'];
+
 
     /**
      * Relationships

@@ -3,6 +3,8 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Config;
+
 use App\User;
 
 class ProfileImage extends Component
@@ -13,6 +15,13 @@ class ProfileImage extends Component
      * @var User
      */
     public $user;
+
+    /**
+     * The url of the image to be modified.
+     *
+     * @var string
+     */
+    public $imageUrl;
 
     /**
      * The width and height of the image in pixels.
@@ -37,6 +46,8 @@ class ProfileImage extends Component
     public function __construct(User $user, $size=50)
     {
         $this->user = $user;
+        $avatar = $this->user->profile->avatar_url;
+        $this->imageUrl = $avatar ? $avatar : asset(Config::get('user.default_profile_avatar'));
         $this->size = $size;
         $this->borderRadius = (int)($this->size / 2);
     }
