@@ -48,7 +48,8 @@ class LoginController extends Controller
     {
         if (Auth::check()) {
             Auth::logout();
-            return redirect()->route('app.home');
         }
+        
+        return redirect()->route('app.home');
     }
 }
