@@ -23,8 +23,4 @@ class AppTest extends TestCase
         $response->assertViewIs('app.home');
     }
 
-    public function testShit()
-    {
-        $response = $this->get('/security/login');
-    }
 }
