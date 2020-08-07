@@ -7,6 +7,7 @@ return [
 
     'label_edit_profile' => 'Edit profile',
     'label_general' => 'General',
+    'label_hello_exc' => 'Hello!',
     'label_home' => 'Home',
     'label_language' => 'Language',
     'label_login' => 'Sign in',

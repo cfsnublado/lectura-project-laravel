@@ -69,7 +69,7 @@ required="required"
 
 </div>
 
-<button class="button is-info" type="submit">
+<button id="login-btn" class="button is-info" type="submit">
 {{ __('messages.label_login') }}
 </button>
 

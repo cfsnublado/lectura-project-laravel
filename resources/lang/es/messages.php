@@ -4,6 +4,7 @@
 return [
     'label_edit_profile' => 'Editar perfil',
     'label_general' => 'General',
+    'label_hello_exc' => '¡Hola!',
     'label_home' => 'Inicio',
     'label_language' => 'Idioma',
     'label_login' => 'Iniciar sesión',

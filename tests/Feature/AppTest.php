@@ -2,11 +2,13 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class AppTest extends TestCase
 {
+    use DatabaseTransactions;
+    
     /**
      * A basic test example.
      *
@@ -22,5 +24,4 @@ class AppTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('app.home');
     }
-
 }

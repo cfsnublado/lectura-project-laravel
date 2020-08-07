@@ -19,7 +19,8 @@ if (!array_key_exists($locale, $locales)) {
 
 Route::middleware(['locale'])->prefix($locale)->group(function () {
     Route::get('/', ['as' => 'app.home', 'uses' => 'App\AppController@home']);
-    
+    Route::get('/secret', ['as' => 'app.secret', 'uses' => 'App\AppController@secret']);
+
     Route::prefix('security')->group(function() {
         Route::get(
             'login',

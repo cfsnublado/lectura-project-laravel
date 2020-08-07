@@ -10,4 +10,8 @@ class AppController extends Controller
     public function home() {
         return view('app.home');
     }
+
+    public function secret() {
+        return view('app.secret');
+    }
 }

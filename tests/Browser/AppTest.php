@@ -31,6 +31,22 @@ class AppTest extends DuskTestCase
             ->waitFor('#sidebar-language-en')
             ->click('#sidebar-language-en')
             ->assertSee($headerEn);
+
+            $headerEn = 'Hello!';
+            $headerEs = '¡Hola!';
+
+            $browser->visit('/secret')
+            ->assertSee($headerEn)
+            ->openSidebar()
+            ->click('#sidebar-language-selector')
+            ->waitFor('#sidebar-language-es')
+            ->click('#sidebar-language-es')
+            ->assertSee($headerEs)
+            ->openSidebar()
+            ->click('#sidebar-language-selector')
+            ->waitFor('#sidebar-language-en')
+            ->click('#sidebar-language-en')
+            ->assertSee($headerEn);
         });
     }
 }
