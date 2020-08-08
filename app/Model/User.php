@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,6 +14,7 @@ class User extends Authenticatable
     protected $primaryKey = 'id';
     protected $with = ['profile'];
     protected $dispatchesEvents = [
+        'creating' => \App\Events\UserCreating::class,
         'created' => \App\Events\UserCreated::class,
     ];
 
@@ -23,7 +24,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'username', 'password',
+        'id', 'first_name', 'last_name',
+        'email', 'username', 'password',
     ];
 
     /**
@@ -49,26 +51,36 @@ class User extends Authenticatable
         return 'username';
     }
 
+    public function getIncrementing()
+    {
+        return false;
+    }
+
+    public function getKeyType()
+    {
+        return 'string';
+    }
+
     /**
      * Relationships
      */
     public function profile()
     {
-        return $this->hasOne('App\Profile', 'user_id');
+        return $this->hasOne('App\Model\Profile', 'user_id');
     }
 
     public function projects()
     {
-        return $this->hasMany('App\Project', 'owner_id');
+        return $this->hasMany('App\Model\Project', 'owner_id');
     }
 
     public function posts()
     {
-        return $this->hasMany('App\Post', 'creator_id');
+        return $this->hasMany('App\Model\Post', 'creator_id');
     }
 
     public function postAudios()
     {
-        return $this->hasMany('App\PostAudio', 'creator_id');
+        return $this->hasMany('App\Model\PostAudio', 'creator_id');
     }
 }

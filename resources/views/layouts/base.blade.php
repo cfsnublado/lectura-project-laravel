@@ -220,7 +220,7 @@ dropdown-classes="is-up"
 
 @section('page_footer')
 <div>
-<footer class="page-footer">
+<footer class="page-footer is-absolute">
 
 {{ now()->year }} | {{ config('app.name') }}
 

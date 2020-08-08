@@ -7,5 +7,7 @@ use App\Http\Controllers\Controller;
 
 class ProjectController extends Controller
 {
-    //
+    public function projects() {
+        return view('blog.projects');
+    }
 }

@@ -4,10 +4,10 @@ namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Events\UserCreated as UserCreatedEvent;
-use App\Model\Profile;
+use Illuminate\Support\Str;
+use App\Events\UserCreating as UserCreatingEvent;
 
-class UserCreated
+class UserCreating
 {
     /**
      * Create the event listener.
@@ -22,13 +22,14 @@ class UserCreated
     /**
      * Handle the event.
      *
-     * @param  \App\Events\UserCreatedEvent $event
+     * @param  \App\Events\UserCreatingEvent $event
      * @return mixed
      */
-    public function handle(UserCreatedEvent $event)
+    public function handle(UserCreatingEvent $event)
     {
-        if (!$event->user->profile) {
-            $event->user->profile()->create();
+        $user = $event->user;
+        if (!$user->{$user->getKeyName()}) {
+            $user->{$user->getKeyName()} = (string) Str::uuid();
         }
     }
 }

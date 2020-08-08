@@ -2,8 +2,8 @@
 
 namespace App\Repository;
 
-use App\Model\User;
 use Illuminate\Support\Collection;
+use App\Model\User;
 
 interface UserRepositoryInterface
 {

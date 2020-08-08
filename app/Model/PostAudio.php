@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,11 +19,11 @@ class PostAudio extends Model
 
     public function creator()
     {
-        return $this->belongsTo('App\User', 'creator_id');
+        return $this->belongsTo('App\Model\User', 'creator_id');
     }
 
     public function post()
     {
-        return $this->belongsTo('App\Post', 'post_id');
+        return $this->belongsTo('App\Model\Post', 'post_id');
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
 use App\Repository\EloquentRepositoryInterface; 
 use App\Repository\UserRepositoryInterface; 
 use App\Repository\Eloquent\UserRepository; 

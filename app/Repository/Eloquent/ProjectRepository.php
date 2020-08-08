@@ -3,10 +3,9 @@
 namespace App\Repository\Eloquent;
 
 use Illuminate\Support\Collection;
-use App\Repository\UserRepositoryInterface;
-use App\Model\User;
+use App\Model\Project;
 
-class UserRepository extends BaseRepository implements UserRepositoryInterface
+class ProjectRepository extends BaseRepository
 {
 
    /**
@@ -14,7 +13,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     *
     * @param User $model
     */
-   public function __construct(User $model)
+   public function __construct(Project $model)
    {
        parent::__construct($model);
    }

@@ -4,8 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 use Illuminate\Support\Facades\Config;
-
-use App\User;
+use App\Model\User;
 
 class ProfileImage extends Component
 {

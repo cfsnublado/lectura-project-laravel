@@ -6,9 +6,10 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
-
 use App\Events\UserCreated as UserCreatedEvent;
+use App\Events\UserCreating as UserCreatingEvent;
 use App\Listeners\UserCreated as UserCreatedListener;
+use App\Listeners\UserCreating as UserCreatingListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserCreatedEvent::class => [
             UserCreatedListener::class,
+        ],
+        UserCreatingEvent::class => [
+            UserCreatingListener::class,
         ],
     ];
 

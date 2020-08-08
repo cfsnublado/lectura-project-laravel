@@ -44,4 +44,15 @@ Route::middleware(['locale'])->prefix($locale)->group(function () {
             ]
         );
     });
+
+    Route::prefix('blog')->group(function() {
+        Route::get(
+            'projects',
+            [
+                'as' => 'blog.projects',
+                'uses' => 'Blog\ProjectController@projects'
+            ]
+        );
+    });
+
 });
