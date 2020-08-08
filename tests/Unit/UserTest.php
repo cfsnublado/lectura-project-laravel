@@ -12,6 +12,12 @@ class UserTest extends TestCase
 {
     use DatabaseTransactions;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        DB::table('users')->delete();
+    }
+
     /**
      * Test User uuid value. It should be generated only
      * if not provided in the constructor.
@@ -20,8 +26,6 @@ class UserTest extends TestCase
      */
     public function testUuidProvidedInConstructor()
     {
-        DB::table('users')->delete();
-
         $uuid = '7e204342-62c6-4b94-b177-f97acd6ec5af';
         $user = User::create([
             'id' => $uuid,
@@ -42,8 +46,6 @@ class UserTest extends TestCase
      */
     public function testUuidGeneratedOnCreate()
     {
-        DB::table('users')->delete();
-
         $user = User::create([
             'first_name' => 'Christopher',
             'last_name' => 'Sanders',
@@ -63,8 +65,6 @@ class UserTest extends TestCase
      */
     public function testProfileCreatedWithUser()
     {
-        DB::table('users')->delete();
-
         $this->assertEquals(Profile::count(), 0);
 
         $user = User::create([
