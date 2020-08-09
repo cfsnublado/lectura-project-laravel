@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Model;
+namespace App\Model\Blog;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Project extends Model
+class PostAudio extends Model
 {
     public $timestamps = true;
 
-    protected $table = 'projects';
+    protected $table = 'post_audios';
     protected $primaryKey = 'id';
-    protected $with = ['owner.profile'];
+    protected $with = ['creator.profile'];
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +19,8 @@ class Project extends Model
      * @var array
      */
     protected $fillable = [
-        'owner_id', 'name', 'description',
+        'post_id', 'creator_id', 'name',
+        'description', 'audio_url'
     ];
 
     /**
@@ -39,13 +40,13 @@ class Project extends Model
      * Relationships
      */
 
-    public function owner()
+    public function creator()
     {
-        return $this->belongsTo('App\Model\User', 'owner_id');
+        return $this->belongsTo('App\Model\User\User', 'creator_id');
     }
 
-    public function posts()
+    public function post()
     {
-        return $this->hasMany('App\Model\Post', 'project_id');
+        return $this->belongsTo('App\Model\Blog\Post', 'post_id');
     }
 }

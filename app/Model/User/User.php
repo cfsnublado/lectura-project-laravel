@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Model\User;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -66,21 +66,21 @@ class User extends Authenticatable
      */
     public function profile()
     {
-        return $this->hasOne('App\Model\Profile', 'user_id');
+        return $this->hasOne('App\Model\User\Profile', 'user_id');
     }
 
     public function projects()
     {
-        return $this->hasMany('App\Model\Project', 'owner_id');
+        return $this->hasMany('App\Model\Blog\Project', 'owner_id');
     }
 
     public function posts()
     {
-        return $this->hasMany('App\Model\Post', 'creator_id');
+        return $this->hasMany('App\Model\Blog\Post', 'creator_id');
     }
 
     public function postAudios()
     {
-        return $this->hasMany('App\Model\PostAudio', 'creator_id');
+        return $this->hasMany('App\Model\Blog\PostAudio', 'creator_id');
     }
 }

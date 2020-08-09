@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Model\Blog;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -11,7 +11,7 @@ class Post extends Model
 
     protected $table = 'posts';
     protected $primaryKey = 'id';
-    protected $with = ['creator.profile'];
+    protected $with = ['creator.profile', 'project'];
 
     /**
      * The attributes that are mass assignable.
@@ -42,16 +42,16 @@ class Post extends Model
 
     public function creator()
     {
-        return $this->belongsTo('App\Model\User', 'creator_id');
+        return $this->belongsTo('App\Model\User\User', 'creator_id');
     }
 
     public function project()
     {
-        return $this->belongsTo('App\Model\Project', 'project_id');
+        return $this->belongsTo('App\Model\Blog\Project', 'project_id');
     }
 
     public function postAudios()
     {
-        return $this->hasMany('App\Model\PostAudio', 'post_id');
+        return $this->hasMany('App\Model\Blog\PostAudio', 'post_id');
     }
 }

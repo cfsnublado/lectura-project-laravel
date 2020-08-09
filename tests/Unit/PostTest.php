@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
-use App\Model\User;
-use App\Model\Project;
-use App\Model\Post;
+use App\Model\User\User;
+use App\Model\Blog\Project;
+use App\Model\Blog\Post;
 
 class PostTest extends TestCase
 {

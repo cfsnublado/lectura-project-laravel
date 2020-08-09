@@ -5,8 +5,8 @@ namespace Tests\Unit;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
-use App\Model\User;
-use App\Model\Profile;
+use App\Model\User\User;
+use App\Model\User\Profile;
 
 class UserTest extends TestCase
 {

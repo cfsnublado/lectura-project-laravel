@@ -5,7 +5,7 @@ namespace App\Listeners;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Events\UserCreated as UserCreatedEvent;
-use App\Model\Profile;
+use App\Model\User\Profile;
 
 class UserCreated
 {
