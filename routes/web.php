@@ -53,6 +53,13 @@ Route::middleware(['locale'])->prefix($locale)->group(function () {
                 'uses' => 'Blog\ProjectController@projects'
             ]
         );
+        Route::get(
+            'project/{slug}',
+            [
+                'as' => 'blog.project',
+                'uses' => 'Blog\ProjectController@project'
+            ]
+        );
     });
 
 });

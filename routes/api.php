@@ -26,6 +26,16 @@ Route::prefix('blog')->group(function() {
             'uses' => 'Blog\ProjectApiController@index'
         ]
     );
+    Route::get(
+        'project/{id}',
+        [
+            'as' => 'api.blog.project',
+            'uses' => 'Blog\ProjectApiController@show'
+        ]
+    );
+
+        Route::post('books/{book}/ratings', 'RatingController@store');
+
 });
 
 

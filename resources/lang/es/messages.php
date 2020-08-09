@@ -28,4 +28,5 @@ return [
 
     'page_home_title' => 'Inicio',
     'page_login_title' => 'Iniciar sesión',
+    'page_projects_title' => 'Proyectos',
 ];

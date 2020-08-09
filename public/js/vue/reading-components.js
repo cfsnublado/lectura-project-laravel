@@ -48,7 +48,7 @@ const Project = {
       viewUrl: this.initViewUrl,
       editUrl: this.initEditUrl,
       deleteUrl: this.initDeleteUrl,
-      idPlaceholder: '0',
+      idPlaceholder: 0,
       slugPlaceholder: 'zzz'
     }
   },
@@ -70,13 +70,11 @@ const Project = {
   created() {
     if (this.initViewUrl) {
       this.viewUrl = this.initViewUrl
-        .replace(this.idPlaceholder, this.project.id)
         .replace(this.slugPlaceholder, this.project.slug)   
     }
 
     if (this.initEditUrl) {
       this.editUrl = this.initEditUrl
-        .replace(this.idPlaceholder, this.project.id)
         .replace(this.slugPlaceholder, this.project.slug)   
     }
 
@@ -104,47 +102,52 @@ const Projects = {
   },
   data() {
     return {
-      projects: null
+      projects: null,
+      timerId: null,
+      processDelay: 500
     }
   },
   methods: {
     getProjects(page=1) {
+      clearTimeout(this.timerId)
       this.process()
 
       params = {
         page: page
       }
 
-      axios.get(this.projectsUrl, {
-        params: params
-      })
-      .then(response => {
-        this.projects = response.data.results
-        this.setPagination(
-          response.data.previous,
-          response.data.next,
-          response.data.page_num,
-          response.data.count,
-          response.data.num_pages
-        )
-        VueScrollTo.scrollTo({
-          el: '#projects-scroll-top',
+      this.timerId = setTimeout(()=>{
+        axios.get(this.projectsUrl, {
+          params: params
         })
-        this.success()
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log(error.response)
-        } else if (error.request) {
-          console.log(error.request)
-        } else {
-          console.log(error.message)
-        }
-        console.log(error.config)
-      })
-      .finally(() => {
-        this.complete()
-      })
+        .then(response => {
+          this.projects = response.data.data
+          this.setPagination(
+            response.links.prev,
+            response.links.next,
+            response.meta.current_page,
+            response.meta.total,
+            response.meta.last_page
+          )
+          VueScrollTo.scrollTo({
+            el: '#projects-scroll-top',
+          })
+          this.success()
+        })
+        .catch(error => {
+          if (error.response) {
+            console.log(error.response)
+          } else if (error.request) {
+            console.log(error.request)
+          } else {
+            console.log(error.message)
+          }
+          console.log(error.config)
+        })
+        .finally(() => {
+          this.complete()
+        })
+      }, this.processDelay)
     },
     onDeleteProject(index) {
       this.$delete(this.projects, index)

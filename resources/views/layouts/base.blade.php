@@ -154,7 +154,7 @@ href="{{ route('app.home') }}"
 <li>
 <a 
 class="@yield('projects_link_active')"
-href=""
+href="{{ route('blog.projects') }}"
 >
 <i class="fas fa-fw fa-project-diagram menu-icon"></i>
 {{ __('messages.label_projects') }}

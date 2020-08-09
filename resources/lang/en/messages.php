@@ -28,6 +28,8 @@ return [
     'msg_block_2' => 'Share with your team',
     'msg_block_2_desc' => 'Add narrations to posts of other members in your group.',
     'msg_forgot_password_q' => 'Forgot your password?',
+
     'page_home_title' => 'Home',
     'page_login_title' => 'Login',
+    'page_projects_title' => 'Projects',
 ];

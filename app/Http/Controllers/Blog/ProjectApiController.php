@@ -39,7 +39,7 @@ class ProjectApiController extends Controller
      */
     public function show($id)
     {
-        //
+        return new ProjectResource(Project::find($id));
     }
 
     /**
