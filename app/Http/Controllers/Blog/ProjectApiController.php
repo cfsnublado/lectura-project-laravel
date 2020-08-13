@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Blog;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Blog\Project;
+use App\Models\Blog\Project;
 use App\Http\Resources\Blog\Project as ProjectResource;
 use App\Http\Resources\Blog\ProjectCollection;
 

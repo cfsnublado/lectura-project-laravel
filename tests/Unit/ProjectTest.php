@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
-use App\Model\User\User;
-use App\Model\Blog\Project;
+use App\Models\User\User;
+use App\Models\Blog\Project;
 
 class ProjectTest extends TestCase
 {

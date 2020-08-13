@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\User;
+namespace App\Models\User;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -26,6 +26,7 @@ class User extends Authenticatable
     protected $fillable = [
         'id', 'first_name', 'last_name',
         'email', 'username', 'password',
+        'is_superuser',
     ];
 
     /**
@@ -62,25 +63,36 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the boolean value of is_superuser.
+     *
+     * @param  int  $value
+     * @return boolean
+     */
+    public function getIsSuperuserAttribute($value)
+    {
+        return boolval($value);
+    }
+
+    /**
      * Relationships
      */
     public function profile()
     {
-        return $this->hasOne('App\Model\User\Profile', 'user_id');
+        return $this->hasOne('App\Models\User\Profile', 'user_id');
     }
 
     public function projects()
     {
-        return $this->hasMany('App\Model\Blog\Project', 'owner_id');
+        return $this->hasMany('App\Models\Blog\Project', 'owner_id');
     }
 
     public function posts()
     {
-        return $this->hasMany('App\Model\Blog\Post', 'creator_id');
+        return $this->hasMany('App\Models\Blog\Post', 'creator_id');
     }
 
     public function postAudios()
     {
-        return $this->hasMany('App\Model\Blog\PostAudio', 'creator_id');
+        return $this->hasMany('App\Models\Blog\PostAudio', 'creator_id');
     }
 }

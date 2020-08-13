@@ -3,9 +3,9 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Model\User\User;
-use App\Model\Blog\Project;
-use App\Model\Blog\Post;
+use App\Models\User\User;
+use App\Models\Blog\Project;
+use App\Models\Blog\Post;
 
 class PostSeeder extends Seeder
 {

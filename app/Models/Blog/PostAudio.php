@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Blog;
+namespace App\Models\Blog;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -12,12 +12,6 @@ class PostAudio extends Model
     protected $table = 'post_audios';
     protected $primaryKey = 'id';
     protected $with = ['creator.profile'];
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'post_id', 'creator_id', 'name',
         'description', 'audio_url'
@@ -42,11 +36,11 @@ class PostAudio extends Model
 
     public function creator()
     {
-        return $this->belongsTo('App\Model\User\User', 'creator_id');
+        return $this->belongsTo('App\Models\User\User', 'creator_id');
     }
 
     public function post()
     {
-        return $this->belongsTo('App\Model\Blog\Post', 'post_id');
+        return $this->belongsTo('App\Models\Blog\Post', 'post_id');
     }
 }

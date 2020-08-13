@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Blog;
+namespace App\Models\Blog;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -12,12 +12,6 @@ class Project extends Model
     protected $table = 'projects';
     protected $primaryKey = 'id';
     protected $with = ['owner.profile'];
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'owner_id', 'name', 'description',
     ];
@@ -41,11 +35,11 @@ class Project extends Model
 
     public function owner()
     {
-        return $this->belongsTo('App\Model\User\User', 'owner_id');
+        return $this->belongsTo('App\Models\User\User', 'owner_id');
     }
 
     public function posts()
     {
-        return $this->hasMany('App\Model\Blog\Post', 'project_id');
+        return $this->hasMany('App\Models\Blog\Post', 'project_id');
     }
 }

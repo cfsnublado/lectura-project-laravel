@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Model\User\User;
+use App\Models\User\User;
 
 class UserSeeder extends Seeder
 {
@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
             'username' => 'cfs',
             'email' => 'cfsfoo@foo.com',
             'password' => Hash::make('Pizza?69p'),
+            'is_superuser' => true,
         ]);  
     }
 }

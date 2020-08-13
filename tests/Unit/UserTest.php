@@ -5,8 +5,8 @@ namespace Tests\Unit;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
-use App\Model\User\User;
-use App\Model\User\Profile;
+use App\Models\User\User;
+use App\Models\User\Profile;
 
 class UserTest extends TestCase
 {
@@ -55,6 +55,45 @@ class UserTest extends TestCase
         ]);
         $this->assertTrue(is_string($user->id));
         $this->assertEquals(mb_strlen($user->id, 'utf8'), 36);
+    }
+
+    /**
+     * Test if User is_superuser default value is false.
+     *
+     * @return void
+     */
+    public function testIsSuperuserDefaultFalse()
+    {
+        $user = User::create([
+            'first_name' => 'Christopher',
+            'last_name' => 'Sanders',
+            'username' => 'cfs',
+            'email' => 'cfsfoo@foo.com',
+            'password' => 'Pizza?69p',
+        ]);
+        $user->refresh();
+
+        $this->assertFalse($user->is_superuser);
+    }
+
+    /**
+     * Test if User is_superuser returns boolean value.
+     *
+     * @return void
+     */
+    public function testIsSuperuserIsBoolean()
+    {
+        $user = User::create([
+            'first_name' => 'Christopher',
+            'last_name' => 'Sanders',
+            'username' => 'cfs',
+            'email' => 'cfsfoo@foo.com',
+            'password' => 'Pizza?69p',
+            'is_superuser' => true,
+        ]);
+        $user->refresh();
+
+        $this->assertTrue($user->is_superuser);
     }
 
     /**

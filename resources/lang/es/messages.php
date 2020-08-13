@@ -14,6 +14,7 @@ return [
     'label_projects' => 'Proyectos',
     'label_your_menu' => 'Tu menú',
     'label_your_projects' => 'Tus proyectos',
+    'label_create_project' => 'Crear proyecto',
 
     'placeholder_username' => 'Nombre de usuario',
     'placeholder_password' => 'Contraseña',
@@ -25,6 +26,7 @@ return [
     'msg_block_2' => 'Comparte con tu equipo',
     'msg_block_2_desc' => 'Agrega narrraciones a las entradas de los demás miembros de tu equipo.',
     'msg_forgot_password_q' => '¿Olvidaste tu contraseña?',
+    'msg_no_projects' => 'No hay proyectos.',
 
     'page_home_title' => 'Inicio',
     'page_login_title' => 'Iniciar sesión',
