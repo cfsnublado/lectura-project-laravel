@@ -1,6 +1,6 @@
 <projects
 projects-url="{{ $projects_url }}"
-:init-is-admin="false"
+:init-is-admin="@if (Auth::check() && Auth::user()->is_superuser) true @else false @endif"
 inline-template
 >
 
@@ -36,14 +36,20 @@ v-for="(project, index) in projects"
 init-view-url="{{ $project_url }}"
 init-edit-url="{{ $project_update_url }}"
 init-delete-url="{{ $project_delete_url }}"
-@delete-project="onDeleteProject(index)"
+@delete-project="deleteProject(index)"
 inline-template
 >
-<transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="remove">
+<transition name="fade-transition">
 
-<div class="card project-card" v-show="isVisible">
+<div class="box project-box">
 
-<div class="card-controls">
+<div class="box-top">
+
+<div class="box-top-left"></div>
+
+<div class="box-top-right">
+
+<div class="box-controls">
 
 <span
 v-if="isAdmin"
@@ -61,7 +67,7 @@ href="#"
 v-if="isAdmin"
 delete-confirm-id="delete-project"
 :delete-url="deleteUrl"
-@ajax-success="isVisible = false"
+@ajax-success="remove"
 inline-template
 >
 
@@ -76,9 +82,13 @@ href="#"
 
 </ajax-delete>
 
-</div>
+</div><!-- box-controls -->
 
-<div class="card-content">
+</div><!-- box-top-right -->
+
+</div><!-- box-top -->
+
+<div class="box-content">
 
 <a
 href="#"
@@ -97,8 +107,8 @@ v-html="markdownToHtml(project.description)"
 >
 </div>
 
-</div>
-</div>
+</div><!-- box-content -->
+</div><!-- box -->
 
 </transition>
 </project>

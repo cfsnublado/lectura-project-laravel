@@ -10,20 +10,21 @@ class ProjectPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function before(User $user, $ability)
     {
-        //
+        if ($user->is_superuser) {
+            return true;
+        }
     }
 
     /**
+     * Determine whether the user can delete the model.
      *
+     * @param  \App\Models\User\User  $user
+     * @param  \App\Models\Blog\Project  $project
+     * @return mixed
      */
-    public function update(User $user, Project $task)
+    public function delete(User $user, Project $project)
     {
         return $user->id === $project->owner_id;
     }

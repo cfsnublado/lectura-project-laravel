@@ -10,7 +10,7 @@ class AppTest extends TestCase
     use DatabaseTransactions;
     
     /**
-     * A basic test example.
+     * Test home view.
      *
      * @return void
      */

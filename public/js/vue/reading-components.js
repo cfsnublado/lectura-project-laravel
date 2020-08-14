@@ -21,7 +21,6 @@ const UserSearch = {
 const Project = {
   mixins: [
     AdminMixin,
-    VisibleMixin,
     MarkdownMixin
   ],
   props: {
@@ -149,7 +148,7 @@ const Projects = {
         })
       }, this.processDelay)
     },
-    onDeleteProject(index) {
+    deleteProject(index) {
       this.$delete(this.projects, index)
     }
   },
@@ -285,7 +284,7 @@ const ProjectMembers = {
         this.complete()
       })
     },
-    onDeleteProjectMember(index) {
+    deleteProjectMember(index) {
       this.$delete(this.projectMembers, index)
     }
   },

@@ -15,6 +15,8 @@ return [
     'label_your_menu' => 'Tu menú',
     'label_your_projects' => 'Tus proyectos',
     'label_create_project' => 'Crear proyecto',
+    'label_yes' => 'Sí',
+    'label_no' => 'No',
 
     'placeholder_username' => 'Nombre de usuario',
     'placeholder_password' => 'Contraseña',
@@ -25,6 +27,7 @@ return [
     'msg_block_1_desc' => 'Crea una entrada, y después agrega audio con narración.',
     'msg_block_2' => 'Comparte con tu equipo',
     'msg_block_2_desc' => 'Agrega narrraciones a las entradas de los demás miembros de tu equipo.',
+    'msg_confirm_delete_project' => '¿Eliminar proyecto?',
     'msg_forgot_password_q' => '¿Olvidaste tu contraseña?',
     'msg_no_projects' => 'No hay proyectos.',
 

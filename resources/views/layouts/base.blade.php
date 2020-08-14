@@ -228,6 +228,8 @@ dropdown-classes="is-up"
 </div>
 @show
 
+@yield('modal')
+
 </div><!-- app-container -->
 
 <script>

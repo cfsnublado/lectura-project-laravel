@@ -42,7 +42,6 @@ trait EnumTrait
         
         // Getting attribute with _id at the end (e.g., role_id).
         $keyNoIdEnd = rtrim($key, '_id');
-
         if (self::getEnum($keyNoIdEnd)) {
             return $this->attributes[$keyNoIdEnd];
         }

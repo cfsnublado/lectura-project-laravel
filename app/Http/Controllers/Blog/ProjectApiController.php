@@ -62,6 +62,10 @@ class ProjectApiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project = Project::findOrFail($id);
+        $this->authorize('delete', $project);
+        $project->delete();
+
+        return response()->json(null, 204);
     }
 }
