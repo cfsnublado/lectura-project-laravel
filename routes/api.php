@@ -25,23 +25,6 @@ Route::prefix('blog')->group(function() {
         'show' => 'api.blog.project.show',
         'destroy' => 'api.blog.project.destroy'
     ]);
-    // Route::get(
-    //     'projects',
-    //     [
-    //         'as' => 'api.blog.projects',
-    //         'uses' => 'Blog\ProjectApiController@index'
-    //     ]
-    // );
-    // Route::get(
-    //     'project/{id}',
-    //     [
-    //         'as' => 'api.blog.project',
-    //         'uses' => 'Blog\ProjectApiController@show'
-    //     ]
-    // );
-
-    //Route::post('books/{book}/ratings', 'RatingController@store');
-
 });
 
 

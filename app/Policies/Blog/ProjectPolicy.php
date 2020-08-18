@@ -12,9 +12,19 @@ class ProjectPolicy
 
     public function before(User $user, $ability)
     {
-        if ($user->is_superuser) {
-            return true;
-        }
+        return $user->is_superuser;
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\Models\User\User  $user
+     * @param  \App\Models\Blog\Project  $project
+     * @return mixed
+     */
+    public function update(User $user, Project $project)
+    {
+        return $user->id === $project->owner_id;
     }
 
     /**

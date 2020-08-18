@@ -1,8 +1,8 @@
-<{{ $modal_name ?? 'modal' }} 
+<{{ $modalName ?? 'modal' }} 
 @yield('modal_extra')
 v-cloak 
 inline-template
-init-id="{{ $modal_id ?? 'modal' }}"
+init-id="{{ $modalId ?? 'modal' }}"
 >
 
 <transition 
@@ -12,7 +12,7 @@ v-on:after-leave="isOpen = false"
 >
 
 <div 
-id="{{ $modal_id ?? 'modal' }}"
+id="{{ $modalId ?? 'modal' }}"
 class="modal @yield('modal_classes')"
 v-bind:class="[{ 'is-active': isOpen }]"
 @click.stop
@@ -52,4 +52,4 @@ v-bind:class="[{ 'is-active': isOpen }]"
 
 </transition>
 
-</{{ $modal_name ?? 'modal' }}>
+</{{ $modalName ?? 'modal' }}>

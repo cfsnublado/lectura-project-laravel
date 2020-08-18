@@ -2,7 +2,6 @@
 
 @section('content_top')
 
-@section('project_header')
-@endsection
+@section ('project_header') @endsection
 
 @endsection

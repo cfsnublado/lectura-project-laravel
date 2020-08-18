@@ -49,15 +49,29 @@ Route::middleware(['locale'])->prefix($locale)->group(function () {
         Route::get(
             'projects',
             [
-                'as' => 'blog.projects',
-                'uses' => 'Blog\ProjectController@projects'
+                'as' => 'blog.projects.list',
+                'uses' => 'Blog\ProjectController@index'
             ]
         );
         Route::get(
             'project/{slug}',
             [
-                'as' => 'blog.project',
-                'uses' => 'Blog\ProjectController@project'
+                'as' => 'blog.project.show',
+                'uses' => 'Blog\ProjectController@show'
+            ]
+        );
+        Route::get(
+            'project/{slug}/edit',
+            [
+                'as' => 'blog.project.edit',
+                'uses' => 'Blog\ProjectController@edit'
+            ]
+        );
+        Route::post(
+            'project/{id}/update',
+            [
+                'as' => 'blog.project.update',
+                'uses' => 'Blog\ProjectController@update'
             ]
         );
     });

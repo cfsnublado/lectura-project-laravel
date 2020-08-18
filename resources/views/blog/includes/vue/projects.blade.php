@@ -1,5 +1,5 @@
 <projects
-projects-url="{{ $projects_url }}"
+projects-url="{{ $projectsUrl }}"
 :init-is-admin="@if (Auth::check() && Auth::user()->is_superuser) true @else false @endif"
 inline-template
 >
@@ -33,9 +33,9 @@ v-for="(project, index) in projects"
 :key="project.id"
 :init-project="project"
 :init-is-admin="isAdmin"
-init-view-url="{{ $project_url }}"
-init-edit-url="{{ $project_update_url }}"
-init-delete-url="{{ $project_delete_url }}"
+init-view-url="{{ $projectUrl }}"
+init-edit-url="{{ $projectUpdateUrl }}"
+init-delete-url="{{ $projectDeleteUrl }}"
 @delete-project="deleteProject(index)"
 inline-template
 >
