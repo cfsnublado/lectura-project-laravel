@@ -22,6 +22,14 @@ class UserSeeder extends Seeder
             'email' => 'cfsfoo@foo.com',
             'password' => Hash::make('Pizza?69p'),
             'is_superuser' => true,
+        ]);
+        User::create([
+            'first_name' => 'Super',
+            'last_name' => 'Foo',
+            'username' => 'superfoo',
+            'email' => 'superfoo@foo.com',
+            'password' => Hash::make('Pizza?69p'),
+            'is_superuser' => true,
         ]);  
     }
 }

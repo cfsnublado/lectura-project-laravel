@@ -54,11 +54,11 @@ class ProjectApiTest extends TestCase
     }
 
     /**
-     * Test if superuser, non-member can delete model.
+     * Test if superuser, non-owner can delete model.
      *
      * @return void
      */
-    public function testDeleteProjectSuperUserNonMember()
+    public function testDeleteProjectSuperUserNonOwner()
     {
         $projectData = [
             'owner_id' => $this->user->id,
@@ -72,9 +72,10 @@ class ProjectApiTest extends TestCase
             'password' => 'Foo?69f',
             'is_superuser' => true
         ]);
-        $this->assertTrue($user->is_superuser);
         $this->be($user);
         $project = Project::create($projectData);
+        $this->assertTrue($user->is_superuser);
+        $this->assertNotEquals($user->user_id, $project->owner_id);
         $response = $this->delete(
             route('api.blog.project.destroy', ['project' => $project->id])
         );
@@ -94,13 +95,15 @@ class ProjectApiTest extends TestCase
      */
     public function testDeleteProjectOwnerNonSuperuser()
     {
+        $this->be($this->user);
+
         $projectData = [
             'owner_id' => $this->user->id,
             'name' => 'Test Project'
         ];
-        $this->assertFalse($this->user->is_superuser);
-        $this->be($this->user);
         $project = Project::create($projectData);
+        $this->assertFalse($this->user->is_superuser);
+        $this->assertEquals($this->user->id, $project->owner_id);
         $response = $this->delete(
             route('api.blog.project.destroy', ['project' => $project->id])
         );
@@ -131,9 +134,10 @@ class ProjectApiTest extends TestCase
             'email' => 'foo@foo.com',
             'password' => 'Foo?69f',
         ]);
-        $this->assertFalse($user->is_superuser);
         $this->be($user);
         $project = Project::create($projectData);
+        $this->assertFalse($user->is_superuser);
+        $this->assertNotEquals($user->id, $project->owner_id);
         $response = $this->delete(
             route('api.blog.project.destroy', ['project' => $project->id])
         );
