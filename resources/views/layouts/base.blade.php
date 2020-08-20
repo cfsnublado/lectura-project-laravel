@@ -21,7 +21,7 @@
 </head>
 
 <body
-class="theme-cloudy"
+class="@section('body_classes') theme-cloudy @show"
 style="min-height: 100vh;"
 >
 
@@ -234,9 +234,10 @@ dropdown-classes="is-up"
 
 <script>
 @section('session_js')
-var initSidebarSessionEnabled = false; 
-var sidebarExpanded = false;
-var appSessionUrl = "";
+var initSidebarSessionEnabled = false 
+var sidebarExpanded = false
+var appSessionUrl = "{{ route('app.session') }}"
+console.log(appSessionUrl)
 @show
 </script>
 

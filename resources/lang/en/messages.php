@@ -5,6 +5,7 @@ return [
     'English' => 'English',
     'Spanish' => 'Spanish',
 
+    'label_description' => 'Description',
     'label_edit_profile' => 'Edit profile',
     'label_general' => 'General',
     'label_hello_exc' => 'Hello!',
@@ -13,11 +14,14 @@ return [
     'label_login' => 'Sign in',
     'label_logout' => 'Sign out',
     'label_login_google' => 'Log in with Google',
+    'label_name' => 'Name',
     'label_new_project' => 'New project',
     'label_projects' => 'Projects',
     'label_your_menu' => 'Your menu',
     'label_your_projects' => 'Your projects',
     'label_create_project' => 'Create project',
+    'label_update' => 'Update',
+    'label_delete' => 'Delete',
     'label_yes' => 'Yes',
     'label_no' => 'No',
 
@@ -37,4 +41,5 @@ return [
     'page_home_title' => 'Home',
     'page_login_title' => 'Login',
     'page_projects_title' => 'Projects',
+    'page_project_edit_title' => 'Edit project',
 ];

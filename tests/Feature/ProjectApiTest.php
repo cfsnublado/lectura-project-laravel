@@ -34,7 +34,7 @@ class ProjectApiTest extends TestCase
      *
      * @return void
      */
-    public function testDeleteProjectUnauthenticated()
+    public function testDeleteUnauthenticated()
     {
         $projectData = [
             'owner_id' => $this->user->id,
@@ -58,7 +58,7 @@ class ProjectApiTest extends TestCase
      *
      * @return void
      */
-    public function testDeleteProjectSuperUserNonOwner()
+    public function testDeleteSuperUserNonOwner()
     {
         $projectData = [
             'owner_id' => $this->user->id,
@@ -93,7 +93,7 @@ class ProjectApiTest extends TestCase
      *
      * @return void
      */
-    public function testDeleteProjectOwnerNonSuperuser()
+    public function testDeleteOwnerNonSuperuser()
     {
         $this->be($this->user);
 
@@ -121,7 +121,7 @@ class ProjectApiTest extends TestCase
      *
      * @return void
      */
-    public function testDeleteProjectNonSuperUserNonOwner()
+    public function testDeleteNonSuperUserNonOwner()
     {
         $projectData = [
             'owner_id' => $this->user->id,
