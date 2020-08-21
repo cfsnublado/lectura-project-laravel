@@ -9,10 +9,16 @@ use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
-    public function showLogin() {
+    public function showLogin()
+    {
+        // Redirect to previous page upon successful login if
+        // intended url not set by auth redirect.
+        if (!session()->has('url.intended')) {
+            session(['url.intended' => url()->previous()]);
+        } 
         // Don't show log in page if user already logged in.
         if (Auth::check()) {
-            return redirect()->route('app.home');
+            return redirect()->intended(route('app.home'));
         }
 
         return view('security.login');

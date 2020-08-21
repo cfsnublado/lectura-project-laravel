@@ -1,20 +1,23 @@
-<projects
-projects-url="{{ $projectsUrl }}"
+<posts
+posts-url="{{ $postsUrl }}"
 :init-is-admin="{{ json_encode(Auth::check() && Auth::user()->is_superuser) }}"
 inline-template
 >
 
-<div 
-class="projects"
+<div
+class="posts"
 v-cloak
 >
 
-<div v-if="projects && projects.length == 0">
+<div v-if="posts && posts.length == 0">
 
-<p>{{ __('messages.msg_no_projects') }}</p>
+<p>{{ __('messages.msg_no_posts_in_project') }}</p>
 
-<a class="button is-info" href="">
-{{ __('messages.label_create_project') }}
+<a 
+class="button is-info" 
+href=""
+>
+{{ __('messages.label_create_post') }}
 </a>
 
 </div>
@@ -28,20 +31,20 @@ class="processing-icon is-centered is-large"
 
 <div v-else>
 
-<project
-v-for="(project, index) in projects"
-:key="project.id"
-:init-project="project"
+<post
+v-for="(post, index) in posts"
+:key="post.id"
+:init-post="post"
 :init-is-admin="isAdmin"
-init-view-url="{{ $projectUrl }}"
-init-edit-url="{{ $projectUpdateUrl }}"
-init-delete-url="{{ $projectDeleteUrl }}"
-@delete-project="deleteProject(index)"
+init-view-url=""
+init-delete-url=""
+@delete-post="deletePost(index)"
 inline-template
 >
+
 <transition name="fade-transition">
 
-<div class="box project-box">
+<div class="box post-box">
 
 <div v-if="isAdmin" class="box-top">
 
@@ -63,7 +66,7 @@ href="#"
 </span>
 
 <ajax-delete
-delete-confirm-id="delete-project"
+delete-confirm-id="delete-post"
 :delete-url="deleteUrl"
 @ajax-success="remove"
 inline-template
@@ -94,14 +97,14 @@ href="#"
 >
 <span
 class="name"
-v-html="markdownToHtml(project.name)"
+v-html="markdownToHtml(post.name)"
 >
 </span>
 </a>
 
 <div 
 class="desc"
-v-html="markdownToHtml(project.description)"
+v-html="markdownToHtml(post.description)"
 >
 </div>
 
@@ -109,10 +112,11 @@ v-html="markdownToHtml(project.description)"
 </div><!-- box -->
 
 </transition>
-</project>
+
+</post>
 
 </div><!-- processing -->
 
 </div>
 
-</projects>
+</posts>

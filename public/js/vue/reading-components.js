@@ -297,7 +297,6 @@ const ProjectMembers = {
 const Post = {
   mixins: [
     AdminMixin,
-    VisibleMixin,
     MarkdownMixin
   ],
   props: {
@@ -370,50 +369,54 @@ const Posts = {
   },
   data() {
     return {
-      posts: null
+      posts: null,
+      timerId: null,
+      processDelay: 500,
     }
   },
   methods: {
     getPosts(page=1) {
+      clearTimeout(this.timerId)
       this.process()
 
       params = {
         page: page
       }
 
-      axios.get(this.postsUrl, {
-        params: params
-      })
-      .then(response => {
-        this.posts = response.data.results
-        console.log(this.posts)
-        this.setPagination(
-          response.data.previous,
-          response.data.next,
-          response.data.page_num,
-          response.data.count,
-          response.data.num_pages
-        )
-        VueScrollTo.scrollTo({
-          el: '#posts-scroll-top',
+      this.timerId = setTimeout(()=>{
+        axios.get(this.postsUrl, {
+          params: params
         })
-        this.success()
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log(error.response)
-        } else if (error.request) {
-          console.log(error.request)
-        } else {
-          console.log(error.message)
-        }
-        console.log(error.config)
-      })
-      .finally(() => {
-        this.complete()
-      })
+        .then(response => {
+          this.posts = response.data.data
+          this.setPagination(
+            response.links.prev,
+            response.links.next,
+            response.meta.current_page,
+            response.meta.total,
+            response.meta.last_page
+          )
+          VueScrollTo.scrollTo({
+            el: '#posts-scroll-top',
+          })
+          this.success()
+        })
+        .catch(error => {
+          if (error.response) {
+            console.log(error.response)
+          } else if (error.request) {
+            console.log(error.request)
+          } else {
+            console.log(error.message)
+          }
+          console.log(error.config)
+        })
+        .finally(() => {
+          this.complete()
+        })
+      }, this.processDelay)
     },
-    onDeletePost(index) {
+    deletePost(index) {
       this.$delete(this.posts, index)
     }
   },

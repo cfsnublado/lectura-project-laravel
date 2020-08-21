@@ -15,7 +15,6 @@ $projectDeleteUrl = route('api.blog.project.destroy', ['project' => 0]);
 @endphp
 
 @include('blog.includes.vue.projects')
-
 @endsection
 
 @section('modal')

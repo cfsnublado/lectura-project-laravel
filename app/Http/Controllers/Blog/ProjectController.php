@@ -62,7 +62,7 @@ class ProjectController extends Controller
         $project->description = $validated['description'];
         $project->save();
 
-        return redirect(route('blog.projects.list'))
+        return redirect(route('blog.project.show', ['slug' => $project->slug]))
             ->with('success', 'Project updated!');
     }
 }

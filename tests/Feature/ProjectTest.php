@@ -10,7 +10,7 @@ use App\Models\Blog\Project;
 
 class ProjectTest extends TestCase
 {
-    use DatabaseTransactions;
+    //use DatabaseTransactions;
 
     private $user;
 
@@ -51,8 +51,11 @@ class ProjectTest extends TestCase
             route('blog.project.update', ['id' => $project->id]),
             $updatedData
         );
-        $response->assertStatus(302);
         $project->refresh();
+        $response->assertStatus(302);
+        $response->assertRedirect(
+            route('blog.project.show', ['slug' => $project->slug]),
+        );
         $this->assertEquals($project->name, $updatedData['name']);
         $this->assertEquals($project->description, $updatedData['description']);
     }
@@ -194,7 +197,7 @@ class ProjectTest extends TestCase
      *
      * @return void
      */
-    public function testEditUnauthenticated()
+    public function testEditUnauthenticatedRedirectLogin()
     {
         $project = Project::create([
             'owner_id' => $this->user->id,
@@ -203,7 +206,8 @@ class ProjectTest extends TestCase
         $response = $this->get(
             route('blog.project.edit', ['slug' => $project->slug])
         );
-        $response->assertStatus(403);
+        $response->assertStatus(302);
+        $response->assertRedirect(route('security.login'));
     }
 
     /**

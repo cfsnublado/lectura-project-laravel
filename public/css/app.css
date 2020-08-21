@@ -13206,23 +13206,27 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   margin-top: 0.625rem;
 }
 
-/* line 78, ../scss/cfs/reading/_reading.scss */
-.project-box {
+/* line 77, ../scss/cfs/reading/_reading.scss */
+.project-box,
+.post-box {
   margin-bottom: 1.875rem;
   text-align: center;
 }
 /* line 83, ../scss/cfs/reading/_reading.scss */
-.project-box .name {
+.project-box .name,
+.post-box .name {
   font-size: 1.625rem;
   margin-bottom: 1.25rem;
 }
 /* line 88, ../scss/cfs/reading/_reading.scss */
-.project-box .name p {
+.project-box .name p,
+.post-box .name p {
   margin-top: 0;
   margin-bottom: 0;
 }
 /* line 97, ../scss/cfs/reading/_reading.scss */
-.project-box .box-content {
+.project-box .box-content,
+.post-box .box-content {
   padding-right: 1rem;
   padding-left: 1rem;
 }
@@ -13231,7 +13235,7 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
 .project-box .box-top,
 .post-box .box-top {
   display: flex;
-  margin-bottom: 1.875rem;
+  margin-bottom: 0.625rem;
   justify-content: space-between;
   align-items: center;
 }
@@ -13295,8 +13299,8 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   }
 
   /* line 177, ../scss/cfs/reading/_reading.scss */
-  .project-card .name,
-  .post-card .name {
+  .project-box .name,
+  .post-box .name {
     font-size: 1.125rem;
   }
 }

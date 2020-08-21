@@ -67,7 +67,7 @@ Route::middleware(['locale'])->prefix($locale)->group(function () {
                 'as' => 'blog.project.edit',
                 'uses' => 'Blog\ProjectController@edit'
             ]
-        );
+        )->middleware('auth');
         Route::post(
             'project/{id}/update',
             [

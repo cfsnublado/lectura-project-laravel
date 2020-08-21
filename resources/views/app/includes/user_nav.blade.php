@@ -1,5 +1,9 @@
 @guest
-  <a href="{{ route('security.login') }}" class="navbar-item login-link">
+  <a 
+  id="navbar-login-link"
+  class="navbar-item login-link"
+  href="{{ route('security.login') }}"
+  >
   {{ __('messages.label_login') }}
   </a>
 @endguest

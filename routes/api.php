@@ -25,6 +25,16 @@ Route::prefix('blog')->group(function() {
         'show' => 'api.blog.project.show',
         'destroy' => 'api.blog.project.destroy'
     ]);
+    Route::apiResource('posts', 'Blog\PostApiController')->names([
+        'index' => 'api.blog.posts.list',
+        'show' => 'api.blog.post.show',
+        'destroy' => 'api.blog.post.destroy'
+    ]);
+    Route::apiResource('projects.posts', 'Blog\ProjectPostApiController')->names([
+        'index' => 'api.blog.project.posts.list',
+        'show' => 'api.blog.project.post.show',
+        'destroy' => 'api.blog.project.post.destroy'
+    ]);
 });
 
 
