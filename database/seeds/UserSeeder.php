@@ -19,8 +19,8 @@ class UserSeeder extends Seeder
             'first_name' => 'Christopher',
             'last_name' => 'Sanders',
             'username' => 'cfs',
-            'email' => 'cfsfoo@foo.com',
-            'password' => Hash::make('Pizza?69p'),
+            'email' => 'cfs@foo.com',
+            'password' => Hash::make('Foox69f'),
             'is_superuser' => true,
         ]);
         User::create([
@@ -28,8 +28,15 @@ class UserSeeder extends Seeder
             'last_name' => 'Foo',
             'username' => 'superfoo',
             'email' => 'superfoo@foo.com',
-            'password' => Hash::make('Pizza?69p'),
+            'password' => Hash::make('Foox69f'),
             'is_superuser' => true,
+        ]);  
+        User::create([
+            'first_name' => 'Foo',
+            'last_name' => 'Foo',
+            'username' => 'foo',
+            'email' => 'foo@foo.com',
+            'password' => Hash::make('Foox69f'),
         ]);  
     }
 }
