@@ -10,6 +10,11 @@ use App\Http\Resources\Blog\ProjectCollection;
 
 class ProjectApiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *

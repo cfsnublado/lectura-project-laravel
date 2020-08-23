@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'last_name' => 'Sanders',
             'username' => 'cfs',
             'email' => 'cfs@foo.com',
-            'password' => Hash::make('Foox69f'),
+            'password' => Hash::make('Pizza?69p'),
             'is_superuser' => true,
         ]);
         User::create([
