@@ -5,6 +5,8 @@ function csrfSafeMethod(method) {
 
 var csrftoken = document.querySelector('meta[name~="csrf-token"]').getAttribute('content')
 
+axios.defaults.withCredentials = true
+
 axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
   'X-CSRFTOKEN': csrftoken

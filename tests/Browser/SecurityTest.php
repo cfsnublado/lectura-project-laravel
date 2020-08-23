@@ -28,7 +28,7 @@ class SecurityTest extends DuskTestCase
             ->click('#navbar-login-link')
             ->waitForLocation('/security/login')
             ->on(new LoginPage)
-            ->loginForm('cfs', 'Foox69f')
+            ->loginForm('cfs', 'Pizza?69p')
             ->waitForLocation('/secret')
             ->assertAuthenticated()
             ->logout();
@@ -49,7 +49,7 @@ class SecurityTest extends DuskTestCase
             $browser->visit(route('blog.project.edit', ['slug' => $project->slug]))
             ->waitForLocation('/security/login')
             ->on(new LoginPage)
-            ->loginForm('cfs', 'Foox69f')
+            ->loginForm('cfs', 'Pizza?69p')
             ->waitForRoute('blog.project.edit', ['slug' => $project->slug])
             ->assertAuthenticated()
             ->logout();

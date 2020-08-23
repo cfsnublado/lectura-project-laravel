@@ -18,13 +18,7 @@ class ProjectApiTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->user = User::create([
-            'first_name' => 'Christopher',
-            'last_name' => 'Sanders',
-            'username' => 'cfs',
-            'email' => 'cfsfoo@foo.com',
-            'password' => 'Foo?69f',
-        ]);
+        $this->user = factory(User::class)->create();
     }
 
     // PERMISSIONS
@@ -64,14 +58,7 @@ class ProjectApiTest extends TestCase
             'owner_id' => $this->user->id,
             'name' => 'Test Project'
         ];
-        $user = User::create([
-            'first_name' => 'Foo',
-            'last_name' => 'Foo',
-            'username' => 'foo',
-            'email' => 'foo@foo.com',
-            'password' => 'Foo?69f',
-            'is_superuser' => true
-        ]);
+        $user = factory(User::class)->create(['is_superuser' => true]);
         $this->be($user);
         $project = Project::create($projectData);
         $this->assertTrue($user->is_superuser);
@@ -127,13 +114,7 @@ class ProjectApiTest extends TestCase
             'owner_id' => $this->user->id,
             'name' => 'Test Project'
         ];
-        $user = User::create([
-            'first_name' => 'Foo',
-            'last_name' => 'Foo',
-            'username' => 'foo',
-            'email' => 'foo@foo.com',
-            'password' => 'Foo?69f',
-        ]);
+        $user = factory(User::class)->create();
         $this->be($user);
         $project = Project::create($projectData);
         $this->assertFalse($user->is_superuser);

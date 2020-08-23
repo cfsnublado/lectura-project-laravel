@@ -14,6 +14,11 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
+        // Prevent Sanctum from redirecting to login.
+        if ($request->is('api/*')) {
+            abort(403, 'Forbidden');
+        }
+
         if (! $request->expectsJson()) {
             return route('security.login');
         }

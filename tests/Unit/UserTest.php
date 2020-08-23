@@ -27,14 +27,9 @@ class UserTest extends TestCase
     public function testUuidProvidedInConstructor()
     {
         $uuid = '7e204342-62c6-4b94-b177-f97acd6ec5af';
-        $user = User::create([
-            'id' => $uuid,
-            'first_name' => 'Christopher',
-            'last_name' => 'Sanders',
-            'username' => 'cfs',
-            'email' => 'cfsfoo@foo.com',
-            'password' => 'Pizza?69p',
-        ]);
+        $user = factory(User::class)->create(['id' => $uuid]);
+        $user->refresh();
+
         $this->assertEquals($user->id, $uuid);
     }
 
@@ -46,13 +41,7 @@ class UserTest extends TestCase
      */
     public function testUuidGeneratedOnCreate()
     {
-        $user = User::create([
-            'first_name' => 'Christopher',
-            'last_name' => 'Sanders',
-            'username' => 'cfs',
-            'email' => 'cfsfoo@foo.com',
-            'password' => 'Pizza?69p',
-        ]);
+        $user = factory(User::class)->create(['id' => '']);
         $this->assertTrue(is_string($user->id));
         $this->assertEquals(mb_strlen($user->id, 'utf8'), 36);
     }
@@ -64,13 +53,7 @@ class UserTest extends TestCase
      */
     public function testIsSuperuserDefaultFalse()
     {
-        $user = User::create([
-            'first_name' => 'Christopher',
-            'last_name' => 'Sanders',
-            'username' => 'cfs',
-            'email' => 'cfsfoo@foo.com',
-            'password' => 'Pizza?69p',
-        ]);
+        $user = factory(User::class)->create();
         $user->refresh();
 
         $this->assertFalse($user->is_superuser);
@@ -83,14 +66,7 @@ class UserTest extends TestCase
      */
     public function testIsSuperuserIsBoolean()
     {
-        $user = User::create([
-            'first_name' => 'Christopher',
-            'last_name' => 'Sanders',
-            'username' => 'cfs',
-            'email' => 'cfsfoo@foo.com',
-            'password' => 'Pizza?69p',
-            'is_superuser' => true,
-        ]);
+        $user = factory(User::class)->create(['is_superuser' => true]);
         $user->refresh();
 
         $this->assertTrue($user->is_superuser);
@@ -106,13 +82,7 @@ class UserTest extends TestCase
     {
         $this->assertEquals(Profile::count(), 0);
 
-        $user = User::create([
-            'first_name' => 'Christopher',
-            'last_name' => 'Sanders',
-            'username' => 'cfs',
-            'email' => 'cfsfoo@foo.com',
-            'password' => 'Pizza?69p',
-        ]);
+        $user = factory(User::class)->create();
         $user->refresh();
 
         $this->assertEquals(Profile::count(), 1);

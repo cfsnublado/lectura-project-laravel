@@ -19,13 +19,8 @@ class ProjectTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->user = User::create([
-            'first_name' => 'Christopher',
-            'last_name' => 'Sanders',
-            'username' => 'cfs',
-            'email' => 'cfsfoo@foo.com',
-            'password' => 'Pizza?69p',
-        ]);
+        $this->user = factory(User::class)->create();
+        $this->user->refresh();
     }
 
     /**
@@ -37,11 +32,9 @@ class ProjectTest extends TestCase
     {
         $name = 'Test Project';
         $slug = Str::slug($name, '-');
-        $project = Project::create([
-            'owner_id' => $this->user->id,
-            'name' => $name,
-            'description' => 'This is a test project',
-        ]);
+        $project = factory(Project::class)->create(
+            ['name' => $name, 'owner_id' => $this->user->id]
+        );
 
         $this->assertEquals($project->slug, $slug);
     }
