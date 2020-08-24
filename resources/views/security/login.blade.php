@@ -1,14 +1,9 @@
 @extends('layouts.base')
 
-@section('page_title')
-{{ __('messages.page_login_title') }}
-@endsection
+@section('page_title', __('messages.page_login_title'))
 
-@section('navbar')
-@endsection
-
-@section('sidebar')
-@endsection
+@section('navbar')@endsection
+@section('sidebar')@endsection
 
 @section('content_container')
 <div class="centerall">

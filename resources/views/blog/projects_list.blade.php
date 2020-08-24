@@ -1,8 +1,8 @@
 @extends('blog.blog_base')
 
-@section('page_title') {{ __('messages.page_projects_title') }} @endsection
+@section('page_title', __('messages.page_projects_title'))
 
-@section('projects_link_active') is-active @endsection
+@section('projects_link_active', 'is-active')
 
 @section('content')
 <div id="projects-scroll-top"></div>

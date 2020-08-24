@@ -3,12 +3,14 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use Faker\Generator as Faker;
-use App\Models\User\User;
+use App\Models\Blog\Post;
 use App\Models\Blog\Project;
+use App\Models\User\User;
 
-$factory->define(Project::class, function (Faker $faker) {
+$factory->define(Post::class, function (Faker $faker) {
     return [
-        'owner_id' => factory(User::class),
+        'project_id' => factory(Project::class),
+        'creator_id' => factory(User::class),
         'name' => $faker->unique()->sentence,
         'description' => $faker->text,
     ];

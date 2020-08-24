@@ -1,6 +1,10 @@
 const AjaxDelete = {
   mixins: [AjaxProcessMixin],
   props: {
+    id: {
+      type: String,
+      default: ''
+    },
     deleteConfirmId: {
       type: String,
       default: 'confirmation-modal'

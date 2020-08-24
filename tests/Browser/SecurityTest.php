@@ -2,7 +2,6 @@
 
 namespace Tests\Browser;
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Dusk\Browser;
@@ -13,7 +12,11 @@ use App\Models\Blog\Project;
 
 class SecurityTest extends DuskTestCase
 {
-    use DatabaseTransactions;
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->artisan('db:seed --env=testing');
+    }
 
     /**
      * Test if a successful login redirects the user 

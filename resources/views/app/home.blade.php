@@ -1,8 +1,8 @@
 @extends('layouts.base')
 
-@section('page_title')
-{{ __('messages.page_home_title') }}
-@endsection
+@section('page_title', __('messages.page_home_title'))
+
+@section('home_link_active', 'is-active')
 
 @section('full_width_sections')
 <section id="intro" class="parallax-block intro">

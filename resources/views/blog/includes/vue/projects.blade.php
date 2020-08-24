@@ -65,12 +65,14 @@ href="#"
 <ajax-delete
 delete-confirm-id="delete-project"
 :delete-url="deleteUrl"
+:id="project.id"
 @ajax-success="remove"
 inline-template
 >
 
 <span class="control">
 <a
+:id="('project-delete-' + id)"
 href="#"
 @click.prevent="confirmDelete"
 >

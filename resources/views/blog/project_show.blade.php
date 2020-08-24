@@ -1,6 +1,6 @@
 @extends('blog.blog_base')
 
-@section('page_title') {{ $project->name }} @endsection
+@section('page_title', $project->name)
 
 @section('content')
 <div id="projects-scroll-top"></div>
