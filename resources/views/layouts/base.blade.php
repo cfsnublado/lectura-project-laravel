@@ -105,35 +105,37 @@ aria-label="sidebar-trigger"
 <div class="menu">
 
 @if (Auth::check())
-  <p class="menu-label">
-  {{ __('messages.label_your_menu') }}
-  </p>
+<!--
+<p class="menu-label">
+{{ __('messages.label_your_menu') }}
+</p>
 
-  <ul class="menu-list">
+<ul class="menu-list">
 
-  <li>
-  <a 
-  class="@yield('your_projects_link_active')"
-  href=""
-  >
-  <i class="fas fa-fw fa-project-diagram menu-icon"></i>
-  {{ __('messages.label_your_projects') }}
-  </a>
-  </li>
+<li>
+<a 
+class="@yield('your_projects_link_active')"
+href=""
+>
+<i class="fas fa-fw fa-project-diagram menu-icon"></i>
+{{ __('messages.label_your_projects') }}
+</a>
+</li>
 
-  <li>
-  <a 
-  class="@yield('project_create_link_active')"
-  href=""
-  >
-  <i class="fas fa-fw fa-plus menu-icon"></i>
-  {{ __('messages.label_new_project') }}
-  </a>
-  </li>
+<li>
+<a 
+class="@yield('project_create_link_active')"
+href=""
+>
+<i class="fas fa-fw fa-plus menu-icon"></i>
+{{ __('messages.label_new_project') }}
+</a>
+</li>
 
-  <li class="sidebar-divider"></li>
+<li class="sidebar-divider"></li>
 
-  </ul>
+</ul>
+-->
 @endif
 
 <p class="menu-label">

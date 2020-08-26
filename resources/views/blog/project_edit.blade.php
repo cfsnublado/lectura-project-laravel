@@ -9,7 +9,6 @@
 @endsection
 
 @section('modal')
-
 @include(
 'blog/includes/project_delete_modal',
 ['modalId' => 'delete-project', 'modalName' => 'confirmation-modal']

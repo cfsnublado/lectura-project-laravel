@@ -13,9 +13,11 @@ v-cloak
 
 <p>{{ __('messages.msg_no_projects') }}</p>
 
-<a class="button is-info" href="">
+@can('create', App\Models\Blog\Project::class)
+<a class="button is-info" href="{{ route('blog.project.create') }}">
 {{ __('messages.label_create_project') }}
 </a>
+@endcan
 
 </div>
 
@@ -34,7 +36,7 @@ v-for="(project, index) in projects"
 :init-project="project"
 :init-is-admin="isAdmin"
 init-view-url="{{ $projectUrl }}"
-init-edit-url="{{ $projectUpdateUrl }}"
+init-edit-url="{{ $projectEditUrl }}"
 init-delete-url="{{ $projectDeleteUrl }}"
 @delete-project="deleteProject(index)"
 inline-template

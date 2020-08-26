@@ -333,7 +333,11 @@ const Post = {
         window.location.assign(this.viewUrl)
       }
     },
-    edit() {},
+    edit() {
+      if (this.editUrl) {
+        window.location.assign(this.editUrl)
+      }      
+    },
     remove() {
       this.$emit('delete-post', this.post.id)
     }
@@ -341,7 +345,11 @@ const Post = {
   created() {
     if (this.initViewUrl) {
       this.viewUrl = this.initViewUrl
-        .replace(this.idPlaceholder, this.post.id)
+        .replace(this.slugPlaceholder, this.post.slug)
+    }
+
+    if (this.initEditUrl) {
+      this.editUrl = this.initEditUrl
         .replace(this.slugPlaceholder, this.post.slug)
     }
 

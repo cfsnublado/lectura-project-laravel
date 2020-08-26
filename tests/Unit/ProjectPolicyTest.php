@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use App\Models\User\User;
 use App\Models\Blog\Project;
+use App\Models\Blog\ProjectMember;
 
 class ProjectPolicyTest extends TestCase
 {
@@ -20,17 +21,9 @@ class ProjectPolicyTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->user = User::create([
-            'first_name' => 'Christopher',
-            'last_name' => 'Sanders',
-            'username' => 'cfs',
-            'email' => 'cfsfoo@foo.com',
-            'password' => 'Pizza?69p',
-        ]);
-        $this->project = Project::create([
-            'owner_id' => $this->user->id,
-            'name' => 'Test Project',
-            'description' => 'This is a test project.'
+        $this->user = factory(User::class)->create();
+        $this->project = factory(Project::class) ->create([
+            'owner_id' => $this->user->id
         ]);
     }
 
@@ -41,13 +34,8 @@ class ProjectPolicyTest extends TestCase
      */
     public function testSuperuserNonOwnerCanUpdate()
     {
-        $user = User::create([
-            'first_name' => 'Foo',
-            'last_name' => 'Foo',
-            'username' => 'foo',
-            'email' => 'foo@foo.com',
-            'password' => 'foo?69f',
-            'is_superuser' => true
+        $user = factory(User::class)->create([
+            'is_superuser' => true,
         ]);
         $this->assertTrue($user->is_superuser);
         $this->assertNotEquals($user->id, $this->project->owner_id);
@@ -73,13 +61,7 @@ class ProjectPolicyTest extends TestCase
      */
     public function testNonSuperuserNonOwnerCanNotUpdate()
     {
-        $user = User::create([
-            'first_name' => 'Foo',
-            'last_name' => 'Foo',
-            'username' => 'foo',
-            'email' => 'foo@foo.com',
-            'password' => 'foo?69f',
-        ]);
+        $user = factory(User::class)->create();
         $this->assertFalse($user->is_superuser);
         $this->assertNotEquals($user->id, $this->project->owner_id);
         $this->assertFalse($user->can('update', $this->project));
@@ -92,13 +74,8 @@ class ProjectPolicyTest extends TestCase
      */
     public function testSuperuserNonOwnerCanDelete()
     {
-        $user = User::create([
-            'first_name' => 'Foo',
-            'last_name' => 'Foo',
-            'username' => 'foo',
-            'email' => 'foo@foo.com',
-            'password' => 'foo?69f',
-            'is_superuser' => true
+        $user = factory(User::class)->create([
+            'is_superuser' => true,
         ]);
         $this->assertTrue($user->is_superuser);
         $this->assertNotEquals($user->id, $this->project->owner_id);
@@ -124,15 +101,65 @@ class ProjectPolicyTest extends TestCase
      */
     public function testNonSuperuserNonOwnerCanNotDelete()
     {
-        $user = User::create([
-            'first_name' => 'Foo',
-            'last_name' => 'Foo',
-            'username' => 'foo',
-            'email' => 'foo@foo.com',
-            'password' => 'foo?69f',
-        ]);
+        $user = factory(User::class)->create();
         $this->assertFalse($user->is_superuser);
         $this->assertNotEquals($user->id, $this->project->owner_id);
         $this->assertFalse($user->can('delete', $this->project));
+    }
+
+    /**
+     * Test if owner can create a project post.
+     *
+     * @return void
+     */
+    public function testOwnerCanCreatePost()
+    {
+        $this->assertFalse($this->user->is_superuser);
+        $this->assertEquals($this->user->id, $this->project->owner_id);
+        $this->assertTrue($this->user->can('createPost', $this->project));
+    }
+
+    /**
+     * Test if project team member can create a project post.
+     *
+     * @return void
+     */
+    public function testMemberCanCreatePost()
+    {
+        $user = factory(User::class)->create();
+        ProjectMember::create([
+            'project_id' => $this->project->id,
+            'member_id' => $user->id,
+        ]);
+        $this->assertFalse($user->is_superuser);
+        $this->assertNotEquals($user->id, $this->project->owner_id);
+        $this->assertTrue($user->can('createPost', $this->project));
+    }
+
+    /**
+     * Test if superuser, non-member can not create a project post.
+     *
+     * @return void
+     */
+    public function testSuperuserNonMemberCanNotCreatePost()
+    {
+        $user = factory(User::class)->create([
+            'is_superuser' => true,
+        ]);
+        $this->assertTrue($user->is_superuser);
+        $this->assertNotEquals($user->id, $this->project->owner_id);
+        $this->assertFalse($user->can('createPost', $this->project));
+    }
+
+    /**
+     * Test if non-owner, non-member can't create project post.
+     *
+     * @return void
+     */
+    public function testNonOwnerNonMemberCanNotCreatePost()
+    {
+        $user = factory(User::class)->create();
+        $this->assertFalse($user->is_superuser);
+        $this->assertFalse($user->can('createPost', $this->project));
     }
 }

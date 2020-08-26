@@ -10,7 +10,7 @@
 @php
 $projectsUrl = route('api.blog.projects.list');
 $projectUrl = route('blog.project.show', ['slug' => 'zzz']);
-$projectUpdateUrl = route('blog.project.edit', ['slug' => 'zzz']);
+$projectEditUrl = route('blog.project.edit', ['slug' => 'zzz']);
 $projectDeleteUrl = route('api.blog.project.destroy', ['project' => 0]);
 @endphp
 

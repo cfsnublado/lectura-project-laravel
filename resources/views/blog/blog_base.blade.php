@@ -27,6 +27,7 @@ sidebar-adaptable theme-cloudy @if(Session::get('sidebar_locked', false)) sideba
 </p>
 
 <ul class="menu-list">
+
 @can('update', $project)
 <li>
 <a 
@@ -39,10 +40,56 @@ href="{{ route('blog.project.edit', ['slug' => $project->slug]) }}"
 </a>
 </li>
 @endcan
+
+@can('createPost', $project)
+<li>
+<a 
+id="sidebar-nav-post-create" 
+class="@yield('post_create_link_active')" 
+href="{{ route('blog.post.create', ['slug' => $project->slug]) }}"
+>
+<i class="menu-icon fas fa-plus fa-fw"></i>
+{{ __('messages.label_new_post') }}
+</a>
+</li>
+@endcan
+
 </ul>
 </div>
 
 <span class="sidebar-divider"></span>
+@endif
+
+@if(isset($post))
+<div class="menu">
+
+<p class="menu-label">
+{{ __('messages.label_post') }}
+</p>
+
+<p class="menu-header">
+<a id="sidebar-nav-post-name" href="{{ route('blog.post.show', ['slug' => $post->slug]) }}">
+<span id="menu-post-name"> {{ $post->name }} </span>
+</a>
+</p>
+
+<ul class="menu-list">
+
+@can('update', $post)
+<li>
+<a 
+id="sidebar-nav-post-edit" 
+class="@yield('post_edit_link_active')" 
+href="{{ route('blog.post.edit', ['slug' => $post->slug]) }}"
+>
+<i class="menu-icon fas fa-edit fa-fw"></i> 
+{{ __('messages.label_edit_post') }}
+</a>
+</li>
+@endcan
+
+</ul>
+</div>
 @endif
 @parent
 @endsection

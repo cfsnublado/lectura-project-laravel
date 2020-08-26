@@ -14,7 +14,7 @@ class Post extends Model
     protected $with = ['creator.profile', 'project'];
     protected $fillable = [
         'project_id', 'creator_id', 'name',
-        'description',
+        'description', 'content'
     ];
 
     /**

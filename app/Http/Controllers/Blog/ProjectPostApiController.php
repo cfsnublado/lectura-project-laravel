@@ -72,7 +72,6 @@ class ProjectPostApiController extends Controller
             ['project_id', $project_id],
             ['id', $id]
         ])->firstOrFail();
-            ;
         $this->authorize('delete', $post);
         $post->delete();
 

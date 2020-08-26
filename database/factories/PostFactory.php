@@ -13,5 +13,6 @@ $factory->define(Post::class, function (Faker $faker) {
         'creator_id' => factory(User::class),
         'name' => $faker->unique()->sentence,
         'description' => $faker->text,
+        'content' => $faker->paragraphs(5, true),
     ];
 });

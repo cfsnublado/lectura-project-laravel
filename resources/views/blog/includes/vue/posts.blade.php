@@ -13,12 +13,14 @@ v-cloak
 
 <p>{{ __('messages.msg_no_posts_in_project') }}</p>
 
+@can('createPost', $project)
 <a 
 class="button is-info" 
-href=""
+href="{{ route('blog.post.create', ['slug' => $project->slug]) }}"
 >
 {{ __('messages.label_create_post') }}
 </a>
+@endcan
 
 </div>
 
@@ -36,8 +38,9 @@ v-for="(post, index) in posts"
 :key="post.id"
 :init-post="post"
 :init-is-admin="isAdmin"
-init-view-url=""
-init-delete-url=""
+init-view-url="{{ $postUrl }}"
+init-edit-url="{{ $postEditUrl }}"
+init-delete-url="{{ $postDeleteUrl }}"
 @delete-post="deletePost(index)"
 inline-template
 >
@@ -68,12 +71,14 @@ href="#"
 <ajax-delete
 delete-confirm-id="delete-post"
 :delete-url="deleteUrl"
+:id="post.id"
 @ajax-success="remove"
 inline-template
 >
 
 <span class="control">
 <a
+:id="('post-delete-' + id)"
 href="#"
 @click.prevent="confirmDelete"
 >

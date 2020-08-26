@@ -3,13 +3,28 @@
 namespace App\Policies\Blog;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Policies\Blog\ProjectMemberPolictyTrait;
 use App\Models\User\User;
 use App\Models\Blog\Project;
+use App\Models\Blog\ProjectMember;
 use App\Models\Blog\Post;
 
 class PostPolicy
 {
     use HandlesAuthorization;
+    use ProjectMemberPolicyTrait;
+
+    /**
+     * Determine if user is the post creator.
+     *
+     * @param  \App\Models\User\User  $user
+     * @param  \App\Models\Blog\Post  $post
+     * @return boolean
+     */
+    protected function isCreator(User $user, Post $post)
+    {
+        return $user->id === $post->creator_id;
+    }
 
     public function before(User $user, $ability)
     {
@@ -27,7 +42,9 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        return $user->id === $post->creator_id;
+        $role = ProjectMember::ROLE_EDITOR;
+        return $this->isCreator($user, $post)
+            || $this->isRoleOrAbove($user, $post->project_id, $role);
     }
 
     /**
@@ -39,6 +56,8 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        return $user->id === $post->creator_id;
+        $role = ProjectMember::ROLE_EDITOR;
+        return $this->isCreator($user, $post)
+            || $this->isRoleOrAbove($user, $post->project_id, $role);
     }
 }

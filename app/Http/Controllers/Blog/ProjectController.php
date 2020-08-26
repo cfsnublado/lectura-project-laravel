@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Blog;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\StoreProject;
 use App\Models\Blog\Project;
@@ -31,6 +32,38 @@ class ProjectController extends Controller
 
         return view('blog.project_show', ['project' => $project]);
     }
+
+    /**
+     * Create a new project.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        $this->authorize('create', Project::class);
+
+        return view('blog.project_create');
+    }
+
+    /**
+     * Store a newly created project.
+     *
+     * @param  StoreProject  $request
+     * @return Response
+     */
+    public function store(StoreProject $request)
+    {
+        $this->authorize('create', Project::class);
+        $validated = $request->validated();
+        $project = Project::create([
+            'owner_id' => Auth::user()->id,
+            'name' => $validated['name'],
+            'description' => $validated['description'],
+        ]);
+
+        return redirect(route('blog.project.show', ['slug' => $project->slug]))
+            ->with('success', 'Project created!');
+        }
 
     /**
      * Show the form for editing a project.

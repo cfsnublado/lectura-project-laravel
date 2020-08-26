@@ -1,6 +1,6 @@
 <form 
-id="project-edit-form" 
-action="{{ route('blog.project.update', ['id' => $project->id]) }}"
+id="project-create-form" 
+action="{{ route('blog.project.store') }}"
 method="post" 
 novalidate
 >
@@ -19,7 +19,7 @@ id="name"
 class="input"
 type="text" 
 name="name" 
-value="{{ old('name', $project->name) }}"
+value="{{ old('name') }}"
 required="required"
 >
 </div>
@@ -48,7 +48,7 @@ name="description"
 cols="40" 
 rows="2"
 >
-{{ old('description', $project->description) }}   
+{{ old('description') }}   
 </textarea>
 </div>
 
@@ -68,27 +68,10 @@ rows="2"
 id="submit-btn" 
 class="button is-info" 
 type="submit" 
-form="project-edit-form"
+form="project-create-form"
 >
-{{ __('messages.label_update') }}
+{{ __('messages.label_create') }}
 </button>
-
-<ajax-delete
-delete-confirm-id="delete-project"
-delete-url="{{ route('api.blog.project.destroy', ['project' => $project->id]) }}" 
-delete-redirect-url="{{ route('blog.projects.list') }}"
-inline-template
->
-
-<button 
-id="project-delete-trigger" 
-class="button is-danger"
-@click.prevent="confirmDelete"
->
-{{ __('messages.label_delete') }}
-</button>
-
-</ajax-delete>
 
 </div>
 
