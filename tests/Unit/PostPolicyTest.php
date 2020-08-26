@@ -11,7 +11,7 @@ use App\Models\Blog\Project;
 use App\Models\Blog\Post;
 use App\Models\Blog\ProjectMember;
 
-class ProjectPolicyTest extends TestCase
+class PostPolicyTest extends TestCase
 {
     use DatabaseTransactions;
 

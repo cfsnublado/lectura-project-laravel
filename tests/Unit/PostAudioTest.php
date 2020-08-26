@@ -23,23 +23,13 @@ class PostAudioTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->user = User::create([
-            'first_name' => 'Christopher',
-            'last_name' => 'Sanders',
-            'username' => 'cfs',
-            'email' => 'cfsfoo@foo.com',
-            'password' => 'Pizza?69p',
-        ]);
-        $this->project = Project::create([
+        $this->user = factory(User::class)->create();
+        $this->project = factory(Project::class)->create([
             'owner_id' => $this->user->id,
-            'name' => 'Test Project',
-            'description' => 'This is a test project',
         ]);
-        $this->post = Post::create([
+        $this->post = factory(Post::class)->create([
             'creator_id' => $this->user->id,
             'project_id' => $this->project->id,
-            'name' => 'Test Post',
-            'description' => 'This is a test post',
         ]);
     }
 

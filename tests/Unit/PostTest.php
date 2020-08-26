@@ -21,17 +21,9 @@ class PostTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->user = User::create([
-            'first_name' => 'Christopher',
-            'last_name' => 'Sanders',
-            'username' => 'cfs',
-            'email' => 'cfsfoo@foo.com',
-            'password' => 'Pizza?69p',
-        ]);
-        $this->project = Project::create([
+        $this->user = factory(User::class)->create();
+        $this->project = factory(Project::class)->create([
             'owner_id' => $this->user->id,
-            'name' => 'Test Project',
-            'description' => 'This is a test project',
         ]);
     }
 
@@ -42,14 +34,13 @@ class PostTest extends TestCase
      */
     public function testSlugCreatedFromName()
     {
-        $name = 'Test Post';
-        $slug = Str::slug($name, '-');
-        $post = Post::create([
+        $post = factory(Post::class)->create([
             'creator_id' => $this->user->id,
             'project_id' => $this->project->id,
-            'name' => $name,
-            'description' => 'This is a test post',
         ]);
+        $post->refresh();
+        $name = $post->name;
+        $slug = Str::slug($name, '-');
 
         $this->assertEquals($post->slug, $slug);
     }
