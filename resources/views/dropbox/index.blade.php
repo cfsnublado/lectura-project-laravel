@@ -4,7 +4,7 @@
 
 @section('content')
 @php
-// $dbxFileDeleteUrl = route('api.dbx.delete_file');
+$dbxFileDeleteUrl = route('api.dbx.delete_file');
 $dbxSharedLinkUrl = route('api.dbx.shared_link');
 $dbxUploadUrl = route('api.dbx.upload_file');
 $dbxFilesUrl = route('api.dbx.user_files');
@@ -25,7 +25,7 @@ inline-template
 <div class="dbx-shared-link" style="margin-bottom: 30px;">
 
 <label class="label" for="audio-url">
-{{ __('messages.label_dbx_audio_shared_link') }}
+{{ __('messages.label_dbx_shared_link') }}
 </label>
 <input id="audio-url" class="input" ref="audio-url" name="audio-url" v-model="sharedLink" readonly>
 
@@ -42,7 +42,7 @@ init-upload-url="{{ $dbxUploadUrl }}"
 >
 
 <template slot="label-select-file">
-{{ __('messages.label_select_audio_file') }}
+{{ __('messages.label_select_file') }}
 </template>
 
 <template slot="label-submit">
@@ -72,7 +72,7 @@ class="button is-primary"
 v-bind:class="[{ 'is-loading': processing }]"
 @click.prevent="getFiles"
 >
-{{ __('messages.msg_get_user_dbx_files') }}
+{{ __('messages.label_get_dbx_user_files') }}
 </button>
 
 <ul
@@ -85,7 +85,7 @@ v-for="(file, index) in sortedFiles"
 :key="file.id"
 :init-file="file"
 :init-is-admin="isAdmin"
-init-delete-url=""
+init-delete-url="{{ $dbxFileDeleteUrl }}"
 @select-dbx-file="selectDbxFile($event.path_lower)"
 @delete-dbx-file="onDeleteDbxFile(index)"
 inline-template
@@ -140,4 +140,11 @@ href="#"
 
 </div>
 </div>
+@endsection
+
+@section('modal')
+@include(
+'dropbox/includes/dbx_file_delete_modal',
+['modalId' => 'delete-dbx-file', 'modalName' => 'confirmation-modal']
+)
 @endsection

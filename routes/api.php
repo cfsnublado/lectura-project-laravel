@@ -59,6 +59,13 @@ Route::prefix('dbx')->group(function() {
             'uses' => 'Dropbox\DropboxController@uploadFile',
         ]
     );
+    Route::delete(
+        'delete-file',
+        [
+            'as' => 'api.dbx.delete_file',
+            'uses' => 'Dropbox\DropboxController@deleteFile',
+        ]
+    );
 });
 
 

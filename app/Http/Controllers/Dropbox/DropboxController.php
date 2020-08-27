@@ -75,8 +75,26 @@ class DropboxController extends Controller
         $dbx = get_dbx_object($dbxToken);
         $tmpFilepath = $file->store('tmp');
         $dbxFilepath = '/' . Auth::user()->id . '/' . $file->getClientOriginalName();
-        $fileMetadata = upload_file_to_dbx($dbx, $tmpFilepath, $dbxFilepath);
+        $fileMetadata = upload_to_dbx($dbx, $tmpFilepath, $dbxFilepath);
 
         return response()->json(['file_metadata' => $fileMetadata], 200);
+    }
+
+    /**
+     *
+     */
+    public function deleteFile(Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        if (!array_key_exists('dbx_path', $data)) {
+            abort(response()->json(['message' => 'dbx_path required'], 400));
+        }
+
+        $dbxToken = config('third_party.dbx_access_token');
+        $dbx = get_dbx_object($dbxToken);
+        $fileMetadata = delete_from_dbx($dbx, $data['dbx_path']);
+
+        return response()->json(['file_metadata' => $fileMetadata], 204);
     }
 }

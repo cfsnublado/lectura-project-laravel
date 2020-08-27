@@ -32,6 +32,10 @@ return [
     'label_delete' => 'Delete',
     'label_yes' => 'Yes',
     'label_no' => 'No',
+    'label_dbx_shared_link' => 'Shared link',
+    'label_get_dbx_user_files' => 'Get user files',
+    'label_select_file' => 'Select file',
+    'label_submit_file' => 'Upload',
 
     'placeholder_username' => 'Username',
     'placeholder_password' => 'Password',
@@ -55,4 +59,5 @@ return [
     'page_project_edit_title' => 'Edit project',
     'page_post_create_title' => 'Create post',
     'page_post_edit_title' => 'Edit post',
+    'page_dropbox_index_title' => 'Dropbox',
 ];

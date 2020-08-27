@@ -51,7 +51,7 @@ function get_dbx_files(DbxClient $dbx, $path)
 /**
  *
  */
-function upload_file_to_dbx(DbxClient $dbx, $localFilepath, $dbxFilepath)
+function upload_to_dbx(DbxClient $dbx, $localFilepath, $dbxFilepath)
 {
     $fileMetadata = [];
 
@@ -59,6 +59,16 @@ function upload_file_to_dbx(DbxClient $dbx, $localFilepath, $dbxFilepath)
         $contents = Storage::get($localFilepath);
         $fileMetadata = $dbx->upload($dbxFilepath, $contents, 'overwrite');
     }
+
+    return $fileMetadata;
+}
+
+/**
+ *
+ */
+function delete_from_dbx(DbxClient $dbx, $dbxFilepath)
+{
+    $fileMetadata = $dbx->delete($dbxFilepath);
 
     return $fileMetadata;
 }
