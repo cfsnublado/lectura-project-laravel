@@ -37,5 +37,30 @@ Route::prefix('blog')->group(function() {
     ]);
 });
 
+Route::prefix('dbx')->group(function() {
+    Route::get(
+        'user-files',
+        [
+            'as' => 'api.dbx.user_files',
+            'uses' => 'Dropbox\DropboxController@userFiles',
+        ]
+    );
+    Route::post(
+        'shared-link',
+        [
+            'as' => 'api.dbx.shared_link',
+            'uses' => 'Dropbox\DropboxController@sharedLink',
+        ]
+    );
+    Route::post(
+        'upload-file',
+        [
+            'as' => 'api.dbx.upload_file',
+            'uses' => 'Dropbox\DropboxController@uploadFile',
+        ]
+    );
+});
+
+
 
 

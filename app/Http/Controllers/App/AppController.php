@@ -9,15 +9,18 @@ use App\Http\Controllers\Controller;
 
 class AppController extends Controller
 {
-    public function home() {
+    public function home()
+    {
         return view('app.home');
     }
 
-    public function secret() {
+    public function secret()
+    {
         return view('app.secret');
     }
 
-    public function session(Request $request) {
+    public function session(Request $request)
+    {
         $allowedSessionKeys = ['sidebar_locked'];
 
         if (request()->ajax()) {

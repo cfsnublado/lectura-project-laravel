@@ -106,6 +106,7 @@ Route::middleware(['locale'])->prefix($locale)->group(function () {
                 ]
             );
         });
+
         Route::get(
             'projects',
             [
@@ -127,6 +128,18 @@ Route::middleware(['locale'])->prefix($locale)->group(function () {
                 'uses' => 'Blog\PostController@show'
             ]
         );
+    });
+
+    Route::prefix('dbx')->group(function() {
+        Route::prefix('auth')->group(function() {
+           Route::get(
+                '/',
+                [
+                    'as' => 'dbx.project.index',
+                    'uses' => 'Dropbox\DropboxController@index',
+                ]
+            )->middleware('auth');
+        });
     });
 
 });
