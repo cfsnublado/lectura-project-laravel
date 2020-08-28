@@ -77,6 +77,7 @@ v-bind:class="[{ 'is-loading': processing }]"
 
 <ul
 class="files"
+style="margin-top: 20px;"
 v-cloak
 >
 
@@ -93,7 +94,10 @@ inline-template
 
 <transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="remove">
 
-<li v-show="isVisible"> 
+<li 
+style="height: 40px; display: flex; align-items: center;"
+v-show="isVisible"
+> 
 
 <ajax-delete
 v-if="isAdmin"
@@ -106,6 +110,7 @@ inline-template
 
 <a 
 class="delete" 
+style="margin-right: 10px;"
 href="#"
 @click.prevent="confirmDelete"
 >
@@ -115,6 +120,7 @@ href="#"
 
 <a 
 href="#"
+style="font-size: 18px;"
 @click.prevent="selectDbxFile(file)"
 >
 [[ file.name ]]

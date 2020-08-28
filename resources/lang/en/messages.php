@@ -48,6 +48,7 @@ return [
     'msg_block_2_desc' => 'Add narrations to posts of other members in your group.',
     'msg_confirm_delete_project' => 'Delete project?',
     'msg_confirm_delete_post' => 'Delete post?',
+    'msg_confirm_delete_dbx_file' => 'Delete Dropbox file?',
     'msg_forgot_password_q' => 'Forgot your password?',
     'msg_no_projects' => 'There are no projects.',
     'msg_no_posts_in_project' => 'There are no posts in this project.',

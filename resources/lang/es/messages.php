@@ -45,6 +45,7 @@ return [
     'msg_block_2_desc' => 'Agrega narrraciones a las entradas de los demás miembros de tu equipo.',
     'msg_confirm_delete_project' => '¿Eliminar proyecto?',
     'msg_confirm_delete_post' => '¿Eliminar entrada?',
+    'msg_confirm_delete_dbx_file' => '¿Eliminar archivo de Dropbox?',
     'msg_forgot_password_q' => '¿Olvidaste tu contraseña?',
     'msg_no_projects' => 'No hay proyectos.',
     'msg_no_posts_in_project' => 'No hay entradas en este proyecto.',
