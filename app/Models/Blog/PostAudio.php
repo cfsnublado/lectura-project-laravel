@@ -11,7 +11,7 @@ class PostAudio extends Model
 
     protected $table = 'post_audios';
     protected $primaryKey = 'id';
-    protected $with = ['creator.profile'];
+    protected $with = ['creator.profile', 'post.project'];
     protected $fillable = [
         'post_id', 'creator_id', 'name',
         'description', 'audio_url'

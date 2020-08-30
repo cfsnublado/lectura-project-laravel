@@ -5,7 +5,8 @@ use Spatie\Dropbox\Exceptions\BadRequest as DbxException;
 
 
 /**
- *
+ * @param string $dbxToken
+ * @return Spatie\Dropbox\Client $dbx
  */
 function get_dbx_object($dbxToken)
 {

@@ -26,6 +26,11 @@ class ProjectSeeder extends Seeder
             'owner_id' => $user->id,
             'name' => 'Project B',
             'description' => 'This is Project B',
+        ]);
+        Project::create([
+            'owner_id' => $user->id,
+            'name' => 'Medio rey',
+            'description' => 'Primer libro de la trilogía _El mar quebrado_, de Joe Abercrombie',
         ]); 
     }
 }

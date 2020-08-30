@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProjectSeeder::class);
         $this->call(ProjectMemberSeeder::class);
         $this->call(PostSeeder::class);
+        $this->call(PostAudioSeeder::class);
     }
 }

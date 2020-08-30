@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Blog;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Blog\Post;
-use App\Http\Resources\Blog\Post as PostResource;
-use App\Http\Resources\Blog\PostCollection;
+use App\Models\Blog\PostAudio;
+use App\Http\Resources\Blog\PostAudio as PostAudioResource;
+use App\Http\Resources\Blog\PostAudioCollection;
 
-class PostApiController extends Controller
+class PostAudioApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class PostApiController extends Controller
      */
     public function index()
     {
-      return new PostCollection(Post::paginate(10));
+      return new PostAudioCollection(PostAudio::paginate(10));
     }
 
     /**
@@ -28,9 +28,9 @@ class PostApiController extends Controller
      */
     public function show($id)
     {
-        return new PostResource(Post::find($id));
+        return new PostAudioResource(PostAudio::find($id));
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -39,8 +39,8 @@ class PostApiController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::findOrFail($id);
-        $this->authorize('delete', $post);
+        $postAudio = PostAudio::findOrFail($id);
+        $this->authorize('delete', $postAudio);
         $post->delete();
 
         return response()->json(null, 204);
