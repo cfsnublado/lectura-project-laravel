@@ -275,7 +275,7 @@ const AudioPlayer = {
       playing: false,
       resumePlaying: false, // after mouseup
       dragging: false,
-      audioLoaded: false,
+      loading: false,
       currentSeconds: 0,
       durationSeconds: 0,
       loop: false,
@@ -302,9 +302,9 @@ const AudioPlayer = {
   watch: {
     playing(value) {
       if (value) {
-        this.audio.play()
+        this.playAudio()
       } else {
-        this.audio.pause()
+        this.pauseAudio()
       }
     },
     volume(value) {
@@ -313,20 +313,28 @@ const AudioPlayer = {
     }
   },
   methods: {
+    playAudio() {
+      this.audio.play()
+    },
+    pauseAudio() {
+      this.audio.pause()
+    },
     download() {
       this.stop()
       window.location.assign(this.audioUrl)
     },
     load() {
       if (this.audio.readyState >= 2) {
-        console.log('audio loaded')
-        this.audioLoaded = true
+        console.log("audio loaded")
+        this.loading = false
         this.durationSeconds = parseInt(this.audio.duration)
 
-        return this.playing = this.autoPlay
+        if (this.autoPlay) {
+          this.audio.play()
+        }
+      } else {
+        throw new Error("Failed to load sound file.")
       }
-
-      throw new Error('Failed to load sound file.')
     },
     mute() {
       if (this.muted) {
@@ -356,7 +364,7 @@ const AudioPlayer = {
       console.error('Error loading ' + this.audioUrl)
     },
     onProgressMousedown(e) {
-      if (this.audioLoaded) {
+      if (!this.loading) {
         this.dragging = true
         this.resumePlaying = this.playing
       }

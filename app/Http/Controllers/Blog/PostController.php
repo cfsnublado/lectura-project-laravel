@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\StorePost;
 use App\Models\Blog\Project;
 use App\Models\Blog\Post;
+use App\Models\Blog\PostAudio;
 
 class PostController extends Controller
 {
@@ -23,7 +24,11 @@ class PostController extends Controller
 
         return view(
             'blog.post_show',
-            ['project' => $post->project, 'post' => $post]
+            [
+                'project' => $post->project, 
+                'post' => $post,
+                'hasAudio' => PostAudio::where('post_id', $post->id)->exists(),
+            ]
         );
     }
 

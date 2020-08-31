@@ -580,7 +580,8 @@ const PostAudioPlayer = {
       audios: null,
       selectedAudio: null,
       selectedAudioIndex: null,
-      showPlaylist: false
+      showPlaylist: false,
+      initLoad: false,
     }
   },  
   methods: {
@@ -590,12 +591,11 @@ const PostAudioPlayer = {
 
         axios.get(this.audiosUrl)
         .then(response => {
-          this.audios = response.data
-
+          this.audios = response.data.data
+          this.initLoad = true
           if (this.audios.length > 0) {
             this.selectAudio(0)
           }
-
           this.success()
         })
         .catch(error => {
@@ -613,8 +613,16 @@ const PostAudioPlayer = {
         })
       }
     },
+    playAudio() {
+      if (this.initLoad) {
+        this.audio.play()
+      } else {
+        this.loading = true
+        this.getAudios()
+      }
+    },
     selectAudio(index) {
-      this.audioLoaded = false
+      this.loading = true
       this.selectedAudio = this.audios[index]
       this.selectedAudioIndex = index
       this.audio.src = this.selectedAudio.audio_url
@@ -638,6 +646,5 @@ const PostAudioPlayer = {
   },
   created() {
     this.loop = this.initLoop
-    this.getAudios()
   },
 }
