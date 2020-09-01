@@ -59,11 +59,12 @@ v-bind:class="[{ 'is-loading': loading }]"
 
 <div class="audio-title">
 
+<!--
 <span v-if="loading">
-__('messages.label_loading_audio')
+{{ __('messages.label_loading_audio') }}
 </span>
 <span v-else></span>
-
+-->
 </div>
 
 <div class="audio-player-controls">
