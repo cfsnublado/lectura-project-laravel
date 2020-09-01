@@ -12,6 +12,7 @@ return [
     'label_hello_exc' => 'Hello!',
     'label_home' => 'Home',
     'label_language' => 'Language',
+    'label_loading_audio' => 'Loading audio',
     'label_login' => 'Sign in',
     'label_logout' => 'Sign out',
     'label_login_google' => 'Log in with Google',

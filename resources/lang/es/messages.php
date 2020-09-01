@@ -9,6 +9,7 @@ return [
     'label_hello_exc' => '¡Hola!',
     'label_home' => 'Inicio',
     'label_language' => 'Idioma',
+    'label_loading_audio' => 'Descargando audio',
     'label_login' => 'Iniciar sesión',
     'label_logout' => 'Cerrar sesión',
     'label_login_google' => 'Iniciar sesión en Google',
