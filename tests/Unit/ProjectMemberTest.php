@@ -132,7 +132,7 @@ class ProjectMemberTest extends TestCase
         ]);
         
         $this->expectException('Illuminate\Database\QueryException');
-        $this->expectExceptionMessage('Integrity constraint violation');
+        $this->expectExceptionMessage('Unique violation');
 
         ProjectMember::create([
             'member_id' => $user->id,
