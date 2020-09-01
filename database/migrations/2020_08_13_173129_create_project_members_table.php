@@ -15,7 +15,7 @@ class CreateProjectMembersTable extends Migration
     {
         Schema::create('project_members', function (Blueprint $table) {
             $table->id();
-            $table->string('member_id');
+            $table->uuid('member_id');
             $table->foreign('member_id')
                 ->references('id')
                 ->on('users')

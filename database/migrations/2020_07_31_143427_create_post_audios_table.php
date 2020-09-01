@@ -15,7 +15,7 @@ class CreatePostAudiosTable extends Migration
     {
         Schema::create('post_audios', function (Blueprint $table) {
             $table->id();
-            $table->string('creator_id');
+            $table->uuid('creator_id');
             $table->foreign('creator_id')
             ->references('id')->on('users')
             ->onDelete('cascade');

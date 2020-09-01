@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('creator_id');
+            $table->uuid('creator_id');
             $table->foreign('creator_id')
             ->references('id')->on('users')
             ->onDelete('cascade');
