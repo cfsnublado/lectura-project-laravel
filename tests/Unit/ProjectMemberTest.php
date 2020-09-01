@@ -28,6 +28,24 @@ class ProjectMemberTest extends TestCase
     }
 
     /**
+     *
+     */
+    public function testEagerLoad()
+    {
+        $user = factory(User::class)->create();
+        ProjectMember::create([
+            'member_id' => $user->id,
+            'project_id' => $this->project->id,
+        ]);
+        $member = ProjectMember::where(
+            [['member_id', $user->id], ['project_id', $this->project->id]]
+        )->firstOrFail();
+    
+        $this->assertTrue($member->relationLoaded('member'));
+        $this->assertTrue($member->relationLoaded('project'));
+    }
+
+    /**
      * Test key and value pairs of roles.
      *
      * @return void

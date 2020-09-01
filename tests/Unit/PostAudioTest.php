@@ -34,6 +34,23 @@ class PostAudioTest extends TestCase
     }
 
     /**
+     *
+     */
+    public function testEagerLoad()
+    {
+        factory(PostAudio::class)->create([
+            'post_id' => $this->post->id,
+            'creator_id' => $this->user->id,
+        ]);
+        $postAudio = PostAudio::where(
+            [['post_id', $this->post->id], ['creator_id', $this->user->id]]
+        )->firstOrFail();
+    
+        $this->assertTrue($postAudio->relationLoaded('post'));
+        $this->assertTrue($postAudio->relationLoaded('creator'));
+    }
+
+    /**
      * Test if slug is generated when name is manipulated.
      *
      * @return void

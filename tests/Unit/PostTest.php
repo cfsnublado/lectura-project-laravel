@@ -28,6 +28,23 @@ class PostTest extends TestCase
     }
 
     /**
+     *
+     */
+    public function testEagerLoad()
+    {
+        factory(Post::class)->create([
+            'name' => 'Test post',
+            'creator_id' => $this->user->id,
+            'project_id' => $this->project->id,
+        ]);
+
+        $post = Post::where('name', 'Test post')->firstOrFail();
+    
+        $this->assertTrue($post->relationLoaded('creator'));
+        $this->assertTrue($post->relationLoaded('project'));
+    }
+
+    /**
      * Test if slug is generated when name is manipulated.
      *
      * @return void

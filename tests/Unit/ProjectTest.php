@@ -24,6 +24,19 @@ class ProjectTest extends TestCase
     }
 
     /**
+     *
+     */
+    public function testEagerLoad()
+    {
+        factory(Project::class)->create(
+            ['name' => 'Test project', 'owner_id' => $this->user->id]
+        );
+        $project = Project::where('name', 'Test project')->firstOrFail();
+    
+        $this->assertTrue($project->relationLoaded('owner'));
+    }
+
+    /**
      * Test if slug is generated when name is manipulated.
      *
      * @return void

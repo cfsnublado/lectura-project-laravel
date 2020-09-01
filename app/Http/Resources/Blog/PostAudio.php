@@ -20,6 +20,7 @@ class PostAudio extends JsonResource
             'slug' => $this->slug,
             'description' => $this->description,
             'audio_url' => $this->audio_url,
+            'creator_username' => $this->creator->username,
         ];
     }
 }

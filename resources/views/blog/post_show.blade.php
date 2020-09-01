@@ -158,7 +158,8 @@ v-if="(index != selectedAudioIndex)"
 class="audio-playlist-item selected-audio"
 v-else
 >
-<span class="audio-creator"> 
+
+<span class="audio-creator">[[ audio.creator_username ]]</span> - 
 <span class="audio-name">[[ audio.name ]]</span>
 </div>
 

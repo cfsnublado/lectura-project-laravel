@@ -19,6 +19,20 @@ class UserTest extends TestCase
     }
 
     /**
+     *
+     */
+    public function testEagerLoad()
+    {
+        factory(User::class)->create([
+            'username' => 'foo'
+        ]);
+        $user = User::where('username', 'foo')->firstOrFail();
+    
+        $this->assertTrue($user->relationLoaded('profile'));
+    }
+
+
+    /**
      * Test User uuid value. It should be generated only
      * if not provided in the constructor.
      *
