@@ -22,7 +22,7 @@ inline-template
 
 <div class="dbx-container">
 
-<div class="dbx-shared-link" style="margin-bottom: 30px;">
+<div class="dbx-shared-link">
 
 <label class="label" for="audio-url">
 {{ __('messages.label_dbx_shared_link') }}
@@ -31,7 +31,7 @@ inline-template
 
 </div>
 
-<div class="dbx-file-uploader" style="margin-bottom: 30px;">
+<div class="dbx-file-uploader">
 
 <dbx-audio-file-uploader
 ref="dbx-audio-file-uploader"
@@ -76,8 +76,7 @@ v-bind:class="[{ 'is-loading': processing }]"
 </button>
 
 <ul
-class="files"
-style="margin-top: 20px;"
+class="dbx-files"
 v-cloak
 >
 
@@ -94,8 +93,7 @@ inline-template
 
 <transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="remove">
 
-<li 
-style="height: 40px; display: flex; align-items: center;"
+<li class="dbx-file"
 v-show="isVisible"
 > 
 
@@ -110,7 +108,6 @@ inline-template
 
 <a 
 class="delete" 
-style="margin-right: 10px;"
 href="#"
 @click.prevent="confirmDelete"
 >
@@ -119,8 +116,8 @@ href="#"
 </ajax-delete>
 
 <a 
+class="dbx-filename"
 href="#"
-style="font-size: 18px;"
 @click.prevent="selectDbxFile(file)"
 >
 [[ file.name ]]

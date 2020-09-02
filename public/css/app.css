@@ -13090,6 +13090,35 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
     align-items: center;
   }
 }
+/* line 2, ../scss/cfs/_dbx.scss */
+.dbx-shared-link {
+  margin-bottom: 1.875rem;
+}
+
+/* line 6, ../scss/cfs/_dbx.scss */
+.dbx-file-uploader {
+  margin-bottom: 1.875rem;
+}
+
+/* line 10, ../scss/cfs/_dbx.scss */
+.dbx-files {
+  margin-top: 1.25rem;
+}
+/* line 13, ../scss/cfs/_dbx.scss */
+.dbx-files .dbx-file {
+  display: flex;
+  height: 2.5rem;
+  align-items: center;
+}
+/* line 21, ../scss/cfs/_dbx.scss */
+.dbx-files .delete {
+  margin-right: 0.625rem;
+}
+/* line 25, ../scss/cfs/_dbx.scss */
+.dbx-files .dbx-filename {
+  font-size: 1.125rem;
+}
+
 /* line 1, ../scss/cfs/_themes.scss */
 .theme-cloudy {
   background: #f9f9f9;
