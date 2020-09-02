@@ -2,6 +2,10 @@
 
 @section('page_title', $project->name)
 
+@section('page_header')
+<div class="page-header"> {{ __('messages.label_posts') }} </div>
+@endsection
+
 @section('content')
 <div id="projects-scroll-top"></div>
 

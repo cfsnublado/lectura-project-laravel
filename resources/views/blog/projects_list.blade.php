@@ -4,6 +4,10 @@
 
 @section('projects_link_active', 'is-active')
 
+@section('page_header')
+<div class="page-header"> {{ __('messages.label_projects') }} </div>
+@endsection
+
 @section('content')
 <div id="projects-scroll-top"></div>
 

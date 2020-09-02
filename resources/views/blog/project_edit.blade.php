@@ -4,6 +4,10 @@
 
 @section('project_edit_link_active', 'is-active')
 
+@section('page_header')
+<div class="page-header"> {{ __('messages.label_edit_project') }} </div>
+@endsection
+
 @section('content')
 @include('blog.includes.forms.project_edit_form')
 @endsection

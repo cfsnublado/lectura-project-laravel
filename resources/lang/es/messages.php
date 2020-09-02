@@ -16,6 +16,7 @@ return [
     'label_name' => 'Nombre',
     'label_new_project' => 'Nuevo proyecto',
     'label_new_post' => 'Nueva entrada',
+    'label_posts' => 'Entradas',
     'label_projects' => 'Proyectos',
     'label_project' => 'Proyecto',
     'label_post' => 'Entrada',

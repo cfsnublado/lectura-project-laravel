@@ -19,6 +19,7 @@ return [
     'label_name' => 'Name',
     'label_new_project' => 'New project',
     'label_new_post' => 'New post',
+    'label_posts' => 'Posts',
     'label_projects' => 'Projects',
     'label_project' => 'Project',
     'label_post' => 'Post',

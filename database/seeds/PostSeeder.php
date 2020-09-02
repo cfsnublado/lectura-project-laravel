@@ -43,6 +43,7 @@ class PostSeeder extends Seeder
             'creator_id' => $user->id,
             'project_id' => $project->id,
             'name' => 'Venganza',
+            'description' => 'Un fragmento del libro _Medio rey_, de Joe Abercrombie.',
             'content' => '
 > Juré vengarme de los asesinos de mi padre. Seré medio hombre, pero pronuncié un juramento entero.
 

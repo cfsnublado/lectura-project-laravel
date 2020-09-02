@@ -5,11 +5,15 @@ sidebar-adaptable theme-cloudy @if(Session::get('sidebar_locked', false)) sideba
 @endsection
 
 @section('content_top')
+
 @section('project_header') 
 @if(isset($project))
 <div class="small-caps-header">{{ $project->name }}</div>
 @endif
 @show
+
+@yield('page_header')
+
 @endsection
 
 @section('sidebar_nav_items')
