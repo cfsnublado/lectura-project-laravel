@@ -22,7 +22,21 @@ class PostPostAudioApiController extends Controller
      */
     public function index($post_id)
     {
-        $postAudios = PostAudio::where('post_id', $post_id)->paginate(10);
+        $pagination = true;
+
+        if (request()->has('pagination')) {
+            $pagination = filter_var(
+                request()->query('pagination'),
+                FILTER_VALIDATE_BOOLEAN
+            );
+        }
+
+        if ($pagination) {
+            $postAudios = PostAudio::where('post_id', $post_id)->paginate(10);
+        } else {
+            $postAudios = PostAudio::where('post_id', $post_id)->get();
+        }
+
         return new PostAudioCollection($postAudios);
     }
 }
