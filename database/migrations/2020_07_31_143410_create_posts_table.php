@@ -23,10 +23,11 @@ class CreatePostsTable extends Migration
             $table->foreign('project_id')
             ->references('id')->on('projects')
             ->onDelete('cascade');
-            $table->string('name')->unique();
-            $table->string('slug')->unique();
+            $table->string('name');
+            $table->string('slug');
             $table->text('description')->nullable();
             $table->text('content');
+            $table->unique(['name', 'project_id']);
             $table->timestamps();
         });
     }

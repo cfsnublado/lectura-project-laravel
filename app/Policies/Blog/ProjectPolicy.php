@@ -15,18 +15,6 @@ class ProjectPolicy
     use ProjectMemberPolicyTrait;
 
     /**
-     * Determine if user is the project owner.
-     *
-     * @param  \App\Models\User\User  $user
-     * @param  \App\Models\Blog\Project  $project
-     * @return boolean
-     */
-    protected function isOwner(User $user, Project $project)
-    {
-        return $user->id === $project->owner_id;
-    }
-
-    /**
      * Policy filter called before policy method.
      */
     public function before(User $user, $ability)

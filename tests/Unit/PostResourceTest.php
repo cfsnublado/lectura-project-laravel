@@ -48,6 +48,14 @@ class PostResourceTest extends TestCase
             'name' => $this->post->name,
             'slug' => $this->post->slug,
             'description' => $this->post->description,
+            'project_url' => route(
+                'api.blog.project.show',
+                ['project' => $this->post->project_id]
+            ),
+            'post_audios_url' => route(
+                'api.blog.post.post_audios.list',
+                ['post' => $this->post->id]
+            )
         ];
 
         $this->assertEquals($data, $expectedData);

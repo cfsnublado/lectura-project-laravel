@@ -15,13 +15,11 @@ class PostPolicyTest extends TestCase
 {
     use DatabaseTransactions;
 
+    private $superuser;
     private $projectOwner;
     private $admin;
-    private $adminRole;
     private $editor;
-    private $editorRole;
     private $author;
-    private $authorRole;
     private $nonMember;
     private $project;
     private $post;
@@ -31,32 +29,37 @@ class PostPolicyTest extends TestCase
         parent::setUp();
         DB::table('users')->delete();
         $this->nonMember = factory(User::class)->create();
+        $this->superuser = factory(User::class)->create([
+            'is_superuser' => true
+        ]);
         $this->projectOwner = factory(User::class)->create();
         $this->project = factory(Project::class)->create([
             'owner_id' => $this->projectOwner->id
         ]);
-
         $this->admin = factory(User::class)->create();
-        $this->adminRole = ProjectMember::create([
+        ProjectMember::create([
             'member_id' => $this->admin->id,
             'project_id' => $this->project->id,
             'role' => ProjectMember::ROLE_ADMIN
         ]);
-
         $this->editor = factory(User::class)->create();
-        $this->editorRole = ProjectMember::create([
+        ProjectMember::create([
             'member_id' => $this->editor->id,
             'project_id' => $this->project->id,
             'role' => ProjectMember::ROLE_EDITOR
         ]);
-
         $this->author = factory(User::class)->create();
-        $this->authorRole = ProjectMember::create([
+        ProjectMember::create([
             'member_id' => $this->author->id,
             'project_id' => $this->project->id,
             'role' => ProjectMember::ROLE_AUTHOR
         ]);
-
+        $this->author2 = factory(User::class)->create();
+        ProjectMember::create([
+            'member_id' => $this->author2->id,
+            'project_id' => $this->project->id,
+            'role' => ProjectMember::ROLE_AUTHOR
+        ]);
         $this->post = factory(Post::class)->create([
             'creator_id' => $this->author->id,
             'project_id' => $this->project->id,
@@ -64,17 +67,71 @@ class PostPolicyTest extends TestCase
     }
 
     /**
-     * Test if superuser, non-owner can update post.
+     * Test permissions for update.
      *
      * @return void
      */
-    public function testSuperuserNonOwnerCanUpdate()
+    public function testUpdate()
     {
-        $user = factory(User::class)->create([
-            'is_superuser' => true,
+        // Author-created post
+        $post = factory(Post::class)->create([
+            'creator_id' => $this->author->id,
+            'project_id' => $this->project->id,
         ]);
-        $this->assertTrue($user->is_superuser);
-        $this->assertNotEquals($user->id, $this->project->owner_id);
-        $this->assertTrue($user->can('update', $this->post));
+        $this->assertTrue($this->superuser->can('update', $post));
+        $this->assertTrue($this->projectOwner->can('update', $post));
+        $this->assertTrue($this->admin->can('update', $post));
+        $this->assertTrue($this->editor->can('update', $post));
+        $this->assertTrue($this->author->can('update', $post));
+        $this->assertFalse($this->author2->can('update', $post));
+        $this->assertFalse($this->nonMember->can('update', $post));
+
+        // Editor-created post
+        $post = factory(Post::class)->create([
+            'creator_id' => $this->editor->id,
+            'project_id' => $this->project->id,
+        ]);
+        $this->assertTrue($this->superuser->can('update', $post));
+        $this->assertTrue($this->projectOwner->can('update', $post));
+        $this->assertTrue($this->admin->can('update', $post));
+        $this->assertTrue($this->editor->can('update', $post));
+        $this->assertFalse($this->author->can('update', $post));
+        $this->assertFalse($this->nonMember->can('update', $post));
+
+        // Admin-created post
+        $post = factory(Post::class)->create([
+            'creator_id' => $this->admin->id,
+            'project_id' => $this->project->id,
+        ]);
+        $this->assertTrue($this->superuser->can('update', $post));
+        $this->assertTrue($this->projectOwner->can('update', $post));
+        $this->assertTrue($this->admin->can('update', $post));
+        $this->assertTrue($this->editor->can('update', $post));
+        $this->assertFalse($this->author->can('update', $post));
+        $this->assertFalse($this->nonMember->can('update', $post));
+
+        // Admin-created post
+        $post = factory(Post::class)->create([
+            'creator_id' => $this->admin->id,
+            'project_id' => $this->project->id,
+        ]);
+        $this->assertTrue($this->superuser->can('update', $post));
+        $this->assertTrue($this->projectOwner->can('update', $post));
+        $this->assertTrue($this->admin->can('update', $post));
+        $this->assertTrue($this->editor->can('update', $post));
+        $this->assertFalse($this->author->can('update', $post));
+        $this->assertFalse($this->nonMember->can('update', $post));
+
+        // Owner-created post
+        $post = factory(Post::class)->create([
+            'creator_id' => $this->projectOwner->id,
+            'project_id' => $this->project->id,
+        ]);
+        $this->assertTrue($this->superuser->can('update', $post));
+        $this->assertTrue($this->projectOwner->can('update', $post));
+        $this->assertTrue($this->admin->can('update', $post));
+        $this->assertTrue($this->editor->can('update', $post));
+        $this->assertFalse($this->author->can('update', $post));
+        $this->assertFalse($this->nonMember->can('update', $post));
     }
 }

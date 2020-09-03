@@ -4,10 +4,23 @@ namespace App\Policies\Blog;
 
 use Illuminate\Support\Str;
 use App\Models\User\User;
+use App\Models\Blog\Project;
 use App\Models\Blog\ProjectMember;
 
 trait ProjectMemberPolicyTrait
 {
+    /**
+     * Determine if user is the project owner.
+     *
+     * @param  \App\Models\User\User  $user
+     * @param  \App\Models\Blog\Project  $project
+     * @return boolean
+     */
+    protected function isOwner(User $user, Project $project)
+    {
+        return $user->id === $project->owner_id;
+    }
+
     /**
      * Determine if user is a member of a project team.
      *

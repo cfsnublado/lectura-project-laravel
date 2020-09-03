@@ -56,6 +56,10 @@ class PostAudioResourceTest extends TestCase
             'description' => $this->postAudio->description,
             'audio_url' => $this->postAudio->audio_url,
             'creator_username' => $this->postAudio->creator->username,
+            'post_url' => route(
+                'api.blog.post.show',
+                ['post' => $this->postAudio->post_id]
+            )
         ];
 
         $this->assertEquals($data, $expectedData);

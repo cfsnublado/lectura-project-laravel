@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\StorePost;
+use App\Http\Requests\Blog\UpdatePost;
 use App\Models\Blog\Project;
 use App\Models\Blog\Post;
 use App\Models\Blog\PostAudio;
@@ -90,11 +91,11 @@ class PostController extends Controller
     /**
      * Update the specified post in storage.
      *
-     * @param StoreProject $request
+     * @param UpdatePost $request
      * @param int $id
      * @return Response
      */
-    public function update(StorePost $request, $id)
+    public function update(UpdatePost $request, $id)
     {
         $post = Post::findOrFail($id);
         $this->authorize('update', $post);

@@ -19,6 +19,7 @@ class Project extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'description' => $this->description,
+            'posts_url' => route('api.blog.project.posts.list', ['project' => $this->id])
         ];
     }
 }

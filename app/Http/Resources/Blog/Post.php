@@ -19,6 +19,14 @@ class Post extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'description' => $this->description,
+            'project_url' => route(
+                'api.blog.project.show',
+                ['project' => $this->project_id]
+            ),
+            'post_audios_url' => route(
+                'api.blog.post.post_audios.list',
+                ['post' => $this->id]
+            )
         ];
     }
 }

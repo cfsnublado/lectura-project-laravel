@@ -41,6 +41,7 @@ class ProjectResourceTest extends TestCase
             'name' => $this->project->name,
             'slug' => $this->project->slug,
             'description' => $this->project->description,
+            'posts_url' => route('api.blog.project.posts.list', ['project' => $this->project->id])
         ];
         
         $this->assertEquals($data, $expectedData);
