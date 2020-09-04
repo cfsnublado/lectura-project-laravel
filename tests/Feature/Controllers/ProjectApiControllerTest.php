@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Controllers;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\DB;
@@ -8,7 +8,7 @@ use Tests\TestCase;
 use App\Models\User\User;
 use App\Models\Blog\Project;
 
-class ProjectApiTest extends TestCase
+class ProjectApiControllerTest extends TestCase
 {
     use DatabaseTransactions;
 

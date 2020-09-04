@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Controllers;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
-class AppTest extends TestCase
+class AppControllerTest extends TestCase
 {
     use DatabaseTransactions;
     
@@ -14,7 +14,7 @@ class AppTest extends TestCase
      *
      * @return void
      */
-    public function testHomeView()
+    public function testHome()
     {
         $response = $this->get(route('app.home'));
         $response->assertStatus(200);

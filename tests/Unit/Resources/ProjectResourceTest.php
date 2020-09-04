@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Resources;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;

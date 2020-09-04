@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Controllers;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\DB;
@@ -8,7 +8,7 @@ use Tests\TestCase;
 use App\Models\User\User;
 use App\Models\Blog\Project;
 
-class ProjectTest extends TestCase
+class ProjectControllerTest extends TestCase
 {
     use DatabaseTransactions;
 
@@ -60,6 +60,45 @@ class ProjectTest extends TestCase
         );
         $this->assertEquals($project->name, $updatedData['name']);
         $this->assertEquals($project->description, $updatedData['description']);
+    }
+
+    /**
+     *
+     * @return void
+     */
+    public function testEdit()
+    {
+        $project = factory(
+            Project::class)->create(['owner_id' => $this->projectOwner->id]
+        );
+
+        // Unauthenticated
+        $response = $this->get(
+            route('blog.project.edit', ['slug' => $project->slug])
+        );
+        $response->assertStatus(302);
+        $response->assertRedirect(route('security.login'));
+
+        // User
+        $this->actingAs($this->user);
+        $response = $this->get(
+            route('blog.project.edit', ['slug' => $project->slug])
+        );
+        $response->assertStatus(403);
+
+        // Superuser
+        $this->actingAs($this->superuser);
+        $response = $this->get(
+            route('blog.project.edit', ['slug' => $project->slug])
+        );
+        $response->assertStatus(200);
+
+        // Project owner
+        $this->actingAs($this->projectOwner);
+        $response = $this->get(
+            route('blog.project.edit', ['slug' => $project->slug])
+        );
+        $response->assertStatus(200);
     }
 
     /**
@@ -120,44 +159,5 @@ class ProjectTest extends TestCase
         $response->assertRedirect(
             route('blog.project.show', ['slug' => $project->slug]),
         );
-    }
-
-    /**
-     *
-     * @return void
-     */
-    public function testEdit()
-    {
-        $project = factory(
-            Project::class)->create(['owner_id' => $this->projectOwner->id]
-        );
-
-        // Unauthenticated
-        $response = $this->get(
-            route('blog.project.edit', ['slug' => $project->slug])
-        );
-        $response->assertStatus(302);
-        $response->assertRedirect(route('security.login'));
-
-        // User
-        $this->actingAs($this->user);
-        $response = $this->get(
-            route('blog.project.edit', ['slug' => $project->slug])
-        );
-        $response->assertStatus(403);
-
-        // Superuser
-        $this->actingAs($this->superuser);
-        $response = $this->get(
-            route('blog.project.edit', ['slug' => $project->slug])
-        );
-        $response->assertStatus(200);
-
-        // Project owner
-        $this->actingAs($this->projectOwner);
-        $response = $this->get(
-            route('blog.project.edit', ['slug' => $project->slug])
-        );
-        $response->assertStatus(200);
     }
 }
