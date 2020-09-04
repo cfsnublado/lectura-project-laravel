@@ -10,16 +10,24 @@ use App\Models\Blog\Project;
 
 class ProjectTest extends TestCase
 {
-    //use DatabaseTransactions;
+    use DatabaseTransactions;
 
+    private $superuser;
     private $user;
+    private $projectOwner;
 
     protected function setUp(): void
     {
         parent::setUp();
         DB::table('users')->delete();
+        $this->superuser = factory(User::class)->create([
+            'is_superuser' => true
+        ]);
+        $this->superuser->refresh();
         $this->user = factory(User::class)->create();
         $this->user->refresh();
+        $this->projectOwner = factory(User::class)->create();
+        $this->projectOwner->refresh();
     }
 
     /**
@@ -31,7 +39,7 @@ class ProjectTest extends TestCase
     public function testUpdateSuccess()
     {
         $data = [
-            'owner_id' => $this->user->id,
+            'owner_id' => $this->projectOwner->id,
             'name' => 'Test Project',
             'description' => 'This is a test project'
         ];
@@ -40,7 +48,7 @@ class ProjectTest extends TestCase
             'description' => 'This is another test project.'
         ];
         $project = Project::create($data);
-        $this->be($this->user);
+        $this->actingAs($this->projectOwner);
         $response = $this->post(
             route('blog.project.update', ['id' => $project->id]),
             $updatedData
@@ -55,15 +63,14 @@ class ProjectTest extends TestCase
     }
 
     /**
-     * Test if unauthenticated user can't update project.
      *
      * @return void
      */
 
-    public function testUpdateUnauthenticated()
+    public function testUpdate()
     {
         $data = [
-            'owner_id' => $this->user->id,
+            'owner_id' => $this->projectOwner->id,
             'name' => 'Test Project',
             'description' => 'This is a test project'
         ];
@@ -72,182 +79,85 @@ class ProjectTest extends TestCase
             'description' => 'This is another test project.'
         ];
         $project = Project::create($data);
+
+        // Unauthenticated
         $response = $this->post(
             route('blog.project.update', ['id' => $project->id]),
             $updatedData
         );
         $response->assertStatus(403);
-    }
 
-    /**
-     * Test if superuser, non-owner can update project.
-     *
-     * @return void
-     */
-
-    public function testUpdateSuperuserNonOwner()
-    {
-        $data = [
-            'owner_id' => $this->user->id,
-            'name' => 'Test Project',
-            'description' => 'This is a test project'
-        ];
-        $updatedData = [
-            'name' => 'Another Test Project',
-            'description' => 'This is another test project.'
-        ];
-        $user = factory(User::class)->create(['is_superuser' => true]);
-        $user->refresh();
-        $this->be($user);
-        $project = Project::create($data);
-        $this->assertTrue($user->is_superuser);
-        $this->assertNotEquals($user->id, $project->owner_id);
-        $response = $this->post(
-            route('blog.project.update', ['id' => $project->id]),
-            $updatedData
-        );
-        $response->assertStatus(302);
-        $project->refresh();
-        $this->assertEquals($project->name, $updatedData['name']);
-        $this->assertEquals($project->description, $updatedData['description']);
-    }
-
-    /**
-     * Test if owner, non-superuser can update project.
-     *
-     * @return void
-     */
-
-    public function testUpdateOwnerNonSuperuser()
-    {
-        $data = [
-            'owner_id' => $this->user->id,
-            'name' => 'Test Project',
-            'description' => 'This is a test project'
-        ];
-        $updatedData = [
-            'name' => 'Another Test Project',
-            'description' => 'This is another test project.'
-        ];
-        $this->be($this->user);
-        $project = Project::create($data);
-        $this->assertFalse($this->user->is_superuser);
-        $this->assertEquals($this->user->id, $project->owner_id);
-        $response = $this->post(
-            route('blog.project.update', ['id' => $project->id]),
-            $updatedData
-        );
-        $response->assertStatus(302);
-        $project->refresh();
-        $this->assertEquals($project->name, $updatedData['name']);
-        $this->assertEquals($project->description, $updatedData['description']);
-    }
-
-    /**
-     * Test if non-superuser, non-owner can't update project.
-     *
-     * @return void
-     */
-
-    public function testUpdateNonSuperuserNonOwner()
-    {
-        $data = [
-            'owner_id' => $this->user->id,
-            'name' => 'Test Project',
-            'description' => 'This is a test project'
-        ];
-        $updatedData = [
-            'name' => 'Another Test Project',
-            'description' => 'This is another test project.'
-        ];
-        $user = factory(User::class)->create();
-        $user->refresh();
-        $this->be($user);
-        $project = Project::create($data);
-        $this->assertFalse($user->is_superuser);
-        $this->assertNotEquals($user->id, $project->owner_id);
+        // User
+        $this->actingAs($this->user);
         $response = $this->post(
             route('blog.project.update', ['id' => $project->id]),
             $updatedData
         );
         $response->assertStatus(403);
+
+        // Superuser
+        $this->actingAs($this->superuser);
+        $response = $this->post(
+            route('blog.project.update', ['id' => $project->id]),
+            $updatedData
+        );
+        $project->refresh();
+        $response->assertStatus(302);
+        $response->assertRedirect(
+            route('blog.project.show', ['slug' => $project->slug]),
+        );
+        $project->delete();
+        $project = Project::create($data);
+
+        // Project owner
+        $this->actingAs($this->projectOwner);
+        $response = $this->post(
+            route('blog.project.update', ['id' => $project->id]),
+            $updatedData
+        );
+        $project->refresh();
+        $response->assertStatus(302);
+        $response->assertRedirect(
+            route('blog.project.show', ['slug' => $project->slug]),
+        );
     }
-    
+
     /**
-     * Test if unauthenticated user can't edit project.
      *
      * @return void
      */
-    public function testEditUnauthenticatedRedirectLogin()
+    public function testEdit()
     {
         $project = factory(
-            Project::class)->create(['owner_id' => $this->user->id]
+            Project::class)->create(['owner_id' => $this->projectOwner->id]
         );
+
+        // Unauthenticated
         $response = $this->get(
             route('blog.project.edit', ['slug' => $project->slug])
         );
         $response->assertStatus(302);
         $response->assertRedirect(route('security.login'));
-    }
 
-    /**
-     * Test if superuser, non-owner can edit project.
-     *
-     * @return void
-     */
-    public function testEditSuperuserNonOwner()
-    {
-        $user = factory(User::class)->create(['is_superuser' => true]);
-        $user->refresh();
-        $this->be($user);
-        $project = factory(
-            Project::class)->create(['owner_id' => $this->user->id]
-        );
-        $this->assertTrue($user->is_superuser);
-        $this->assertNotEquals($user->id, $project->owner_id);
-        $response = $this->get(
-            route('blog.project.edit', ['slug' => $project->slug])
-        );
-        $response->assertStatus(200);
-    }
-
-    /**
-     * Test if owner, non-superuser can edit project.
-     *
-     * @return void
-     */
-    public function testEditOwnerNonSuperuser()
-    {
-        $this->be($this->user);
-        $project = factory(
-            Project::class)->create(['owner_id' => $this->user->id]
-        );
-        $this->assertFalse($this->user->is_superuser);
-        $this->assertEquals($this->user->id, $project->owner_id);
-        $response = $this->get(
-            route('blog.project.edit', ['slug' => $project->slug])
-        );
-        $response->assertStatus(200);
-    }
-
-    /**
-     * Test if non-superuser, non-owner can't edit project.
-     *
-     * @return void
-     */
-    public function testEditNonSuperuserNonOwner()
-    {
-        $user = factory(User::class)->create();
-        $user->refresh();
-        $this->be($user);
-        $project = factory(
-            Project::class)->create(['owner_id' => $this->user->id]
-        );
-        $this->assertFalse($user->is_superuser);
-        $this->assertNotEquals($user->id, $project->owner_id);
+        // User
+        $this->actingAs($this->user);
         $response = $this->get(
             route('blog.project.edit', ['slug' => $project->slug])
         );
         $response->assertStatus(403);
+
+        // Superuser
+        $this->actingAs($this->superuser);
+        $response = $this->get(
+            route('blog.project.edit', ['slug' => $project->slug])
+        );
+        $response->assertStatus(200);
+
+        // Project owner
+        $this->actingAs($this->projectOwner);
+        $response = $this->get(
+            route('blog.project.edit', ['slug' => $project->slug])
+        );
+        $response->assertStatus(200);
     }
 }

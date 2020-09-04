@@ -24,7 +24,6 @@ class StorePost extends FormRequest
      */
     public function rules()
     {
-        dd($this->project_id);
         return [
             'name' => 'required|unique:posts,name',
             'description' => '',

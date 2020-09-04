@@ -78,7 +78,7 @@ Route::middleware(['locale'])->prefix($locale)->group(function () {
                 ]
             );
             Route::get(
-                'project/{slug}/post/create',
+                'project/{projectSlug}/post/create',
                 [
                     'as' => 'blog.post.create',
                     'uses' => 'Blog\PostController@create',

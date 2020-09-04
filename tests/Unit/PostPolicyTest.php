@@ -134,4 +134,73 @@ class PostPolicyTest extends TestCase
         $this->assertFalse($this->author->can('update', $post));
         $this->assertFalse($this->nonMember->can('update', $post));
     }
+
+    /**
+     * Test permissions for delete.
+     *
+     * @return void
+     */
+    public function testDelete()
+    {
+        // Author-created post
+        $post = factory(Post::class)->create([
+            'creator_id' => $this->author->id,
+            'project_id' => $this->project->id,
+        ]);
+        $this->assertTrue($this->superuser->can('delete', $post));
+        $this->assertTrue($this->projectOwner->can('delete', $post));
+        $this->assertTrue($this->admin->can('delete', $post));
+        $this->assertTrue($this->editor->can('delete', $post));
+        $this->assertTrue($this->author->can('delete', $post));
+        $this->assertFalse($this->author2->can('delete', $post));
+        $this->assertFalse($this->nonMember->can('delete', $post));
+
+        // Editor-created post
+        $post = factory(Post::class)->create([
+            'creator_id' => $this->editor->id,
+            'project_id' => $this->project->id,
+        ]);
+        $this->assertTrue($this->superuser->can('delete', $post));
+        $this->assertTrue($this->projectOwner->can('delete', $post));
+        $this->assertTrue($this->admin->can('delete', $post));
+        $this->assertTrue($this->editor->can('delete', $post));
+        $this->assertFalse($this->author->can('delete', $post));
+        $this->assertFalse($this->nonMember->can('delete', $post));
+
+        // Admin-created post
+        $post = factory(Post::class)->create([
+            'creator_id' => $this->admin->id,
+            'project_id' => $this->project->id,
+        ]);
+        $this->assertTrue($this->superuser->can('delete', $post));
+        $this->assertTrue($this->projectOwner->can('delete', $post));
+        $this->assertTrue($this->admin->can('delete', $post));
+        $this->assertTrue($this->editor->can('delete', $post));
+        $this->assertFalse($this->author->can('delete', $post));
+        $this->assertFalse($this->nonMember->can('delete', $post));
+
+        // Admin-created post
+        $post = factory(Post::class)->create([
+            'creator_id' => $this->admin->id,
+            'project_id' => $this->project->id,
+        ]);
+        $this->assertTrue($this->superuser->can('delete', $post));
+        $this->assertTrue($this->projectOwner->can('delete', $post));
+        $this->assertTrue($this->admin->can('delete', $post));
+        $this->assertTrue($this->editor->can('delete', $post));
+        $this->assertFalse($this->author->can('delete', $post));
+        $this->assertFalse($this->nonMember->can('delete', $post));
+
+        // Owner-created post
+        $post = factory(Post::class)->create([
+            'creator_id' => $this->projectOwner->id,
+            'project_id' => $this->project->id,
+        ]);
+        $this->assertTrue($this->superuser->can('delete', $post));
+        $this->assertTrue($this->projectOwner->can('delete', $post));
+        $this->assertTrue($this->admin->can('delete', $post));
+        $this->assertTrue($this->editor->can('delete', $post));
+        $this->assertFalse($this->author->can('delete', $post));
+        $this->assertFalse($this->nonMember->can('delete', $post));
+    }
 }

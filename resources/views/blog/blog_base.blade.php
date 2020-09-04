@@ -50,7 +50,7 @@ href="{{ route('blog.project.edit', ['slug' => $project->slug]) }}"
 <a 
 id="sidebar-nav-post-create" 
 class="@yield('post_create_link_active')" 
-href="{{ route('blog.post.create', ['slug' => $project->slug]) }}"
+href="{{ route('blog.post.create', ['projectSlug' => $project->slug]) }}"
 >
 <i class="menu-icon fas fa-plus fa-fw"></i>
 {{ __('messages.label_new_post') }}

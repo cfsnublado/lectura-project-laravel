@@ -12,29 +12,34 @@ class ProjectApiTest extends TestCase
 {
     use DatabaseTransactions;
 
+    private $superuser;
     private $user;
+    private $projectOwner;
 
     protected function setUp(): void
     {
         parent::setUp();
         DB::table('users')->delete();
+        $this->superuser = factory(User::class)->create([
+            'is_superuser' => true
+        ]);
         $this->user = factory(User::class)->create();
+        $this->projectOwner = factory(User::class)->create();
     }
-
-    // PERMISSIONS
     
     /**
-     * Test if unauthenticated user can't delete model.
      *
      * @return void
      */
-    public function testDeleteUnauthenticated()
+    public function testDelete()
     {
         $projectData = [
-            'owner_id' => $this->user->id,
+            'owner_id' => $this->projectOwner->id,
             'name' => 'Test Project'
         ];
         $project = Project::create($projectData);
+
+        // Unauthenticated
         $response = $this->delete(
             route('api.blog.project.destroy', ['project' => $project->id])
         );
@@ -45,24 +50,9 @@ class ProjectApiTest extends TestCase
                 ['name', '=', $projectData['name']]
             ])->exists()
         );
-    }
 
-    /**
-     * Test if superuser, non-owner can delete model.
-     *
-     * @return void
-     */
-    public function testDeleteSuperUserNonOwner()
-    {
-        $projectData = [
-            'owner_id' => $this->user->id,
-            'name' => 'Test Project'
-        ];
-        $user = factory(User::class)->create(['is_superuser' => true]);
-        $this->be($user);
-        $project = Project::create($projectData);
-        $this->assertTrue($user->is_superuser);
-        $this->assertNotEquals($user->user_id, $project->owner_id);
+        // Superuser
+        $this->actingAs($this->superuser);
         $response = $this->delete(
             route('api.blog.project.destroy', ['project' => $project->id])
         );
@@ -73,24 +63,10 @@ class ProjectApiTest extends TestCase
                 ['name', $projectData['name']]
             ])->exists()
         );
-    }
 
-    /**
-     * Test if owner, non-superuser, can delete model.
-     *
-     * @return void
-     */
-    public function testDeleteOwnerNonSuperuser()
-    {
-        $this->be($this->user);
-
-        $projectData = [
-            'owner_id' => $this->user->id,
-            'name' => 'Test Project'
-        ];
+        // Project owner
         $project = Project::create($projectData);
-        $this->assertFalse($this->user->is_superuser);
-        $this->assertEquals($this->user->id, $project->owner_id);
+        $this->actingAs($this->projectOwner);
         $response = $this->delete(
             route('api.blog.project.destroy', ['project' => $project->id])
         );
@@ -101,24 +77,10 @@ class ProjectApiTest extends TestCase
                 ['name', $projectData['name']]
             ])->exists()
         );
-    }
 
-    /**
-     * Test if non-superuser, non-owner user can't delete model.
-     *
-     * @return void
-     */
-    public function testDeleteNonSuperUserNonOwner()
-    {
-        $projectData = [
-            'owner_id' => $this->user->id,
-            'name' => 'Test Project'
-        ];
-        $user = factory(User::class)->create();
-        $this->be($user);
+        // User
         $project = Project::create($projectData);
-        $this->assertFalse($user->is_superuser);
-        $this->assertNotEquals($user->id, $project->owner_id);
+        $this->actingAs($this->user);
         $response = $this->delete(
             route('api.blog.project.destroy', ['project' => $project->id])
         );
