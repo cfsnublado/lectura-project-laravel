@@ -17,7 +17,22 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('blog.projects_list');
+        return view(
+            'blog.projects_list',
+            [
+                'projectsUrl' => route('api.blog.projects.list'),
+                'projectUrl' => route(
+                    'blog.project.show', ['slug' => 'zzz']
+                ),
+                'projectEditUrl' => route(
+                    'blog.project.edit', ['slug' => 'zzz']
+                ),
+                'projectDeleteUrl' => route(
+                    'api.blog.project.destroy', ['project' => 0]
+                ),
+            ]
+
+        );
     }
 
     /**
@@ -30,7 +45,28 @@ class ProjectController extends Controller
     {
         $project = Project::where('slug', $slug)->firstOrFail();
 
-        return view('blog.project_show', ['project' => $project]);
+        return view(
+            'blog.project_show', 
+            [
+                'project' => $project,
+                'postsUrl' => route(
+                    'api.blog.project.posts.list',
+                    ['project' => $project->id]
+                ),
+                'postUrl' => route(
+                    'blog.post.show', ['slug' => 'zzz']
+                ),
+                'postEditUrl' => route(
+                    'blog.post.edit', ['slug' => 'zzz']
+                ),
+                'postDeleteUrl' => route(
+                    'api.blog.post.destroy', ['post' => 0]
+                ),
+                'projectUrl' => route(
+                    'blog.project.show', ['slug' => $project->slug]
+                ),               
+            ]
+        );
     }
 
     /**

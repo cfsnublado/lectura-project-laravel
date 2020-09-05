@@ -4,6 +4,17 @@
 
 @section('post_edit_link_active', 'is-active')
 
+@section('page_header')
+<div class="page-header"> {{ __('messages.label_edit_post') }} </div>
+@endsection
+
+@section('breadcrumb_content')
+@parent
+<li class="is-active">
+<a href="#">{{ __('messages.label_edit_post') }}</a>
+</li>
+@endsection
+
 @section('content')
 @include('blog.includes.forms.post_edit_form')
 @endsection

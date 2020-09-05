@@ -29,6 +29,9 @@ class PostController extends Controller
                 'project' => $post->project, 
                 'post' => $post,
                 'hasAudio' => PostAudio::where('post_id', $post->id)->exists(),
+                'postAudiosUrl' => route(
+                    'api.blog.post.post_audios.list', ['post' => $post->id]
+                ),
             ]
         );
     }
@@ -84,7 +87,11 @@ class PostController extends Controller
         
         return view(
             'blog.post_edit',
-            ['post' => $post, 'project' => $post->project]
+            [
+                'project' => $post->project,
+                'post' => $post,
+
+            ]
         );
     }
 

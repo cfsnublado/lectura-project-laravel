@@ -23,10 +23,6 @@
 @section('page_footer')
 @if($hasAudio)
 
-@php
-$postAudiosUrl = route('api.blog.post.post_audios.list', ['post' => $post->id]);
-@endphp
-
 <post-audio-player
 audio-player-id="post-audio"
 audios-url="{{ $postAudiosUrl }}"
