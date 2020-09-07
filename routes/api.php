@@ -18,7 +18,13 @@ Route::prefix('user')->group(function() {
 });
 
 Route::prefix('blog')->group(function() {
-
+    Route::middleware('auth:sanctum')->post(
+        'import-post',
+        [
+            'as' => 'api.blog.post.import',
+            'uses' => 'Blog\PostController@importPost',
+        ]
+    );
     Route::apiResource('projects', 'Blog\ProjectApiController')->names([
         'index' => 'api.blog.projects.list',
         'show' => 'api.blog.project.show',

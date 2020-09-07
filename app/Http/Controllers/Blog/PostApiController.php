@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Blog;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\Blog\Post;
 use App\Http\Resources\Blog\Post as PostResource;
@@ -10,6 +11,11 @@ use App\Http\Resources\Blog\PostCollection;
 
 class PostApiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -35,7 +35,5 @@ class UserApiController extends Controller
 
         $token = $user->createToken('api_token')->plainTextToken;
         return response()->json(['token' => $token], 200);
-
-        //return $user->createToken('api_token')->plainTextToken;
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\StorePost;
 use App\Http\Requests\Blog\UpdatePost;
+use App\Validation\ImportPostJsonValidator;
 use App\Models\Blog\Project;
 use App\Models\Blog\Post;
 use App\Models\Blog\PostAudio;
@@ -114,5 +115,27 @@ class PostController extends Controller
 
         return redirect(route('blog.post.show', ['slug' => $post->slug]))
             ->with('success', 'Post updated!');
+    }
+
+    /**
+     *
+     */
+    public function importPost(Request $request)
+    {
+        $data = json_decode($request->getContent());
+        $validator = new ImportPostJsonValidator();
+        $schemaResult = $validator->schemaValidation($data);
+
+        if ($schemaResult->isValid()) {
+            $project = Project::where('name', $data->project_name)->firstOrFail();
+            
+            return response()->json(['message' => 'Success'], 200);
+        } else {
+            $error = $schemaResult->getFirstError();
+            return response()->json(
+                ['message' => $error->keyword() . ' ' . json_encode($error->keywordArgs())],
+                402
+            );
+        }
     }
 }

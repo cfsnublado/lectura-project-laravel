@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8795fb1b1df7d8d2e56a8aef3b453366",
+    "content-hash": "9d21bcd2b0a8eba7788e9d695c4458c5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1673,6 +1673,69 @@
                 "serialize"
             ],
             "time": "2020-08-11T08:46:50+00:00"
+        },
+        {
+            "name": "opis/json-schema",
+            "version": "1.0.19",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/opis/json-schema.git",
+                "reference": "1bcb3582881d0692d002537a4472964280f71313"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/opis/json-schema/zipball/1bcb3582881d0692d002537a4472964280f71313",
+                "reference": "1bcb3582881d0692d002537a4472964280f71313",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "ext-bcmath": "*",
+                "ext-intl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "opis/string": "^1.4",
+                "phpunit/phpunit": "^6.5 || ^7.0"
+            },
+            "suggest": {
+                "opis/string": "A standalone library for manipulating multibyte strings"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Opis\\JsonSchema\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Sorin Sarca",
+                    "email": "sarca_sorin@hotmail.com"
+                },
+                {
+                    "name": "Marius Sarca",
+                    "email": "marius.sarca@gmail.com"
+                }
+            ],
+            "description": "Json Schema Validator",
+            "homepage": "http://www.opis.io/json-schema",
+            "keywords": [
+                "json",
+                "schema",
+                "validation",
+                "validator"
+            ],
+            "time": "2020-06-07T20:56:25+00:00"
         },
         {
             "name": "paragonie/random_compat",
