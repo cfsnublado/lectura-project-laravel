@@ -61,8 +61,8 @@ class PostControllerTest extends TestCase
             route('blog.post.store', ['projectId' => $this->project->id]),
             $data
         );
-        $post = Post::where('name', $data['name'])->firstOrFail();
         $response->assertStatus(302);
+        $post = Post::where('name', $data['name'])->firstOrFail();
         $response->assertRedirect(
             route('blog.post.show', ['slug' => $post->slug]),
         );

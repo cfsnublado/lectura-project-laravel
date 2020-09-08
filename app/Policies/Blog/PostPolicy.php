@@ -33,6 +33,14 @@ class PostPolicy
     }
 
     /**
+     *
+     */
+    public function replace(User $user, Post $post)
+    {
+        return $this->isCreator($user, $post);
+    }
+
+    /**
      * Determine whether the user can update the model.
      *
      * @param \App\Models\User\User $user

@@ -18,18 +18,18 @@ Route::prefix('user')->group(function() {
 });
 
 Route::prefix('blog')->group(function() {
-    Route::middleware('auth:sanctum')->post(
-        'import-post',
-        [
-            'as' => 'api.blog.post.import',
-            'uses' => 'Blog\PostController@importPost',
-        ]
-    );
     Route::apiResource('projects', 'Blog\ProjectApiController')->names([
         'index' => 'api.blog.projects.list',
         'show' => 'api.blog.project.show',
         'destroy' => 'api.blog.project.destroy'
     ]);
+    Route::post(
+        'posts/import',
+        [
+            'as' => 'api.blog.post.import',
+            'uses' => 'Blog\PostApiController@import',
+        ]
+    );
     Route::apiResource('posts', 'Blog\PostApiController')->names([
         'index' => 'api.blog.posts.list',
         'show' => 'api.blog.post.show',
