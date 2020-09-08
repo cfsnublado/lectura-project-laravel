@@ -102,4 +102,93 @@ class PostApiControllerTest extends TestCase
             Post::where('name', $postName)->exists()
         );
     }
+
+    /**
+     *
+     * @return void
+     */
+    public function testImport()
+    {
+        $this->assertFalse(
+            Post::where([
+                ['project_id', $this->project->id],
+                ['creator_id', $this->projectOwner->id],
+                ['name', 'Import post']
+            ])->exists()
+        );
+
+        $response = $this->json(
+            'POST',
+            route('api.user.token'),
+            [
+                'username' => $this->projectOwner->username,
+                'password' => 'Pizza?69p'
+            ]
+        );
+
+        $response->assertStatus(200);
+        $token = json_decode($response->getContent())->token;
+
+        $response = $this->json(
+            'POST',
+            route('api.blog.post.import'),
+            [
+                'project_name' => $this->project->name,
+                'name' => 'Import post',
+                'description' => 'An imported post',
+                'content' => 'Imported post content',
+                'post_audios' => []
+            ],
+            ['Authorization' => 'Bearer ' . $token]
+        );
+        $response->assertStatus(200);
+
+        $this->assertTrue(
+            Post::where([
+                ['project_id', $this->project->id],
+                ['creator_id', $this->projectOwner->id],
+                ['name', 'Import post']
+            ])->exists()
+        );
+    }
+
+    /**
+     *
+     * @return void
+     */
+    public function testImportAccess()
+    {
+        $response = $this->json(
+            'POST',
+            route('api.user.token'),
+            [
+                'username' => $this->user->username,
+                'password' => 'Pizza?69p'
+            ]
+        );
+
+        $response->assertStatus(200);
+        $token = json_decode($response->getContent())->token;
+
+        $response = $this->json(
+            'POST',
+            route('api.blog.post.import'),
+            [
+                'project_name' => $this->project->name,
+                'name' => 'Import post',
+                'description' => 'An imported post',
+                'content' => 'Imported post content',
+                'post_audios' => []
+            ],
+            ['Authorization' => 'Bearer ' . $token]
+        );
+        $response->assertStatus(403);
+        $this->assertFalse(
+            Post::where([
+                ['project_id', $this->project->id],
+                ['creator_id', $this->user->id],
+                ['name', 'Import post']
+            ])->exists()
+        );
+    }
 }
