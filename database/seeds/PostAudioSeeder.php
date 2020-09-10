@@ -18,11 +18,11 @@ class PostAudioSeeder extends Seeder
     {
         DB::table('post_audios')->delete();
         $user = User::where('username', 'cfs')->firstOrFail();
-        $post = Post::where('name', 'Venganza')->firstOrFail();
+        $post = Post::where('name', 'Medio rey: sinopsis')->firstOrFail();
         PostAudio::create([
             'creator_id' => $user->id,
             'post_id' => $post->id,
-            'name' => 'Venganza Audio',
+            'name' => 'Medio rey',
             'audio_url' => 'https://www.dropbox.com/s/d0q15z13l72aceo/mediorey.mp3?dl=1'
         ]);
     }

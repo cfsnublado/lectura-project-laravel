@@ -18,28 +18,17 @@ class PostSeeder extends Seeder
     {
         DB::table('posts')->delete();
         $user = User::where('username', 'cfs')->firstOrFail();
-        $project = Project::where('name', 'Project A')->firstOrFail();
+        $project = Project::where('name', 'Test project')->firstOrFail();
         factory(Post::class)->create([
             'creator_id' => $user->id,
             'project_id' => $project->id,
             'name' => 'Post A'
         ]);
-        factory(Post::class)->create([
-            'creator_id' => $user->id,
-            'project_id' => $project->id,
-            'name' => 'Post B'
-        ]);
-        factory(Post::class)->create([
-            'creator_id' => $user->id,
-            'project_id' => $project->id,
-            'name' => 'Post C'
-        ]);
-
         $project = Project::where('name', 'Medio rey')->firstOrFail();
         Post::create([
             'creator_id' => $user->id,
             'project_id' => $project->id,
-            'name' => 'Venganza',
+            'name' => 'Medio rey: sinopsis',
             'description' => 'Un fragmento del libro _Medio rey_, de Joe Abercrombie.',
             'content' => '
 > Juré vengarme de los asesinos de mi padre. Seré medio hombre, pero pronuncié un juramento entero.

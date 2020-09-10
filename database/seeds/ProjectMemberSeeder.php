@@ -18,7 +18,7 @@ class ProjectMemberSeeder extends Seeder
     {
         DB::table('posts')->delete();
         $user = User::where('username', 'cfs')->firstOrFail();
-        $project = Project::where('name', 'Project A')->firstOrFail();
+        $project = Project::where('name', 'Test project')->firstOrFail();
         $author = factory(User::class)->create([
             'username' => 'author'
         ]);

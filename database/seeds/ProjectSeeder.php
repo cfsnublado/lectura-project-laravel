@@ -19,13 +19,8 @@ class ProjectSeeder extends Seeder
         $user = User::where('username', 'cfs')->firstOrFail();
         Project::create([
             'owner_id' => $user->id,
-            'name' => 'Project A',
-            'description' => 'This is Project A',
-        ]);
-        Project::create([
-            'owner_id' => $user->id,
-            'name' => 'Project B',
-            'description' => 'This is Project B',
+            'name' => 'Test project',
+            'description' => 'This is a test project',
         ]);
         Project::create([
             'owner_id' => $user->id,

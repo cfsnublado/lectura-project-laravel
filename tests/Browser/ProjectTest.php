@@ -30,7 +30,7 @@ class ProjectTest extends DuskTestCase
     public function testDeleteProjectFromBox()
     {
         $user = $this->user;
-        $project = Project::where('name', 'Project A')->firstOrFail();
+        $project = Project::where('name', 'Test project')->firstOrFail();
         $projectId = $project->id;
         $this->browse(function (Browser $browser) use ($user, $projectId) {
             $browser->loginAs($user)
