@@ -4,7 +4,7 @@
 return [
     'English' => 'English',
     'Spanish' => 'Spanish',
-
+    'label_audio_url' => 'Audio url',
     'label_content' => 'Content',
     'label_description' => 'Description',
     'label_edit_profile' => 'Edit profile',
@@ -19,6 +19,7 @@ return [
     'label_name' => 'Name',
     'label_new_project' => 'New project',
     'label_new_post' => 'New post',
+    'label_new_post_audio' => 'New post audio',
     'label_posts' => 'Posts',
     'label_projects' => 'Projects',
     'label_project' => 'Project',
@@ -26,6 +27,7 @@ return [
     'label_your_menu' => 'Your menu',
     'label_your_projects' => 'Your projects',
     'label_create_project' => 'Create project',
+    'label_create_post_audio' => 'Create post audio',
     'label_edit_project' => 'Edit project',
     'label_edit_post' => 'Edit post',
     'label_create_post' => 'Create post',
@@ -61,6 +63,7 @@ return [
     'page_project_create_title' => 'Create project',
     'page_project_edit_title' => 'Edit project',
     'page_post_create_title' => 'Create post',
+    'page_post_audio_create_title' => 'Create post audio',
     'page_post_edit_title' => 'Edit post',
     'page_dropbox_index_title' => 'Dropbox',
 ];

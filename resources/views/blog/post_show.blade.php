@@ -147,8 +147,8 @@ class="audio-playlist-item"
 v-bind:class="[{ 'selected-audio': (index == selectedAudioIndex) }]"
 v-if="(index != selectedAudioIndex)"
 >
-<span class="audio-creator">[[ audio.name ]]
-</a>
+<span class="audio-creator">[[ audio.creator_username ]]</span> - 
+<span class="audio-name">[[ audio.name ]]</span></a>
 
 <div
 class="audio-playlist-item selected-audio"

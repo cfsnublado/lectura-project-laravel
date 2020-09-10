@@ -13078,14 +13078,18 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
 .audio-player-container.dark-player .audio-playlist li a span.audio-creator {
   color: #eee;
 }
+/* line 343, ../scss/cfs/_audio_player.scss */
+.audio-player-container.dark-player .audio-playlist li a span.audio-name {
+  color: #eee;
+}
 
 @media screen and (max-width: 599px) {
-  /* line 345, ../scss/cfs/_audio_player.scss */
+  /* line 349, ../scss/cfs/_audio_player.scss */
   .audio-player {
     width: 100%;
   }
 
-  /* line 349, ../scss/cfs/_audio_player.scss */
+  /* line 353, ../scss/cfs/_audio_player.scss */
   .audio-title {
     align-items: center;
   }

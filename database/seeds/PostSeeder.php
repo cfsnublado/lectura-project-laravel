@@ -19,23 +19,20 @@ class PostSeeder extends Seeder
         DB::table('posts')->delete();
         $user = User::where('username', 'cfs')->firstOrFail();
         $project = Project::where('name', 'Project A')->firstOrFail();
-        Post::create([
+        factory(Post::class)->create([
             'creator_id' => $user->id,
             'project_id' => $project->id,
-            'name' => 'Post A',
-            'content' => 'This is Post A',
+            'name' => 'Post A'
         ]);
-        Post::create([
+        factory(Post::class)->create([
             'creator_id' => $user->id,
             'project_id' => $project->id,
-            'name' => 'Post B',
-            'content' => 'This is Post B',
+            'name' => 'Post B'
         ]);
-        Post::create([
+        factory(Post::class)->create([
             'creator_id' => $user->id,
             'project_id' => $project->id,
-            'name' => 'Post C',
-            'content' => 'This is Post C',
+            'name' => 'Post C'
         ]);
 
         $project = Project::where('name', 'Medio rey')->firstOrFail();

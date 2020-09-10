@@ -2,6 +2,7 @@
 
 
 return [
+    'label_audio_url' => 'Url del audio',
     'label_content' => 'Contenido',
     'label_description' => 'Descripción',
     'label_edit_profile' => 'Editar perfil',
@@ -16,6 +17,7 @@ return [
     'label_name' => 'Nombre',
     'label_new_project' => 'Nuevo proyecto',
     'label_new_post' => 'Nueva entrada',
+    'label_new_post_audio' => 'Nuevo audio',
     'label_posts' => 'Entradas',
     'label_projects' => 'Proyectos',
     'label_project' => 'Proyecto',
@@ -23,6 +25,7 @@ return [
     'label_your_menu' => 'Tu menú',
     'label_your_projects' => 'Tus proyectos',
     'label_create_project' => 'Crear proyecto',
+    'label_create_post_audio' => 'Crear audio',
     'label_edit_project' => 'Editar proyecto',
     'label_edit_post' => 'Editar entrada',
     'label_create_post' => 'Crear entrada',
@@ -58,6 +61,7 @@ return [
     'page_project_create_title' => 'Crear proyecto',
     'page_project_edit_title' => 'Editar proyecto',
     'page_post_create_title' => 'Crear entrada',
+    'page_post_audio_create_title' => 'Crear audio',
     'page_post_edit_title' => 'Editar entrada',
     'page_dropbox_index_title' => 'Dropbox',
 ];

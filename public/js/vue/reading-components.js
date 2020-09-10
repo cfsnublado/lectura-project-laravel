@@ -581,18 +581,18 @@ const PostAudioPlayer = {
       selectedAudio: null,
       selectedAudioIndex: null,
       showPlaylist: false,
-      initLoad: false,
+      playlistLoaded: false,
     }
   },  
   methods: {
-    getAudios() {
+    loadPlaylist() {
       if (this.audiosUrl) {
         this.process()
 
         axios.get(this.audiosUrl)
         .then(response => {
           this.audios = response.data.data
-          this.initLoad = true
+          this.playlistLoaded = true
           if (this.audios.length > 0) {
             this.selectAudio(0)
           }
@@ -614,11 +614,11 @@ const PostAudioPlayer = {
       }
     },
     playAudio() {
-      if (this.initLoad) {
+      if (this.playlistLoaded) {
         this.audio.play()
       } else {
         this.loading = true
-        this.getAudios()
+        this.loadPlaylist()
       }
     },
     selectAudio(index) {
@@ -629,18 +629,20 @@ const PostAudioPlayer = {
       this.togglePlaylist(false)
     },
     togglePlaylist(boolVal) {
-      if (boolVal === true || boolVal === false) {
-        this.showPlaylist = boolVal
-      }
-      else {
-        this.showPlaylist = !this.showPlaylist
-      }
-      
-      if (this.showPlaylist) {
-        this.$el.classList.add(this.playlistOpenClass)
-      } 
-      else {
-        this.$el.classList.remove(this.playlistOpenClass)
+      if (this.playlistLoaded) {
+        if (boolVal === true || boolVal === false) {
+          this.showPlaylist = boolVal
+        }
+        else {
+          this.showPlaylist = !this.showPlaylist
+        }
+        
+        if (this.showPlaylist) {
+          this.$el.classList.add(this.playlistOpenClass)
+        } 
+        else {
+          this.$el.classList.remove(this.playlistOpenClass)
+        }
       }
     }
   },
