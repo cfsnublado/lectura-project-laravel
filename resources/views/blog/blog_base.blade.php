@@ -15,8 +15,6 @@ sidebar-adaptable theme-cloudy @if(Session::get('sidebar_locked', false)) sideba
 @yield('page_header')
 
 @section('breadcrumbs')
-
-@if(isset($project) || isset($post))
 <nav class="breadcrumb">
 <ul>
 @section('breadcrumb_content')
@@ -24,8 +22,6 @@ sidebar-adaptable theme-cloudy @if(Session::get('sidebar_locked', false)) sideba
 @show
 </ul>
 </nav>
-@endif
-
 @show
 
 @endsection
