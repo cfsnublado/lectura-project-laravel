@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\StoreProject;
+use App\Http\Requests\Blog\UpdateProject;
 use App\Models\Blog\Project;
 
 class ProjectController extends Controller
@@ -118,11 +119,11 @@ class ProjectController extends Controller
     /**
      * Update the specified project in storage.
      *
-     * @param StoreProject $request
+     * @param UpdateProject $request
      * @param int $id
      * @return Response
      */
-    public function update(StoreProject $request, $id)
+    public function update(UpdateProject $request, $id)
     {
         $project = Project::findOrFail($id);
         $this->authorize('update', $project);

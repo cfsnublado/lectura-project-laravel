@@ -4,7 +4,7 @@ namespace App\Http\Requests\Blog;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProject extends FormRequest
+class UpdateProject extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class StoreProject extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:projects,name',
+            'name' => 'required|unique:projects,name,' . $this->id,
             'description' => ''
         ];
     }

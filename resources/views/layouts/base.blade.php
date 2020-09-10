@@ -164,6 +164,19 @@ href="{{ route('blog.projects.list') }}"
 </a>
 </li>
 
+@can('create', App\Models\Blog\Project::class)
+<li>
+<a 
+id="sidebar-nav-project-create" 
+class="@yield('project_create_link_active')" 
+href="{{ route('blog.project.create') }}"
+>
+<i class="menu-icon fas fa-plus fa-fw"></i>
+{{ __('messages.label_new_project') }}
+</a>
+</li>
+@endcan
+
 </ul>
 
 </div>
