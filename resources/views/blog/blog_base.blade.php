@@ -106,6 +106,19 @@ href="{{ route('blog.post.edit', ['slug' => $post->slug]) }}"
 </li>
 @endcan
 
+@can('createPostAudio', $project)
+<li>
+<a 
+id="sidebar-nav-post-audio-create" 
+class="@yield('post_audio_create_link_active')" 
+href="{{ route('blog.postaudio.create', ['postId' => $post->id]) }}"
+>
+<i class="menu-icon fas fa-music fa-fw"></i>
+{{ __('messages.label_new_post_audio') }}
+</a>
+</li>
+@endcan
+
 </ul>
 </div>
 @endif

@@ -37,7 +37,19 @@ class ProjectPolicy
      */
     public function createPost(User $user, Project $project)
     {
-        return $this->isOwner($user, $project) || $this->isMember($user, $project->id);
+        return $this->isProjectOwner($user, $project) || $this->isMember($user, $project->id);
+    }
+
+    /**
+     * Determine if user can create a project post audio.
+     *
+     * @param  \App\Models\User\User  $user
+     * @param  \App\Models\Blog\Project  $project
+     * @return boolean
+     */
+    public function createPostAudio(User $user, Project $project)
+    {
+        return $this->isProjectOwner($user, $project) || $this->isMember($user, $project->id);
     }
 
     /**
@@ -60,7 +72,7 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        return $this->isOwner($user, $project);
+        return $this->isProjectOwner($user, $project);
     }
 
     /**
@@ -72,6 +84,6 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project)
     {
-        return $this->isOwner($user, $project);
+        return $this->isProjectOwner($user, $project);
     }
 }

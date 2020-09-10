@@ -104,6 +104,20 @@ Route::middleware(['locale'])->prefix($locale)->group(function () {
                     'uses' => 'Blog\PostController@update'
                 ]
             );
+            Route::get(
+                'post/{postId}/postaudio/create',
+                [
+                    'as' => 'blog.postaudio.create',
+                    'uses' => 'Blog\PostAudioController@create',
+                ]
+            )->middleware('auth');
+            Route::post(
+                'post/{postId}/postaudio/store',
+                [
+                    'as' => 'blog.postaudio.store',
+                    'uses' => 'Blog\PostAudioController@store'
+                ]
+            );
         });
 
         Route::get(

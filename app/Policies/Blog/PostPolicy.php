@@ -51,7 +51,7 @@ class PostPolicy
     {
         $role = ProjectMember::ROLE_EDITOR;
         return $this->isCreator($user, $post)
-            || $this->isOwner($user, $post->project)
+            || $this->isProjectOwner($user, $post->project)
             || $this->isRoleOrAbove($user, $post->project_id, $role);
     }
 
@@ -66,7 +66,7 @@ class PostPolicy
     {
         $role = ProjectMember::ROLE_EDITOR;
         return $this->isCreator($user, $post)
-            || $this->isOwner($user, $post->project)
+            || $this->isProjectOwner($user, $post->project)
             || $this->isRoleOrAbove($user, $post->project_id, $role);
     }
 }

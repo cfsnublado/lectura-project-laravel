@@ -16,7 +16,7 @@ trait ProjectMemberPolicyTrait
      * @param  \App\Models\Blog\Project  $project
      * @return boolean
      */
-    protected function isOwner(User $user, Project $project)
+    protected function isProjectOwner(User $user, Project $project)
     {
         return $user->id === $project->owner_id;
     }
