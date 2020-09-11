@@ -54,6 +54,7 @@ return [
     'msg_forgot_password_q' => '¿Olvidaste tu contraseña?',
     'msg_no_projects' => 'No hay proyectos.',
     'msg_no_posts_in_project' => 'No hay entradas en este proyecto.',
+    'msg_no_dbx_user_files' => 'No hay archivos para el usuario ',
 
     'page_home_title' => 'Inicio',
     'page_login_title' => 'Iniciar sesión',

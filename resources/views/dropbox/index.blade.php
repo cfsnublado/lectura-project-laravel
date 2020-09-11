@@ -75,6 +75,14 @@ v-bind:class="[{ 'is-loading': processing }]"
 {{ __('messages.label_get_dbx_user_files') }}
 </button>
 
+<div 
+style="margin-top: 20px;"
+v-if="!processing && files && files.length == 0" 
+v-cloak
+>
+{{ __('messages.msg_no_dbx_user_files') }} <b>{{ Auth::user()->username }}</b>.
+</div>
+
 <ul
 class="dbx-files"
 v-cloak

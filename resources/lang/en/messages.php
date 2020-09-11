@@ -56,7 +56,8 @@ return [
     'msg_forgot_password_q' => 'Forgot your password?',
     'msg_no_projects' => 'There are no projects.',
     'msg_no_posts_in_project' => 'There are no posts in this project.',
-
+    'msg_no_dbx_user_files' => 'There are no files for user ',
+    
     'page_home_title' => 'Home',
     'page_login_title' => 'Login',
     'page_projects_title' => 'Projects',

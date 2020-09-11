@@ -45,7 +45,16 @@ function get_dbx_shared_link(DbxClient $dbx, $path)
  */
 function get_dbx_files(DbxClient $dbx, $path)
 {
-    $files = $dbx->listFolder($path);
+    $files = [];
+
+    try {
+        $files = $dbx->listFolder($path);
+    } catch (DbxException $exception) {
+        $error = json_decode($exception->response->getBody());
+        Log::error($exception->response->getBody());
+        $files['entries'] = [];
+    }
+
     return $files['entries'];
 }
 
