@@ -117,7 +117,10 @@ href="{{ route('blog.postaudio.create', ['postId' => $post->id]) }}"
 
 </ul>
 </div>
+
+<span class="sidebar-divider"></span>
 @endif
+
 @parent
 @endsection
 
