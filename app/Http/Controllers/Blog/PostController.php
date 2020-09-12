@@ -72,10 +72,10 @@ class PostController extends Controller
             'description' => $validated['description'],
             'content' => $validated['content'],
         ]);
+        self::success(trans('messages.msg_success_post_create'));
 
-        return redirect(route('blog.post.show', ['slug' => $post->slug]))
-            ->with('success', 'Post created!');
-        }
+        return redirect(route('blog.post.show', ['slug' => $post->slug]));
+    }
 
     /**
      * Show the form for editing a post.
@@ -114,7 +114,7 @@ class PostController extends Controller
         $post->description = $validated['description'];
         $post->content = $validated['content'];
         $post->save();
-        self::success('Post has been updated!');
+        self::success(trans('messages.msg_success_post_update'));
 
         return redirect(route('blog.post.show', ['slug' => $post->slug]));
     }

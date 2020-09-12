@@ -7,10 +7,13 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\StoreProject;
 use App\Http\Requests\Blog\UpdateProject;
+use App\Components\FlashMessages;
 use App\Models\Blog\Project;
 
 class ProjectController extends Controller
 {
+    use FlashMessages;
+
     /**
      * Display a listing of projects.
      *
@@ -97,10 +100,10 @@ class ProjectController extends Controller
             'name' => $validated['name'],
             'description' => $validated['description'],
         ]);
+        self::success(trans('messages.msg_success_project_create'));
 
-        return redirect(route('blog.project.show', ['slug' => $project->slug]))
-            ->with('success', 'Project created!');
-        }
+        return redirect(route('blog.project.show', ['slug' => $project->slug]));
+    }
 
     /**
      * Show the form for editing a project.
@@ -131,8 +134,8 @@ class ProjectController extends Controller
         $project->name =  $validated['name'];
         $project->description = $validated['description'];
         $project->save();
+        self::success(trans('messages.msg_success_project_update'));
 
-        return redirect(route('blog.project.show', ['slug' => $project->slug]))
-            ->with('success', 'Project updated!');
+        return redirect(route('blog.project.show', ['slug' => $project->slug]));
     }
 }
