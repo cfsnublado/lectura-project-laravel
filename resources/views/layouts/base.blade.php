@@ -217,6 +217,12 @@ dropdown-classes="is-up"
 </div><!-- end sidebar -->
 @show
 
+@section('top_messages')
+<div id="messages">
+@include('includes.messages')
+</div>
+@show
+
 @yield('full_width_sections')
 
 @section('content_container')

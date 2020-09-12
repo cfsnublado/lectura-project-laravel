@@ -4,9 +4,12 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use App\Components\FlashMessages;
 
 class AppServiceProvider extends ServiceProvider
 {
+    use FlashMessages;
+    
     /**
      * Register any application services.
      *
@@ -28,6 +31,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Blade::directive('markdown', function ($expression) {
             return "<?php echo \Illuminate\Mail\Markdown::parse($expression); ?>";
+        });
+
+        view()->composer('includes.messages', function ($view) {
+            $messages = self::messages();
+            return $view->with('messages', $messages);
         });
     }
 }

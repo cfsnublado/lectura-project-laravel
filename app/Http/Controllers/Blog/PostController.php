@@ -7,12 +7,15 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\StorePost;
 use App\Http\Requests\Blog\UpdatePost;
+use App\Components\FlashMessages;
 use App\Models\Blog\Project;
 use App\Models\Blog\Post;
 use App\Models\Blog\PostAudio;
 
 class PostController extends Controller
 {
+    use FlashMessages;
+
     /**
      * Show a post by its slug.
      *
@@ -111,8 +114,8 @@ class PostController extends Controller
         $post->description = $validated['description'];
         $post->content = $validated['content'];
         $post->save();
+        self::success('Post has been updated!');
 
-        return redirect(route('blog.post.show', ['slug' => $post->slug]))
-            ->with('success', 'Post updated!');
+        return redirect(route('blog.post.show', ['slug' => $post->slug]));
     }
 }
