@@ -20,13 +20,13 @@ class ProjectControllerTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->superuser = factory(User::class)->create([
+        $this->superuser = User::factory()->create([
             'is_superuser' => true
         ]);
         $this->superuser->refresh();
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
         $this->user->refresh();
-        $this->projectOwner = factory(User::class)->create();
+        $this->projectOwner = User::factory()->create();
         $this->projectOwner->refresh();
     }
 
@@ -68,8 +68,8 @@ class ProjectControllerTest extends TestCase
      */
     public function testEdit()
     {
-        $project = factory(
-            Project::class)->create(['owner_id' => $this->projectOwner->id]
+        $project = Project::factory()->create(
+            ['owner_id' => $this->projectOwner->id]
         );
 
         // Unauthenticated

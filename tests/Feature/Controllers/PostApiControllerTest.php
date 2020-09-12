@@ -23,16 +23,16 @@ class PostApiControllerTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->superuser = factory(User::class)->create([
+        $this->superuser = User::factory()->create([
             'is_superuser' => true
         ]);
-        $this->user = factory(User::class)->create();
-        $this->projectOwner = factory(User::class)->create();
-        $this->project = factory(Project::class)->create([
+        $this->user = User::factory()->create();
+        $this->projectOwner = User::factory()->create();
+        $this->project = Project::factory()->create([
             'owner_id' => $this->projectOwner,
             'name' => 'Test project A'
         ]);
-        $this->author = factory(User::class)->create();
+        $this->author = User::factory()->create();
         ProjectMember::create([
             'member_id' => $this->author->id,
             'project_id' => $this->project->id,
@@ -62,7 +62,7 @@ class PostApiControllerTest extends TestCase
     {
 
         $postName = 'Test post';
-        $post = factory(Post::class)->create([
+        $post = Post::factory()->create([
             'creator_id' => $this->projectOwner->id,
             'name' => $postName
         ]);
@@ -86,7 +86,7 @@ class PostApiControllerTest extends TestCase
             Post::where('name', $postName)->exists()
         );
 
-        $post = factory(Post::class)->create([
+        $post = Post::factory()->create([
             'creator_id' => $this->projectOwner->id,
             'name' => $postName
         ]);
@@ -101,7 +101,7 @@ class PostApiControllerTest extends TestCase
             Post::where('name', $postName)->exists()
         );
 
-        $post = factory(Post::class)->create([
+        $post = Post::factory()->create([
             'creator_id' => $this->projectOwner->id,
             'name' => $postName
         ]);

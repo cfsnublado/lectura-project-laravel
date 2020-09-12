@@ -24,16 +24,16 @@ class PostAudioApiControllerTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->superuser = factory(User::class)->create([
+        $this->superuser = User::factory()->create([
             'is_superuser' => true
         ]);
-        $this->user = factory(User::class)->create();
-        $this->projectOwner = factory(User::class)->create();
-        $this->project = factory(Project::class)->create([
+        $this->user = User::factory()->create();
+        $this->projectOwner = User::factory()->create();
+        $this->project = Project::factory()->create([
             'owner_id' => $this->projectOwner,
             'name' => 'Test Project A'
         ]);
-        $this->post = factory(Post::class)->create([
+        $this->post = Post::factory()->create([
             'creator_id' => $this->projectOwner->id,
             'project_id' => $this->project->id,
             'name' => 'Test Post A'
@@ -50,7 +50,7 @@ class PostAudioApiControllerTest extends TestCase
         $paginationNum = 10;
 
         for ($x=0; $x<$numAudios; $x++) {
-            factory(PostAudio::class)->create([
+            PostAudio::factory()->create([
                 'creator_id' => $this->projectOwner->id,
                 'post_id' => $this->post->id,
                 'name' => 'Post Audio ' . $x

@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +21,7 @@ class PostSeeder extends Seeder
         DB::table('posts')->delete();
         $user = User::where('username', 'cfs')->firstOrFail();
         $project = Project::where('name', 'Test project')->firstOrFail();
-        factory(Post::class)->create([
+        Post::factory()->create([
             'creator_id' => $user->id,
             'project_id' => $project->id,
             'name' => 'Post A'

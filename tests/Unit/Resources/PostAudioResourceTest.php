@@ -25,18 +25,18 @@ class PostAudioResourceTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
         $this->user->refresh();
-        $this->project = factory(Project::class)->create([
+        $this->project = Project::factory()->create([
             'owner_id' => $this->user->id,
             'name' => 'Test project'
         ]);
-        $this->post = factory(Post::class)->create([
+        $this->post = Post::factory()->create([
             'project_id' => $this->project->id,
             'creator_id' => $this->user->id,
             'name' => 'Test post',
         ]);
-        $this->postAudio = factory(PostAudio::class)->create([
+        $this->postAudio = PostAudio::factory()->create([
             'post_id' => $this->post->id,
             'creator_id' => $this->user->id,
         ]);

@@ -11042,21 +11042,15 @@ a {
     padding-top: 20px;
   }
 }
-/* line 1, ../../prototype/scss/cfs/_breadcrumb.scss */
+/* line 1, ../scss/cfs/_breadcrumb.scss */
 .breadcrumb {
   font-size: 1rem;
 }
-/* line 5, ../../prototype/scss/cfs/_breadcrumb.scss */
+/* line 5, ../scss/cfs/_breadcrumb.scss */
 .breadcrumb li + li::before {
   content: ">";
 }
 
-@media screen and (max-width: 768px) {
-  /* line 12, ../../prototype/scss/cfs/_breadcrumb.scss */
-  .breadcrumb {
-    display: none;
-  }
-}
 /* line 9, ../../prototype/scss/cfs/_navbar.scss */
 .navbar {
   position: relative;

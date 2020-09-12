@@ -19,7 +19,7 @@ class ProjectTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
         $this->user->refresh();
     }
 
@@ -28,7 +28,7 @@ class ProjectTest extends TestCase
      */
     public function testEagerLoad()
     {
-        factory(Project::class)->create(
+        Project::factory()->create(
             ['name' => 'Test project', 'owner_id' => $this->user->id]
         );
         $project = Project::where('name', 'Test project')->firstOrFail();
@@ -45,7 +45,7 @@ class ProjectTest extends TestCase
     {
         $name = 'Test Project';
         $slug = Str::slug($name, '-');
-        $project = factory(Project::class)->create(
+        $project = Project::factory()->create(
             ['name' => $name, 'owner_id' => $this->user->id]
         );
 

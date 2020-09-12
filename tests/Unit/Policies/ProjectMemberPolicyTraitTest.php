@@ -30,27 +30,27 @@ class ProjectMemberPolicyTraitTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->nonMember = factory(User::class)->create();
-        $this->owner = factory(User::class)->create();
-        $this->project = factory(Project::class) ->create([
+        $this->nonMember = User::factory()->create();
+        $this->owner = User::factory()->create();
+        $this->project = Project::factory() ->create([
             'owner_id' => $this->owner->id
         ]);
 
-        $this->admin = factory(User::class)->create();
+        $this->admin = User::factory()->create();
         $this->adminRole = ProjectMember::create([
             'member_id' => $this->admin->id,
             'project_id' => $this->project->id,
             'role' => ProjectMember::ROLE_ADMIN
         ]);
 
-        $this->editor = factory(User::class)->create();
+        $this->editor = User::factory()->create();
         $this->editorRole = ProjectMember::create([
             'member_id' => $this->editor->id,
             'project_id' => $this->project->id,
             'role' => ProjectMember::ROLE_EDITOR
         ]);
 
-        $this->author = factory(User::class)->create();
+        $this->author = User::factory()->create();
         $this->authorRole = ProjectMember::create([
             'member_id' => $this->author->id,
             'project_id' => $this->project->id,

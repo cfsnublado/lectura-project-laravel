@@ -23,11 +23,11 @@ class PostAudioTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->user = factory(User::class)->create();
-        $this->project = factory(Project::class)->create([
+        $this->user = User::factory()->create();
+        $this->project = Project::factory()->create([
             'owner_id' => $this->user->id,
         ]);
-        $this->post = factory(Post::class)->create([
+        $this->post = Post::factory()->create([
             'creator_id' => $this->user->id,
             'project_id' => $this->project->id,
         ]);
@@ -38,7 +38,7 @@ class PostAudioTest extends TestCase
      */
     public function testEagerLoad()
     {
-        factory(PostAudio::class)->create([
+        PostAudio::factory()->create([
             'post_id' => $this->post->id,
             'creator_id' => $this->user->id,
         ]);

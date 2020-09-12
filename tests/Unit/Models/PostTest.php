@@ -21,8 +21,8 @@ class PostTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->user = factory(User::class)->create();
-        $this->project = factory(Project::class)->create([
+        $this->user = User::factory()->create();
+        $this->project = Project::factory()->create([
             'owner_id' => $this->user->id,
         ]);
     }
@@ -32,7 +32,7 @@ class PostTest extends TestCase
      */
     public function testEagerLoad()
     {
-        factory(Post::class)->create([
+        Post::factory()->create([
             'name' => 'Test post',
             'creator_id' => $this->user->id,
             'project_id' => $this->project->id,
@@ -51,7 +51,7 @@ class PostTest extends TestCase
      */
     public function testSlugCreatedFromName()
     {
-        $post = factory(Post::class)->create([
+        $post = Post::factory()->create([
             'creator_id' => $this->user->id,
             'project_id' => $this->project->id,
         ]);

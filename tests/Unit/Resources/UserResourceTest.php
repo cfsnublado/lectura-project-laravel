@@ -19,7 +19,7 @@ class UserResourceTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
         $this->user->refresh();
     }
 

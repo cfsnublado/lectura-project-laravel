@@ -20,11 +20,11 @@ class ProjectApiControllerTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->superuser = factory(User::class)->create([
+        $this->superuser = User::factory()->create([
             'is_superuser' => true
         ]);
-        $this->user = factory(User::class)->create();
-        $this->projectOwner = factory(User::class)->create();
+        $this->user = User::factory()->create();
+        $this->projectOwner = User::factory()->create();
     }
     
     /**

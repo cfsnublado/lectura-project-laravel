@@ -26,27 +26,27 @@ class ProjectPolicyTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->nonMember = factory(User::class)->create();
-        $this->superuser = factory(User::class)->create([
+        $this->nonMember = User::factory()->create();
+        $this->superuser = User::factory()->create([
             'is_superuser' => true
         ]);
-        $this->projectOwner = factory(User::class)->create();
-        $this->project = factory(Project::class) ->create([
+        $this->projectOwner = User::factory()->create();
+        $this->project = Project::factory() ->create([
             'owner_id' => $this->projectOwner->id
         ]);
-        $this->admin = factory(User::class)->create();
+        $this->admin = User::factory()->create();
         ProjectMember::create([
             'member_id' => $this->admin->id,
             'project_id' => $this->project->id,
             'role' => ProjectMember::ROLE_ADMIN
         ]);
-        $this->editor = factory(User::class)->create();
+        $this->editor = User::factory()->create();
         ProjectMember::create([
             'member_id' => $this->editor->id,
             'project_id' => $this->project->id,
             'role' => ProjectMember::ROLE_EDITOR
         ]);
-        $this->author = factory(User::class)->create();
+        $this->author = User::factory()->create();
         ProjectMember::create([
             'member_id' => $this->author->id,
             'project_id' => $this->project->id,

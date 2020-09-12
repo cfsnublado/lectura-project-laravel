@@ -23,17 +23,17 @@ class PostControllerTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->superuser = factory(User::class)->create([
+        $this->superuser = User::factory()->create([
             'is_superuser' => true
         ]);
         $this->superuser->refresh();
-        $this->projectOwner = factory(User::class)->create();
+        $this->projectOwner = User::factory()->create();
         $this->projectOwner->refresh();
-        $this->project = factory(Project::class)->create([
+        $this->project = Project::factory()->create([
             'owner_id' => $this->projectOwner,
             'name' => 'Test project A'
         ]);
-        $this->author = factory(User::class)->create();
+        $this->author = User::factory()->create();
         $this->author->refresh();
         ProjectMember::create([
             'member_id' => $this->author->id,

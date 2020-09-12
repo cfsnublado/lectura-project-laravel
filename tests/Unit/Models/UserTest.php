@@ -23,7 +23,7 @@ class UserTest extends TestCase
      */
     public function testEagerLoad()
     {
-        factory(User::class)->create([
+        User::factory()->create([
             'username' => 'foo'
         ]);
         $user = User::where('username', 'foo')->firstOrFail();
@@ -41,7 +41,7 @@ class UserTest extends TestCase
     public function testUuidProvidedInConstructor()
     {
         $uuid = '7e204342-62c6-4b94-b177-f97acd6ec5af';
-        $user = factory(User::class)->create(['id' => $uuid]);
+        $user = User::factory()->create(['id' => $uuid]);
         $user->refresh();
 
         $this->assertEquals($user->id, $uuid);
@@ -55,7 +55,7 @@ class UserTest extends TestCase
      */
     public function testUuidGeneratedOnCreate()
     {
-        $user = factory(User::class)->create(['id' => '']);
+        $user = User::factory()->create(['id' => '']);
         $this->assertTrue(is_string($user->id));
         $this->assertEquals(mb_strlen($user->id, 'utf8'), 36);
     }
@@ -67,7 +67,7 @@ class UserTest extends TestCase
      */
     public function testIsSuperuserDefaultFalse()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->refresh();
 
         $this->assertFalse($user->is_superuser);
@@ -80,7 +80,7 @@ class UserTest extends TestCase
      */
     public function testIsSuperuserIsBoolean()
     {
-        $user = factory(User::class)->create(['is_superuser' => true]);
+        $user = User::factory()->create(['is_superuser' => true]);
         $user->refresh();
 
         $this->assertTrue($user->is_superuser);
@@ -96,7 +96,7 @@ class UserTest extends TestCase
     {
         $this->assertEquals(Profile::count(), 0);
 
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->refresh();
 
         $this->assertEquals(Profile::count(), 1);

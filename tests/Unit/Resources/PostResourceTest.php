@@ -23,13 +23,13 @@ class PostResourceTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
         $this->user->refresh();
-        $this->project = factory(Project::class)->create([
+        $this->project = Project::factory()->create([
             'owner_id' => $this->user->id,
             'name' => 'Test project'
         ]);
-        $this->post = factory(Post::class)->create([
+        $this->post = Post::factory()->create([
             'project_id' => $this->project->id,
             'creator_id' => $this->user->id,
             'name' => 'Test post',

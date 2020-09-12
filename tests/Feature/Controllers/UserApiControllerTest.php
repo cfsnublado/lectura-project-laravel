@@ -17,7 +17,7 @@ class UserApiControllerTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->user = factory(User::class)->create();
+        $this->user = User::factory()->create();
     }
     
     /**
@@ -38,6 +38,6 @@ class UserApiControllerTest extends TestCase
         $response->assertStatus(200);
         $data = json_decode($response->getContent());
         $this->assertTrue(property_exists($data, 'token'));
-        $this->assertEquals(mb_strlen($data->token, 'utf8'), 83);
+        $this->assertEquals(mb_strlen($data->token, 'utf8'), 43);
     }
 }

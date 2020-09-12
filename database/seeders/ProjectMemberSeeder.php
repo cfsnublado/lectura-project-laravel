@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +21,7 @@ class ProjectMemberSeeder extends Seeder
         DB::table('posts')->delete();
         $user = User::where('username', 'cfs')->firstOrFail();
         $project = Project::where('name', 'Test project')->firstOrFail();
-        $author = factory(User::class)->create([
+        $author = User::factory()->create([
             'username' => 'author'
         ]);
         ProjectMember::create([
@@ -27,7 +29,7 @@ class ProjectMemberSeeder extends Seeder
             'member_id' => $author->id,
             'role' => ProjectMember::ROLE_AUTHOR,
         ]);
-        $editor = factory(User::class)->create([
+        $editor = User::factory()->create([
             'username' => 'editor'
         ]);
         ProjectMember::create([
@@ -35,7 +37,7 @@ class ProjectMemberSeeder extends Seeder
             'member_id' => $editor->id,
             'role' => ProjectMember::ROLE_EDITOR,
         ]);
-        $admin = factory(User::class)->create([
+        $admin = User::factory()->create([
             'username' => 'admin'
         ]);
         ProjectMember::create([

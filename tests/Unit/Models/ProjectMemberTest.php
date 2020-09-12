@@ -21,8 +21,8 @@ class ProjectMemberTest extends TestCase
     {
         parent::setUp();
         DB::table('users')->delete();
-        $this->user = factory(User::class)->create();
-        $this->project = factory(Project::class)->create([
+        $this->user = User::factory()->create();
+        $this->project = Project::factory()->create([
             'owner_id' => $this->user->id,
         ]);
     }
@@ -32,7 +32,7 @@ class ProjectMemberTest extends TestCase
      */
     public function testEagerLoad()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         ProjectMember::create([
             'member_id' => $user->id,
             'project_id' => $this->project->id,
@@ -71,7 +71,7 @@ class ProjectMemberTest extends TestCase
      */
     public function testDefaultRole()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $member = ProjectMember::create([
             'member_id' => $user->id,
             'project_id' => $this->project->id,
@@ -88,7 +88,7 @@ class ProjectMemberTest extends TestCase
      */
     public function testRoleValues()
     {
-        $author = factory(User::class)->create();
+        $author = User::factory()->create();
         $authorRole = ProjectMember::create([
             'member_id' => $author->id,
             'project_id' => $this->project->id,
@@ -96,7 +96,7 @@ class ProjectMemberTest extends TestCase
         ]);
         $this->assertEquals($authorRole->role_value, 'author');
 
-        $editor = factory(User::class)->create();
+        $editor = User::factory()->create();
         $editorRole = ProjectMember::create([
             'member_id' => $editor->id,
             'project_id' => $this->project->id,
@@ -104,7 +104,7 @@ class ProjectMemberTest extends TestCase
         ]);
         $this->assertEquals($editorRole->role_value, 'editor');
 
-        $admin = factory(User::class)->create();
+        $admin = User::factory()->create();
         $adminRole = ProjectMember::create([
             'member_id' => $admin->id,
             'project_id' => $this->project->id,
@@ -120,7 +120,7 @@ class ProjectMemberTest extends TestCase
      */
     public function testSetRoleOutOfRange()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $member = ProjectMember::create([
             'member_id' => $user->id,
             'project_id' => $this->project->id,
@@ -143,7 +143,7 @@ class ProjectMemberTest extends TestCase
      */
     public function testUniqueTogetherMemberProject()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         ProjectMember::create([
             'member_id' => $user->id,
             'project_id' => $this->project->id,
