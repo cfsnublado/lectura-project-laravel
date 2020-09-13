@@ -235,10 +235,6 @@ const AudioPlayer = {
       type: String,
       default: 'audio-player'
     },
-    audioUrl: {
-      type: String,
-      default: null
-    },
     autoPlay: {
       type: Boolean,
       default: false
@@ -320,8 +316,10 @@ const AudioPlayer = {
       this.audio.pause()
     },
     download() {
-      this.stop()
-      window.location.assign(this.audioUrl)
+      if (this.audio.src) {
+        this.stop()
+        window.location.assign(this.audio.src)
+      }
     },
     load() {
       if (this.audio.readyState >= 2) {
@@ -332,6 +330,7 @@ const AudioPlayer = {
         if (this.autoPlay) {
           this.audio.play()
         }
+
       } else {
         throw new Error("Failed to load sound file.")
       }
@@ -361,7 +360,7 @@ const AudioPlayer = {
     },
     error() {
       this.hasError = true
-      console.error('Error loading ' + this.audioUrl)
+      console.error("Error loading audio.")
     },
     onProgressMousedown(e) {
       if (!this.loading) {
@@ -390,21 +389,57 @@ const AudioPlayer = {
   },
   mounted() {
     this.audio = this.$el.querySelector('#' + this.audioPlayerId)
-
-    if (this.audioUrl) {
-      this.audio.src = this.audioUrl
-    }
-    
     this.audio.addEventListener('error', this.error)
     this.audio.addEventListener('play', () => { this.playing = true })
     this.audio.addEventListener('pause', () => { this.playing = false });
     this.audio.addEventListener('ended', this.stop)
     this.audio.addEventListener('timeupdate', this.update)
     this.audio.addEventListener('loadeddata', this.load)
+    this.seekBar = this.$el.querySelector("#" + this.audioPlayerId + "-seekbar")
 
     window.addEventListener('mouseup', this.onProgressMouseup)
     window.addEventListener('mousemove', this.onProgressMousemove)
-
-    this.seekBar = this.$refs.audioPlayerSeekBar
   },
+}
+
+const SingleAudioPlayer = {
+  mixins: [
+    AudioPlayer,
+  ],
+  props: {
+    audioUrl: {
+      type: String,
+      required: true
+    },
+  },
+  data() {
+    return {
+      srcLoaded: false
+    }
+  },
+  methods: {
+    playAudio() {
+      if (this.srcLoaded) {
+        this.audio.play()
+      } else if (this.audioUrl) {
+        this.loading = true
+        this.audio.src = this.audioUrl
+      }
+    },
+    load() {
+      if (this.audio.readyState >= 2) {
+        console.log("audio loaded")
+        this.loading = false
+        this.srcLoaded = true
+        this.durationSeconds = parseInt(this.audio.duration)
+
+        if (this.autoPlay) {
+          this.audio.play()
+        }
+
+      } else {
+        throw new Error("Failed to load sound file.")
+      }
+    },
+  }
 }

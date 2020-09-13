@@ -1,6 +1,6 @@
 <form 
 id="post-create-form" 
-action="{{ route('blog.post.store', ['projectId' => $project->id]) }}"
+action="{{ route('blog.post.store', ['project_id' => $project->id]) }}"
 method="post" 
 novalidate
 >

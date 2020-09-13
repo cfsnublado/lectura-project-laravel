@@ -14,12 +14,12 @@ class PostAudioController extends Controller
     /**
      * Create a new post audio.
      *
-     * @param  integer  $postId
+     * @param  integer  $post_id
      * @return Response
      */
-    public function create($postId)
+    public function create($post_id)
     {
-        $post = Post::findOrFail($postId);
+        $post = Post::findOrFail($post_id);
         $project = $post->project;
         $this->authorize('createPostAudio', $project);
 
@@ -34,12 +34,12 @@ class PostAudioController extends Controller
      * Store a newly created post audio.
      *
      * @param  StorePostAudio  $request
-     * @param  int  $postId
+     * @param  int  $post_id
      * @return Response
      */
-    public function store(StorePostAudio $request, $postId)
+    public function store(StorePostAudio $request, $post_id)
     {
-        $post = Post::findOrFail($postId);
+        $post = Post::findOrFail($post_id);
         $project = $post->project;
         $this->authorize('createPostAudio', $project);
         $validated = $request->validated();
@@ -50,8 +50,8 @@ class PostAudioController extends Controller
             'description' => $validated['description'],
             'audio_url' => $validated['audio_url'],
         ]);
+        self::success(trans('messages.msg.success_post_audio_create'));
 
-        return redirect(route('blog.post.show', ['slug' => $post->slug]))
-            ->with('success', 'Post audio created!');
-        }
+        return redirect(route('blog.post.show', ['slug' => $post->slug]));
     }
+}

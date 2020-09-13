@@ -16,7 +16,7 @@ v-cloak
 @can('createPost', $project)
 <a 
 class="button is-info" 
-href="{{ route('blog.post.create', ['projectSlug' => $project->slug]) }}"
+href="{{ route('blog.post.create', ['project_slug' => $project->slug]) }}"
 >
 {{ __('messages.label_create_post') }}
 </a>

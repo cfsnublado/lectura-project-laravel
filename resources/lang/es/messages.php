@@ -51,6 +51,8 @@ return [
     'msg_no_posts_in_project' => 'No hay entradas en este proyecto.',
     'msg_no_projects' => 'No hay proyectos.',
     'msg_project_banner_desc' => 'Comparte lecturas y practica tu pronunciación.',
+    'msg_success_post_audio_create' => 'El audio ha sido creatod.',
+    'msg_success_post_audio_update' => 'El audio ha sido actualizado.',
     'msg_success_post_create' => 'La entrada ha sido creada.',
     'msg_success_post_update' => 'La entrada ha sido actualizada.',
     'msg_success_project_create' => 'El proyecto ha sido creado.',

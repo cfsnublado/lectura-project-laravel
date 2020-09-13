@@ -1,6 +1,6 @@
 <form 
 id="post-audio-create-form" 
-action="{{ route('blog.postaudio.store', ['postId' => $post->id]) }}"
+action="{{ route('blog.post_audio.store', ['post_id' => $post->id]) }}"
 method="post" 
 novalidate
 >

@@ -60,7 +60,7 @@ href="{{ route('blog.project.edit', ['slug' => $project->slug]) }}"
 <a 
 id="sidebar-nav-post-create" 
 class="@yield('post_create_link_active')" 
-href="{{ route('blog.post.create', ['projectSlug' => $project->slug]) }}"
+href="{{ route('blog.post.create', ['project_slug' => $project->slug]) }}"
 >
 <i class="menu-icon fas fa-plus fa-fw"></i>
 {{ __('messages.label_new_post') }}
@@ -107,13 +107,24 @@ href="{{ route('blog.post.edit', ['slug' => $post->slug]) }}"
 <a 
 id="sidebar-nav-post-audio-create" 
 class="@yield('post_audio_create_link_active')" 
-href="{{ route('blog.postaudio.create', ['postId' => $post->id]) }}"
+href="{{ route('blog.post_audio.create', ['post_id' => $post->id]) }}"
 >
 <i class="menu-icon fas fa-music fa-fw"></i>
 {{ __('messages.label_new_post_audio') }}
 </a>
 </li>
 @endcan
+
+<li>
+<a 
+id="sidebar-nav-post-audios" 
+class="@yield('post_audios_link_active')" 
+href="{{ route('blog.post.post_audios.list', ['post_id' => $post->id]) }}"
+>
+<i class="menu-icon fas fa-music fa-fw"></i>
+{{ __('messages.label_post_audios') }}
+</a>
+</li>
 
 </ul>
 </div>

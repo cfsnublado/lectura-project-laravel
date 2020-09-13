@@ -5,6 +5,7 @@ Vue.component("navbar-dropdown", NavbarDropdown)
 Vue.component("confirmation-modal", ConfirmationModal)
 Vue.component("audio-file-uploader", AudioFileUploader)
 Vue.component("audio-player", AudioPlayer)
+Vue.component("single-audio-player", SingleAudioPlayer)
 
 // Reading components
 Vue.component("projects", Projects)

@@ -51,6 +51,8 @@ return [
     'msg_no_posts_in_project' => 'There are no posts in this project.',
     'msg_no_projects' => 'There are no projects.',
     'msg_project_banner_desc' => 'Share readings and practice your pronunciation.',
+    'msg_success_post_audio_create' => 'Post audio has been created.',
+    'msg_success_post_audio_update' => 'Post audio has been updated.',
     'msg_success_post_create' => 'Post has been created.',
     'msg_success_post_update' => 'Post has been updated.',
     'msg_success_project_create' => 'Project has been created.',

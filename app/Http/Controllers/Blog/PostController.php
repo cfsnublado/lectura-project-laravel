@@ -42,12 +42,12 @@ class PostController extends Controller
     /**
      * Create a new post.
      *
-     * @param  str  $projectSlug
+     * @param  str  $project_slug
      * @return Response
      */
-    public function create($projectSlug)
+    public function create($project_slug)
     {
-        $project = Project::where('slug', $projectSlug)->firstOrFail();
+        $project = Project::where('slug', $project_slug)->firstOrFail();
         $this->authorize('createPost', $project);
 
         return view('blog.post_create', ['project' => $project]);
@@ -57,12 +57,12 @@ class PostController extends Controller
      * Store a newly created post.
      *
      * @param  StorePost  $request
-     * @param  int  $projectId
+     * @param  int  $project_id
      * @return Response
      */
-    public function store(StorePost $request, $projectId)
+    public function store(StorePost $request, $project_id)
     {
-        $project = Project::findOrFail($projectId);
+        $project = Project::findOrFail($project_id);
         $this->authorize('createPost', $project);
         $validated = $request->validated();
         $post = Post::create([

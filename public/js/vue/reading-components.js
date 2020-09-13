@@ -436,11 +436,10 @@ const Posts = {
 const PostAudio = {
   mixins: [
     AdminMixin,
-    VisibleMixin,
     MarkdownMixin
   ],
   props: {
-    initAudio: {
+    initPostAudio: {
       type: Object,
       required: true
     },
@@ -459,11 +458,11 @@ const PostAudio = {
   },
   data() {
     return {
-      audio: this.initAudio,
+      postAudio: this.initPostAudio,
       viewUrl: this.initViewUrl,
       editUrl: this.initEditUrl,
       deleteUrl: this.initDeleteUrl,
-      idPlaceholder: '0'
+      idPlaceholder: 0
     }
   },
   methods: {
@@ -473,19 +472,18 @@ const PostAudio = {
       }
     },
     remove() {
-      this.$emit('delete-post-audio', this.audio.id)
+      this.$emit('delete-post-audio', this.postAudio.id)
     }
   },
   created() {
     if (this.initDeleteUrl) {
       this.deleteUrl = this.initDeleteUrl
-        .replace(this.idPlaceholder, this.audio.id)
+        .replace(this.idPlaceholder, this.postAudio.id)
     }
 
     if (this.initEditUrl) {
       this.editUrl = this.initEditUrl
-        .replace(this.idPlaceholder, this.audio.id)
-      console.log(this.editUrl)
+        .replace(this.idPlaceholder, this.postAudio.id)
     }
   }
 }
@@ -507,47 +505,52 @@ const PostAudios = {
   },
   data() {
     return {
-      postAudios: null
+      postAudios: null,
+      timerId: null,
+      processDelay: 500
     }
   },
   methods: {
     getPostAudios(page=1) {
+      clearTimeout(this.timerId)
       this.process()
 
       params = {
         page: page
       }
 
-      axios.get(this.postAudiosUrl, {
-        params: params
-      })
-      .then(response => {
-        this.postAudios = response.data.results
-        this.setPagination(
-          response.data.previous,
-          response.data.next,
-          response.data.page_num,
-          response.data.count,
-          response.data.num_pages
-        )
-        VueScrollTo.scrollTo({
-          el: '#post-audios-scroll-top',
+      this.timerId = setTimeout(()=>{
+        axios.get(this.postAudiosUrl, {
+          params: params
         })
-        this.success()
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log(error.response)
-        } else if (error.request) {
-          console.log(error.request)
-        } else {
-          console.log(error.message)
-        }
-        console.log(error.config)
-      })
-      .finally(() => {
-        this.complete()
-      })
+        .then(response => {
+          this.postAudios = response.data.data
+          this.setPagination(
+            response.links.prev,
+            response.links.next,
+            response.meta.current_page,
+            response.meta.total,
+            response.meta.last_page
+          )
+          VueScrollTo.scrollTo({
+            el: '#post-audios-scroll-top',
+          })
+          this.success()
+        })
+        .catch(error => {
+          if (error.response) {
+            console.log(error.response)
+          } else if (error.request) {
+            console.log(error.request)
+          } else {
+            console.log(error.message)
+          }
+          console.log(error.config)
+        })
+        .finally(() => {
+          this.complete()
+        })
+      }, this.processDelay)
     },
     onDeletePostAudio(index) {
       this.$delete(this.postAudios, index)

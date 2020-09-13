@@ -77,14 +77,14 @@ Route::middleware(['locale'])->prefix($locale)->group(function () {
                 ]
             );
             Route::get(
-                'project/{projectSlug}/post/create',
+                'project/{project_slug}/post/create',
                 [
                     'as' => 'blog.post.create',
                     'uses' => 'Blog\PostController@create',
                 ]
             )->middleware('auth');
             Route::post(
-                'project/{projectId}/post/store',
+                'project/{project_id}/post/store',
                 [
                     'as' => 'blog.post.store',
                     'uses' => 'Blog\PostController@store'
@@ -105,16 +105,16 @@ Route::middleware(['locale'])->prefix($locale)->group(function () {
                 ]
             );
             Route::get(
-                'post/{postId}/postaudio/create',
+                'post/{post_id}/post-audio/create',
                 [
-                    'as' => 'blog.postaudio.create',
+                    'as' => 'blog.post_audio.create',
                     'uses' => 'Blog\PostAudioController@create',
                 ]
             )->middleware('auth');
             Route::post(
-                'post/{postId}/postaudio/store',
+                'post/{post_id}/post-audio/store',
                 [
-                    'as' => 'blog.postaudio.store',
+                    'as' => 'blog.post_audio.store',
                     'uses' => 'Blog\PostAudioController@store'
                 ]
             );
@@ -139,6 +139,13 @@ Route::middleware(['locale'])->prefix($locale)->group(function () {
             [
                 'as' => 'blog.post.show',
                 'uses' => 'Blog\PostController@show'
+            ]
+        );
+        Route::get(
+            'post/{post_id}/post-audios',
+            [
+                'as' => 'blog.post.post_audios.list',
+                'uses' => 'Blog\PostPostAudioController@index',
             ]
         );
     });

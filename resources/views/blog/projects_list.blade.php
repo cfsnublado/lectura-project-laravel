@@ -10,7 +10,6 @@
 
 @section('content')
 <div id="projects-scroll-top"></div>
-
 @include('blog.includes.vue.projects')
 @endsection
 
