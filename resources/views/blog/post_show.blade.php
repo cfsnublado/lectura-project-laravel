@@ -23,7 +23,7 @@
 @section('page_footer')
 @if($hasAudio)
 
-<post-audio-player
+<playlist-audio-player
 audio-player-id="post-audio"
 audios-url="{{ $postAudiosUrl }}"
 :auto-play="true"
@@ -165,7 +165,7 @@ v-else
 </div><!-- audio-playlist -->
 
 </div><!-- audio-player-container -->
-</post-audio-player>
+</playlist-audio-player>
 
 @endif
 @endsection

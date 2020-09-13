@@ -5,7 +5,16 @@
 @section('post_audios_link_active', 'is-active')
 
 @section('page_header')
-<div class="page-header"> {{ __('messages.label_post_audios') }} </div>
+<div class="page-header">
+{{ __('messages.label_post_audios') }}: {{ $post->name }}
+</div>
+@endsection
+
+@section('breadcrumb_content')
+@parent
+<li class="is-active">
+<a href="#">{{ __('messages.label_post_audios') }}</a>
+</li>
 @endsection
 
 @section('content')

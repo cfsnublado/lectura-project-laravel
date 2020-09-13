@@ -21,6 +21,8 @@ class PostAudio extends JsonResource
             'description' => $this->description,
             'audio_url' => $this->audio_url,
             'creator_username' => $this->creator->username,
+            'creator_first_name' => $this->creator->first_name,
+            'creator_last_name' => $this->creator->last_name,
             'post_url' => route(
                 'api.blog.post.show',
                 ['post' => $this->post_id]

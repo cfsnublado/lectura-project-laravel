@@ -6,6 +6,7 @@ Vue.component("confirmation-modal", ConfirmationModal)
 Vue.component("audio-file-uploader", AudioFileUploader)
 Vue.component("audio-player", AudioPlayer)
 Vue.component("single-audio-player", SingleAudioPlayer)
+Vue.component("playlist-audio-player", PlaylistAudioPlayer)
 
 // Reading components
 Vue.component("projects", Projects)
@@ -16,7 +17,6 @@ Vue.component("posts", Posts)
 Vue.component("post", Post)
 Vue.component("post-audio", PostAudio)
 Vue.component("post-audios", PostAudios)
-Vue.component("post-audio-player", PostAudioPlayer)
 
 // Search
 Vue.component("user-search", UserSearch)

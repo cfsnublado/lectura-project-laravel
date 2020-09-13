@@ -103,6 +103,12 @@ v-html="markdownToHtml(postAudio.name)"
 </a>
 
 <div 
+class="user-details"
+>
+{{ __('messages.label_read_by') }}: [[ postAudio.creator_username ]]
+</div>
+
+<div 
 class="desc"
 v-html="markdownToHtml(postAudio.description)"
 >

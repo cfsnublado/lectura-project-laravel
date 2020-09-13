@@ -109,7 +109,7 @@ id="sidebar-nav-post-audio-create"
 class="@yield('post_audio_create_link_active')" 
 href="{{ route('blog.post_audio.create', ['post_id' => $post->id]) }}"
 >
-<i class="menu-icon fas fa-music fa-fw"></i>
+<i class="menu-icon fas fa-microphone fa-fw"></i>
 {{ __('messages.label_new_post_audio') }}
 </a>
 </li>

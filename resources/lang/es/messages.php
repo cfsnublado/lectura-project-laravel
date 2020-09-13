@@ -33,6 +33,7 @@ return [
     'label_post_audios' => 'Audios',
     'label_project' => 'Proyecto',
     'label_projects' => 'Proyectos',
+    'label_read_by' => 'Leído por',
     'label_select_file' => 'Seleccionar archivo',
     'label_submit_file' => 'Subir',
     'label_update' => 'Actualizar',
