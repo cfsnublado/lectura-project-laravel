@@ -36,7 +36,7 @@ v-for="(postAudio, index) in postAudios"
 :init-post-audio="postAudio"
 :init-is-admin="isAdmin"
 init-edit-url="{{ $postAudioEditUrl }}"
-init-delete-url=""
+init-delete-url="{{ $postAudioDeleteUrl }}"
 @delete-post-audio="deletePostAudio(index)"
 inline-template
 >

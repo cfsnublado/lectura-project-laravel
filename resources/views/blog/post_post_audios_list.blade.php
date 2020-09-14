@@ -23,4 +23,8 @@
 @endsection
 
 @section('modal')
+@include(
+'blog/includes/post_audio_delete_modal',
+['modalId' => 'delete-post-audio', 'modalName' => 'confirmation-modal']
+)
 @endsection

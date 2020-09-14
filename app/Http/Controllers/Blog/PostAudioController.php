@@ -50,7 +50,7 @@ class PostAudioController extends Controller
             'description' => $validated['description'],
             'audio_url' => $validated['audio_url'],
         ]);
-        self::success(trans('messages.msg.success_post_audio_create'));
+        self::success(trans('messages.msg_success_post_audio_create'));
 
         return redirect(route('blog.post.show', ['slug' => $post->slug]));
     }

@@ -25,9 +25,9 @@ class PostPostAudioController extends Controller
                 'postAudioEditUrl' => route(
                     'blog.post_audio.edit', ['id' => '0']
                 ),
-                // 'postAudioDeleteUrl' => route(
-                //     'api.blog.post_audio.destroy', ['post_audio' => 0]
-                // ),
+                'postAudioDeleteUrl' => route(
+                    'api.blog.post_audio.destroy', ['post_audio' => '0']
+                ),
             ]
 
         );

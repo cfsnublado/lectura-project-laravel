@@ -22,7 +22,6 @@
 
 @section('page_footer')
 @if($hasAudio)
-
 <playlist-audio-player
 audio-player-id="post-audio"
 audios-url="{{ $postAudiosUrl }}"
@@ -54,13 +53,8 @@ v-bind:class="[{ 'is-loading': loading }]"
 >
 
 <div class="audio-title">
-
-<!--
-<span v-if="loading">
-{{ __('messages.label_loading_audio') }}
-</span>
-<span v-else></span>
--->
+<span v-if="playlistLoaded && !loading">[[ selectedAudio.creator_username ]] - [[ selectedAudio.name ]]</span>
+<span v-else>&nbsp;</span>
 </div>
 
 <div class="audio-player-controls">
@@ -166,6 +160,5 @@ v-else
 
 </div><!-- audio-player-container -->
 </playlist-audio-player>
-
 @endif
 @endsection

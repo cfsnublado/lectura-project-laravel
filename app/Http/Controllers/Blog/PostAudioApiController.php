@@ -11,6 +11,14 @@ use App\Http\Resources\Blog\PostAudioCollection;
 class PostAudioApiController extends Controller
 {
     /**
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->except(['index', 'show']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -41,7 +49,7 @@ class PostAudioApiController extends Controller
     {
         $postAudio = PostAudio::findOrFail($id);
         $this->authorize('delete', $postAudio);
-        $post->delete();
+        $postAudio->delete();
 
         return response()->json(null, 204);
     }

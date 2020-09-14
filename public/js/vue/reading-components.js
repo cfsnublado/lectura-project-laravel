@@ -552,7 +552,7 @@ const PostAudios = {
         })
       }, this.processDelay)
     },
-    onDeletePostAudio(index) {
+    deletePostAudio(index) {
       this.$delete(this.postAudios, index)
     }
   },
