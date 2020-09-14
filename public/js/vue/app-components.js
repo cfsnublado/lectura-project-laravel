@@ -396,7 +396,8 @@ const AudioPlayer = {
     this.audio.addEventListener('timeupdate', this.update)
     this.audio.addEventListener('loadeddata', this.load)
     this.seekBar = this.$el.querySelector("#" + this.audioPlayerId + "-seekbar")
-
+    console.log(this.audioPlayerId);
+    console.log(this.seekBar);
     window.addEventListener('mouseup', this.onProgressMouseup)
     window.addEventListener('mousemove', this.onProgressMousemove)
   },

@@ -88,8 +88,8 @@ v-else
 <div class="audio-progress">
 
 <div 
+:id="audioPlayerId + '-seekbar'"
 class="seek-bar"
-ref="audioPlayerSeekBar"
 @mousedown="onProgressMousedown"
 >
 
