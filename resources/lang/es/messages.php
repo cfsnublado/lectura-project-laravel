@@ -53,6 +53,7 @@ return [
     'msg_lectura_at_a_glance' => 'Un vistazo a Lectura',
     'msg_no_dbx_user_files' => 'No hay archivos para el usuario ',
     'msg_no_posts_in_project' => 'No hay entradas en este proyecto.',
+    'msg_no_post_audios' => 'No hay audios.',
     'msg_no_projects' => 'No hay proyectos.',
     'msg_project_banner_desc' => 'Comparte lecturas y practica tu pronunciación.',
     'msg_success_post_audio_create' => 'El audio ha sido creado.',

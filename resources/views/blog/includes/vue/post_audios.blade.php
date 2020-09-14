@@ -14,7 +14,10 @@ v-cloak
 <p>{{ __('messages.msg_no_post_audios') }}</p>
 
 @can('createPostAudio', $project)
-<a class="button is-info" href="">
+<a 
+class="button is-info" 
+href="{{ route('blog.post_audio.create', ['post_id' => $post->id]) }}"
+>
 {{ __('messages.label_create_post_audio') }}
 </a>
 @endcan

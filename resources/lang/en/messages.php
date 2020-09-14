@@ -1,6 +1,5 @@
 <?php
 
-
 return [
     'label_audio_url' => 'Audio url',
     'label_content' => 'Content',
@@ -52,6 +51,7 @@ return [
     'msg_forgot_password_q' => 'Forgot your password?',
     'msg_lectura_at_a_glance' => 'Lectura at a glance',
     'msg_no_dbx_user_files' => 'There are no files for user ',
+    'msg_no_post_audios' => 'There are no audios.',
     'msg_no_posts_in_project' => 'There are no posts in this project.',
     'msg_no_projects' => 'There are no projects.',
     'msg_project_banner_desc' => 'Share readings and practice your pronunciation.',
