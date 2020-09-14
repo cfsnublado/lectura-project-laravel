@@ -19,7 +19,7 @@ class ProjectPolicy
      */
     public function before(User $user, $ability)
     {
-        $bypassed = ['createPost'];
+        $bypassed = ['createPost', 'createPostAudio'];
 
         if (!in_array($ability, $bypassed)) {
             if ($user->is_superuser) {

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\StorePostAudio;
+use App\Http\Requests\Blog\UpdatePostAudio;
 use App\Models\Blog\Post;
 use App\Models\Blog\PostAudio;
 
@@ -28,7 +29,6 @@ class PostAudioController extends Controller
             ['project' => $project, 'post' => $post]
         );
     }
-
 
     /**
      * Store a newly created post audio.
@@ -53,5 +53,55 @@ class PostAudioController extends Controller
         self::success(trans('messages.msg.success_post_audio_create'));
 
         return redirect(route('blog.post.show', ['slug' => $post->slug]));
+    }
+
+    /**
+     * Edit post audio.
+     *
+     * @param  integer  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $postAudio = PostAudio::findOrFail($id);
+        $post = $postAudio->post;
+        $project = $postAudio->post->project;
+        $this->authorize('update', $postAudio);
+
+        return view(
+            'blog.post_audio_edit',
+            [
+                'project' => $project, 
+                'post' => $post,
+                'postAudio' => $postAudio
+            ]
+        );
+    }
+
+    /**
+     * Update the specified post audio in storage.
+     *
+     * @param UpdatePostAudio $request
+     * @param int $id
+     * @return Response
+     */
+    public function update(UpdatePostAudio $request, $id)
+    {
+        $postAudio = PostAudio::findOrFail($id);
+        $post = $postAudio->post;
+        $this->authorize('update', $postAudio);
+        $validated = $request->validated();
+        $postAudio->name =  $validated['name'];
+        $postAudio->description = $validated['description'];
+        $postAudio->audio_url = $validated['audio_url'];
+        $postAudio->save();
+        self::success(trans('messages.msg_success_post_audio_update'));
+
+        return redirect(
+            route(
+                'blog.post.post_audios.list',
+                ['post_id' => $post->id]
+            )
+        );
     }
 }

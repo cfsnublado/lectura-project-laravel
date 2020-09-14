@@ -118,6 +118,20 @@ Route::middleware(['locale'])->prefix($locale)->group(function () {
                     'uses' => 'Blog\PostAudioController@store'
                 ]
             );
+            Route::get(
+                'post-audio/{id}/edit',
+                [
+                    'as' => 'blog.post_audio.edit',
+                    'uses' => 'Blog\PostAudioController@edit'
+                ]
+            )->middleware('auth');
+            Route::post(
+                'post-audio/{id}/update',
+                [
+                    'as' => 'blog.post_audio.update',
+                    'uses' => 'Blog\PostAudioController@update'
+                ]
+            );
         });
 
         Route::get(

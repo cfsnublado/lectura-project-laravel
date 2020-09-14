@@ -14,8 +14,6 @@ class PostAudioPolicy
     use ProjectMemberPolicyTrait;
 
     /**
-     * Determine if user is the post creator.
-     *
      * @param  \App\Models\User\User  $user
      * @param  \App\Models\Blog\PostAudio  $postAudio
      * @return boolean
@@ -25,6 +23,9 @@ class PostAudioPolicy
         return $user->id === $postAudio->creator_id;
     }
 
+    /**
+     *
+     */
     public function before(User $user, $ability)
     {
         if ($user->is_superuser) {
@@ -42,7 +43,9 @@ class PostAudioPolicy
     public function update(User $user, PostAudio $postAudio)
     {
         $role = ProjectMember::ROLE_EDITOR;
+
         return $this->isCreator($user, $postAudio)
+            || $this->isProjectOwner($user, $postAudio->post->project)
             || $this->isRoleOrAbove($user, $postAudio->post->project_id, $role);
     }
 
@@ -56,7 +59,9 @@ class PostAudioPolicy
     public function delete(User $user, PostAudio $postAudio)
     {
         $role = ProjectMember::ROLE_EDITOR;
+        
         return $this->isCreator($user, $postAudio)
+            || $this->isProjectOwner($user, $postAudio->post->project)
             || $this->isRoleOrAbove($user, $postAudio->post->project_id, $role);
     }
 }
