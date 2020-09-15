@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
@@ -106,14 +107,27 @@ class PostImportExportController extends Controller
             'project_name' => $post->project->name,
             'name' => $post->name,
             'description' => $post->description,
-            'content' => $post->content,
+            //'content' => $post->content,
             'post_audios' => $postAudioData
         ], JSON_PRETTY_PRINT);
 
         $filename = $post->slug . '.json';
 
-        return response()->streamDownload(function () use ($data) {
-            echo $data;
-        }, $filename);
+        // Last-check schema validation before sending the data out.
+        $decodedData = json_decode($data);
+        $validator = new PostJsonValidator();
+        $schemaResult = $validator->schemaValidation($decodedData);
+
+        if ($schemaResult->isValid()) {
+            return response()->streamDownload(function () use ($data) {
+                echo $data;
+            }, $filename);
+        } else {
+            $error = $schemaResult->getFirstError();
+            $errorMsg = $error->keyword() . ' ' . json_encode($error->keywordArgs());
+            Log::error("Invalid schema in post download. " . $errorMsg);
+
+            return redirect()->back();
+        }
     }
 }
