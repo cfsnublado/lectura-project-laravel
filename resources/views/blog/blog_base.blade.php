@@ -100,6 +100,16 @@ href="{{ route('blog.post.edit', ['slug' => $post->slug]) }}"
 {{ __('messages.label_edit_post') }}
 </a>
 </li>
+
+<li>
+<a 
+id="sidebar-nav-post-download" 
+href="{{ route('blog.post.download', ['id' => $post->id]) }}"
+>
+<i class="menu-icon fas fa-edit fa-fw"></i> 
+{{ __('messages.label_download_post') }}
+</a>
+</li>
 @endcan
 
 @can('createPostAudio', $project)

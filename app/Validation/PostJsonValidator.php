@@ -5,7 +5,7 @@ namespace App\Validation;
 use Opis\JsonSchema\Validator as SchemaValidator;
 use Opis\JsonSchema\Schema;
 
-class ImportPostJsonValidator
+class PostJsonValidator
 {
     /**
      *
@@ -14,6 +14,7 @@ class ImportPostJsonValidator
     {
         $validator = new SchemaValidator();
         $schema = Schema::fromJsonString($this->schema());
+
         return $validator->schemaValidation($json, $schema);
     }
 

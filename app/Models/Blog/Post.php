@@ -47,7 +47,7 @@ class Post extends Model
         return $this->belongsTo('App\Models\Blog\Project', 'project_id');
     }
 
-    public function postAudios()
+    public function post_audios()
     {
         return $this->hasMany('App\Models\Blog\PostAudio', 'post_id');
     }

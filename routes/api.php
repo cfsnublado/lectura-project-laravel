@@ -27,7 +27,7 @@ Route::prefix('blog')->group(function() {
         'posts/import',
         [
             'as' => 'api.blog.post.import',
-            'uses' => 'Blog\PostApiController@import',
+            'uses' => 'Blog\PostImportExportController@import',
         ]
     );
     Route::apiResource('posts', 'Blog\PostApiController')->names([

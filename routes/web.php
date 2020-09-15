@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 Route::get(
     'locale/{locale}',
     [
@@ -153,6 +154,13 @@ Route::middleware(['locale'])->prefix($locale)->group(function () {
             [
                 'as' => 'blog.post.show',
                 'uses' => 'Blog\PostController@show'
+            ]
+        );
+        Route::get(
+            'post/{id}/download',
+            [
+                'as' => 'blog.post.download',
+                'uses' => 'Blog\PostImportExportController@downloadJson'
             ]
         );
         Route::get(
