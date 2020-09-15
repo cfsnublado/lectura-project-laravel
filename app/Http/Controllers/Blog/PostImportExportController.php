@@ -107,7 +107,7 @@ class PostImportExportController extends Controller
             'project_name' => $post->project->name,
             'name' => $post->name,
             'description' => $post->description,
-            //'content' => $post->content,
+            'content' => $post->content,
             'post_audios' => $postAudioData
         ], JSON_PRETTY_PRINT);
 
