@@ -106,21 +106,8 @@ href="{{ route('blog.post.edit', ['slug' => $post->slug]) }}"
 id="sidebar-nav-post-download" 
 href="{{ route('blog.post.download', ['id' => $post->id]) }}"
 >
-<i class="menu-icon fas fa-edit fa-fw"></i> 
-{{ __('messages.label_download_post') }}
-</a>
-</li>
-@endcan
-
-@can('createPostAudio', $project)
-<li>
-<a 
-id="sidebar-nav-post-audio-create" 
-class="@yield('post_audio_create_link_active')" 
-href="{{ route('blog.post_audio.create', ['post_id' => $post->id]) }}"
->
-<i class="menu-icon fas fa-microphone fa-fw"></i>
-{{ __('messages.label_new_post_audio') }}
+<i class="menu-icon fas fa-download fa-fw"></i> 
+{{ __('messages.label_export_post') }}
 </a>
 </li>
 @endcan
@@ -135,6 +122,19 @@ href="{{ route('blog.post.post_audios.list', ['post_id' => $post->id]) }}"
 {{ __('messages.label_post_audios') }}
 </a>
 </li>
+
+@can('createPostAudio', $project)
+<li>
+<a 
+id="sidebar-nav-post-audio-create" 
+class="@yield('post_audio_create_link_active')" 
+href="{{ route('blog.post_audio.create', ['post_id' => $post->id]) }}"
+>
+<i class="menu-icon fas fa-microphone fa-fw"></i>
+{{ __('messages.label_new_post_audio') }}
+</a>
+</li>
+@endcan
 
 </ul>
 </div>

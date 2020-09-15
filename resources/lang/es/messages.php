@@ -15,6 +15,7 @@ return [
     'label_edit_post_audio' => 'Editar audio',
     'label_edit_profile' => 'Editar perfil',
     'label_edit_project' => 'Editar proyecto',
+    'label_export_post' => 'Exportar entrada',
     'label_general' => 'General',
     'label_get_dbx_user_files' => 'Archivos de usuario',
     'label_hello_exc' => '¡Hola!',
