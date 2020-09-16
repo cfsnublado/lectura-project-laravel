@@ -25,7 +25,7 @@ class StoreProject extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:projects,name',
+            'name' => 'required|iunique:projects,name',
             'description' => ''
         ];
     }

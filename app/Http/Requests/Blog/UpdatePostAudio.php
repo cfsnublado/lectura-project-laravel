@@ -25,7 +25,7 @@ class UpdatePostAudio extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:post_audios,name,' . $this->id,
+            'name' => 'required|iunique:post_audios,name,' . $this->id,
             'description' => '',
             'audio_url' => 'required|url',
         ];
