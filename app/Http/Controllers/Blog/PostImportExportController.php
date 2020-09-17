@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use App\Validation\PostJsonValidator;
+use App\Validation\PostValidation;
 use App\Models\Blog\Project;
 use App\Models\Blog\Post;
 use App\Models\Blog\PostAudio;
@@ -47,11 +48,7 @@ class PostImportExportController extends Controller
 
             $validator = Validator::make(
                 json_decode($request->getContent(), true),
-                [
-                    'name' => 'required|unique:posts,name',
-                    'description' => '',
-                    'content' => 'required',
-                ]
+                PostValidation::rulesStore($project->id)
             );
 
            if ($validator->fails()) {

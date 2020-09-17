@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Blog\StorePost;
-use App\Http\Requests\Blog\UpdatePost;
 use App\Components\FlashMessages;
+use App\Validation\PostValidation;
 use App\Models\Blog\Project;
 use App\Models\Blog\Post;
 use App\Models\Blog\PostAudio;
@@ -56,15 +55,18 @@ class PostController extends Controller
     /**
      * Store a newly created post.
      *
-     * @param  StorePost  $request
+     * @param  Request  $request
      * @param  int  $project_id
      * @return Response
      */
-    public function store(StorePost $request, $project_id)
+    public function store(Request $request, $project_id)
     {
         $project = Project::findOrFail($project_id);
         $this->authorize('createPost', $project);
-        $validated = $request->validated();
+        $validated = $this->validate(
+            $request,
+            PostValidation::rulesStore($project_id)
+        );
         $post = Post::create([
             'creator_id' => Auth::user()->id,
             'project_id' => $project->id,
@@ -101,15 +103,18 @@ class PostController extends Controller
     /**
      * Update the specified post in storage.
      *
-     * @param UpdatePost $request
+     * @param Request $request
      * @param int $id
      * @return Response
      */
-    public function update(UpdatePost $request, $id)
+    public function update(Request $request, $id)
     {
         $post = Post::findOrFail($id);
         $this->authorize('update', $post);
-        $validated = $request->validated();
+        $validated = $this->validate(
+            $request,
+            PostValidation::rulesUpdate($id, $post->project_id)
+        );
         $post->name =  $validated['name'];
         $post->description = $validated['description'];
         $post->content = $validated['content'];

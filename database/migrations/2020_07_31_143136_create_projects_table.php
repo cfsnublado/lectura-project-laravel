@@ -20,7 +20,7 @@ class CreateProjectsTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
             $table->string('name')->unique();
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->text('description')->nullable();
             $table->timestamps();
         });

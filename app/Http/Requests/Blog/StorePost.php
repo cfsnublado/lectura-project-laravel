@@ -14,6 +14,7 @@ class StorePost extends FormRequest
      */
     public function authorize()
     {
+
         return true;
     }
 
@@ -25,7 +26,7 @@ class StorePost extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|iunique:posts,name',
+            'name' => 'required|unique:posts,name',
             'description' => '',
             'content' => 'required',
         ];
