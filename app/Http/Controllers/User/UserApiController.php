@@ -28,9 +28,10 @@ class UserApiController extends Controller
         ]);
         $user = User::where('username', $request->username)->first();
         if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'username' => ['The provided credentials are incorrect.'],
-            ]);
+            return response()->json(
+                ['error' => 'The provided credentials are incorrect.'],
+                402
+            );
         }
 
         $token = $user->createToken('api_token')->plainTextToken;
