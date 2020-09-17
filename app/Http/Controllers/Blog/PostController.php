@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Components\FlashMessages;
-use App\Validation\PostValidation;
+use App\Validation\Blog\PostValidation;
 use App\Models\Blog\Project;
 use App\Models\Blog\Post;
 use App\Models\Blog\PostAudio;

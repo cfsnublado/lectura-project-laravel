@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Blog\StorePostAudio;
-use App\Http\Requests\Blog\UpdatePostAudio;
+use App\Validation\Blog\PostAudioValidation;
 use App\Models\Blog\Post;
 use App\Models\Blog\PostAudio;
 
@@ -33,16 +32,20 @@ class PostAudioController extends Controller
     /**
      * Store a newly created post audio.
      *
-     * @param  StorePostAudio  $request
+     * @param  Request  $request
      * @param  int  $post_id
      * @return Response
      */
-    public function store(StorePostAudio $request, $post_id)
+    public function store(Request $request, $post_id)
     {
         $post = Post::findOrFail($post_id);
         $project = $post->project;
         $this->authorize('createPostAudio', $project);
         $validated = $request->validated();
+        $validated = $this->validate(
+            $request,
+            PostAudioValidation::rulesStore()
+        );
         $postAudio = PostAudio::create([
             'creator_id' => Auth::user()->id,
             'post_id' => $post->id,
@@ -81,16 +84,19 @@ class PostAudioController extends Controller
     /**
      * Update the specified post audio in storage.
      *
-     * @param UpdatePostAudio $request
+     * @param Request $request
      * @param int $id
      * @return Response
      */
-    public function update(UpdatePostAudio $request, $id)
+    public function update(Request $request, $id)
     {
         $postAudio = PostAudio::findOrFail($id);
         $post = $postAudio->post;
         $this->authorize('update', $postAudio);
-        $validated = $request->validated();
+        $validated = $this->validate(
+            $request,
+            PostAudioValidation::rulesUpdate($postAudio->id)
+        );
         $postAudio->name =  $validated['name'];
         $postAudio->description = $validated['description'];
         $postAudio->audio_url = $validated['audio_url'];

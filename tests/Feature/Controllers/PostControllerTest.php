@@ -58,7 +58,7 @@ class PostControllerTest extends TestCase
         $this->assertFalse(Post::where('name', $data['name'])->exists());
         $this->actingAs($this->projectOwner);
         $response = $this->post(
-            route('blog.post.store', ['projectId' => $this->project->id]),
+            route('blog.post.store', ['project_id' => $this->project->id]),
             $data
         );
         $response->assertStatus(302);
@@ -77,7 +77,7 @@ class PostControllerTest extends TestCase
     {
         // Unathenticated
         $response = $this->get(
-            route('blog.post.create', ['projectSlug' => $this->project->slug])
+            route('blog.post.create', ['project_slug' => $this->project->slug])
         );
         $response->assertStatus(302);
         $response->assertRedirect(route('security.login'));
@@ -85,21 +85,21 @@ class PostControllerTest extends TestCase
         // Superuser
         $this->actingAs($this->superuser);
         $response = $this->get(
-            route('blog.post.create', ['projectSlug' => $this->project->slug])
+            route('blog.post.create', ['project_slug' => $this->project->slug])
         );
         $response->assertStatus(403);
 
         // Project owner
         $this->actingAs($this->projectOwner);
         $response = $this->get(
-            route('blog.post.create', ['projectSlug' => $this->project->slug])
+            route('blog.post.create', ['project_slug' => $this->project->slug])
         );
         $response->assertStatus(200);
 
         // Author
         $this->actingAs($this->author);
         $response = $this->get(
-            route('blog.post.create', ['projectSlug' => $this->project->slug])
+            route('blog.post.create', ['project_slug' => $this->project->slug])
         );
         $response->assertStatus(200);
     }
@@ -119,7 +119,7 @@ class PostControllerTest extends TestCase
 
         // Unauthenticated
         $response = $this->post(
-            route('blog.post.store', ['projectId' => $this->project->id]),
+            route('blog.post.store', ['project_id' => $this->project->id]),
             $data
         );
         $response->assertStatus(403);
@@ -127,7 +127,7 @@ class PostControllerTest extends TestCase
         // Superuser
         $this->actingAs($this->superuser);
         $response = $this->post(
-            route('blog.post.store', ['projectId' => $this->project->id]),
+            route('blog.post.store', ['project_id' => $this->project->id]),
             $data
         );
         $response->assertStatus(403);
@@ -135,7 +135,7 @@ class PostControllerTest extends TestCase
         // Project owner
         $this->actingAs($this->projectOwner);
         $response = $this->post(
-            route('blog.post.store', ['projectId' => $this->project->id]),
+            route('blog.post.store', ['project_id' => $this->project->id]),
             $data
         );
         $post = Post::where('name', $data['name'])->firstOrFail();
@@ -148,7 +148,7 @@ class PostControllerTest extends TestCase
         // Author
         $this->actingAs($this->author);
         $response = $this->post(
-            route('blog.post.store', ['projectId' => $this->project->id]),
+            route('blog.post.store', ['project_id' => $this->project->id]),
             $data
         );
         $post = Post::where('name', $data['name'])->firstOrFail();

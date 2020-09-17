@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Validation;
+namespace App\Validation\Blog;
 
 use Opis\JsonSchema\Validator as SchemaValidator;
 use Opis\JsonSchema\Schema;

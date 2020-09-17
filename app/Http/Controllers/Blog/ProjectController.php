@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Blog\StoreProject;
-use App\Http\Requests\Blog\UpdateProject;
+use App\Validation\Blog\ProjectValidation;
 use App\Components\FlashMessages;
 use App\Models\Blog\Project;
 
@@ -88,13 +87,16 @@ class ProjectController extends Controller
     /**
      * Store a newly created project.
      *
-     * @param  StoreProject  $request
+     * @param  Request  $request
      * @return Response
      */
-    public function store(StoreProject $request)
+    public function store(Request $request)
     {
         $this->authorize('create', Project::class);
-        $validated = $request->validated();
+        $validated = $this->validate(
+            $request,
+            ProjectValidation::rulesStore()
+        );
         $project = Project::create([
             'owner_id' => Auth::user()->id,
             'name' => $validated['name'],
@@ -122,15 +124,18 @@ class ProjectController extends Controller
     /**
      * Update the specified project in storage.
      *
-     * @param UpdateProject $request
+     * @param Request $request
      * @param int $id
      * @return Response
      */
-    public function update(UpdateProject $request, $id)
+    public function update(Request $request, $id)
     {
         $project = Project::findOrFail($id);
         $this->authorize('update', $project);
-        $validated = $request->validated();
+        $validated = $this->validate(
+            $request,
+            ProjectValidation::rulesUpdate($project->id)
+        );
         $project->name =  $validated['name'];
         $project->description = $validated['description'];
         $project->save();
