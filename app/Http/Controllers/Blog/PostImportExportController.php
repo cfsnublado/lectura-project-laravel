@@ -7,7 +7,6 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use App\Validation\Blog\PostJsonValidator;
 use App\Validation\Blog\PostValidation;
