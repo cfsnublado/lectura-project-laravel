@@ -11054,7 +11054,7 @@ a {
 @media screen and (max-width: 768px) {
   /* line 12, ../scss/cfs/_breadcrumb.scss */
   .breadcrumb {
-    font-size: 0.875rem;
+    display: none;
   }
 }
 /* line 9, ../../prototype/scss/cfs/_navbar.scss */

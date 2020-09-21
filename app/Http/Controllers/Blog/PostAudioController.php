@@ -41,7 +41,6 @@ class PostAudioController extends Controller
         $post = Post::findOrFail($post_id);
         $project = $post->project;
         $this->authorize('createPostAudio', $project);
-        $validated = $request->validated();
         $validated = $this->validate(
             $request,
             PostAudioValidation::rulesStore()
