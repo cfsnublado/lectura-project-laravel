@@ -95,7 +95,6 @@ const AlertMessage = {
 
     </transition>
   `
-
 }
 
 const Dropdown = {
@@ -488,9 +487,11 @@ const PlaylistAudioPlayer = {
         .then(response => {
           this.audios = response.data.data
           this.playlistLoaded = true
+
           if (this.audios.length > 0) {
             this.selectAudio(0)
           }
+
           this.success()
         })
         .catch(error => {
@@ -512,7 +513,7 @@ const PlaylistAudioPlayer = {
       if (!this.autoLoadPlaylist && !this.playlistLoaded) {
         this.loadPlaylist()
       }
-      if (!this.srcLoading) {
+      else if (!this.srcLoading) {
         this.audio.play()
       }
     },
