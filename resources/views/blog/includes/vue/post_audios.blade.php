@@ -145,14 +145,14 @@ style="display: none;"
 
 <div 
 class="audio-player"
-v-bind:class="[{ 'is-loading': loading }]"
+v-bind:class="[{ 'is-loading': srcLoading }]"
 >
 
 <div class="audio-player-controls">
 
 <div class="player-control">
 
-<a href="#" v-if="loading">
+<a href="#" v-if="srcLoading">
 <i class="fas fa-spinner fa-pulse"></i>
 </a>
 

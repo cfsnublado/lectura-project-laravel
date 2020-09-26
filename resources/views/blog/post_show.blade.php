@@ -25,6 +25,7 @@
 <playlist-audio-player
 audio-player-id="post-audio"
 audios-url="{{ $postAudiosUrl }}"
+:auto-load-playlist="false"
 :auto-play="true"
 :has-loop-btn="false"
 :has-download-btn="false"
@@ -49,11 +50,11 @@ style="display: none;"
 
 <div 
 class="audio-player"
-v-bind:class="[{ 'is-loading': loading }]"
+v-bind:class="[{ 'is-loading': srcLoading }]"
 >
 
 <div class="audio-title">
-<span v-if="playlistLoaded && !loading">[[ selectedAudio.creator_username ]] - [[ selectedAudio.name ]]</span>
+<span v-if="playlistLoaded && !srcLoading">[[ selectedAudio.creator_username ]] - [[ selectedAudio.name ]]</span>
 <span v-else>&nbsp;</span>
 </div>
 
@@ -67,7 +68,7 @@ v-bind:class="[{ 'is-loading': loading }]"
 
 <div class="player-control">
 
-<a href="#" v-if="loading">
+<a href="#" v-if="srcLoading">
 <i class="fas fa-spinner fa-pulse"></i>
 </a>
 
@@ -138,8 +139,8 @@ v-for="(audio, index) in audios"
 <a 
 class="audio-playlist-item"
 @click.prevent="selectAudio(index)"
-v-bind:class="[{ 'selected-audio': (index == selectedAudioIndex) }]"
-v-if="(index != selectedAudioIndex)"
+v-bind:class="[{ 'selected-audio': (index == audioIndex) }]"
+v-if="(index != audioIndex)"
 >
 <span class="audio-creator">[[ audio.creator_username ]]</span> - 
 <span class="audio-name">[[ audio.name ]]</span></a>

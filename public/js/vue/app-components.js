@@ -271,7 +271,7 @@ const AudioPlayer = {
       playing: false,
       resumePlaying: false, // after mouseup
       dragging: false,
-      loading: false,
+      srcLoading: false,
       currentSeconds: 0,
       durationSeconds: 0,
       loop: false,
@@ -324,7 +324,7 @@ const AudioPlayer = {
     load() {
       if (this.audio.readyState >= 2) {
         console.log("audio loaded")
-        this.loading = false
+        this.srcLoading = false
         this.durationSeconds = parseInt(this.audio.duration)
 
         if (this.autoPlay) {
@@ -363,7 +363,7 @@ const AudioPlayer = {
       console.error("Error loading audio.")
     },
     onProgressMousedown(e) {
-      if (!this.loading) {
+      if (!this.srcLoading) {
         this.dragging = true
         this.resumePlaying = this.playing
       }
@@ -391,13 +391,12 @@ const AudioPlayer = {
     this.audio = this.$el.querySelector('#' + this.audioPlayerId)
     this.audio.addEventListener('error', this.error)
     this.audio.addEventListener('play', () => { this.playing = true })
-    this.audio.addEventListener('pause', () => { this.playing = false });
+    this.audio.addEventListener('pause', () => { this.playing = false })
     this.audio.addEventListener('ended', this.stop)
     this.audio.addEventListener('timeupdate', this.update)
     this.audio.addEventListener('loadeddata', this.load)
     this.seekBar = this.$el.querySelector("#" + this.audioPlayerId + "-seekbar")
-    console.log(this.audioPlayerId);
-    console.log(this.seekBar);
+
     window.addEventListener('mouseup', this.onProgressMouseup)
     window.addEventListener('mousemove', this.onProgressMousemove)
   },
@@ -426,14 +425,14 @@ const SingleAudioPlayer = {
       if (this.srcLoaded) {
         this.audio.play()
       } else if (this.audioUrl) {
-        this.loading = true
+        this.srcLoading = true
         this.audio.src = this.audioUrl
       }
     },
     load() {
       if (this.audio.readyState >= 2) {
         console.log("audio loaded")
-        this.loading = false
+        this.srcLoading = false
         this.srcLoaded = true
         this.durationSeconds = parseInt(this.audio.duration)
 
@@ -465,13 +464,17 @@ const PlaylistAudioPlayer = {
     playlistOpenClass: {
       type: String,
       default: 'playlist-open'
-    }
+    },
+    autoLoadPlaylist: {
+      type: Boolean,
+      default: false
+    },
   },
   data() {
     return {
       audios: null,
       selectedAudio: null,
-      selectedAudioIndex: null,
+      audioIndex: null,
       showPlaylist: false,
       playlistLoaded: false,
     }
@@ -506,19 +509,21 @@ const PlaylistAudioPlayer = {
       }
     },
     playAudio() {
-      if (this.playlistLoaded) {
-        this.audio.play()
-      } else {
-        this.loading = true
+      if (!this.autoLoadPlaylist && !this.playlistLoaded) {
         this.loadPlaylist()
+      }
+      if (!this.srcLoading) {
+        this.audio.play()
       }
     },
     selectAudio(index) {
-      this.loading = true
-      this.selectedAudio = this.audios[index]
-      this.selectedAudioIndex = index
-      this.audio.src = this.selectedAudio.audio_url
-      this.togglePlaylist(false)
+      if (index >= 0 && index < this.audios.length) {
+        this.audioIndex = index
+        this.selectedAudio = this.audios[this.audioIndex]
+        this.srcLoading = true
+        this.audio.src = this.selectedAudio.audio_url
+        this.togglePlaylist(false)
+      }
     },
     togglePlaylist(boolVal) {
       if (this.playlistLoaded) {
@@ -540,5 +545,10 @@ const PlaylistAudioPlayer = {
   },
   created() {
     this.loop = this.initLoop
+
+    if (this.autoLoadPlaylist) {
+      console.log("SHITTTT")
+        //this.loadPlaylist()
+    }
   },
 }
