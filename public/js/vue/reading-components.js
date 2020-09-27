@@ -447,6 +447,10 @@ const PostAudio = {
       type: String,
       default: ''
     },
+    initPostViewUrl: {
+      type: String,
+      default: ''
+    },
     initEditUrl: {
       type: String,
       default: ''
@@ -462,6 +466,7 @@ const PostAudio = {
       viewUrl: this.initViewUrl,
       editUrl: this.initEditUrl,
       deleteUrl: this.initDeleteUrl,
+      postViewUrl: this.initPostViewUrl,
       idPlaceholder: 0
     }
   },
@@ -473,7 +478,12 @@ const PostAudio = {
     },
     remove() {
       this.$emit('delete-post-audio', this.postAudio.id)
-    }
+    },
+    viewPost() {
+      if (this.viewPostUrl) {
+        window.location.assign(this.viewPostUrl)
+      }
+    },
   },
   created() {
     if (this.initDeleteUrl) {

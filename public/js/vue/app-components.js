@@ -476,37 +476,44 @@ const PlaylistAudioPlayer = {
       audioIndex: null,
       showPlaylist: false,
       playlistLoaded: false,
+      playlistLoading: false,
+      playlistTimerId: null,
+      playlistTimerDelay: 1000
     }
   },  
   methods: {
     loadPlaylist() {
       if (this.audiosUrl) {
         this.process()
+        this.playlistLoading = true
+        clearTimeout(this.timerId)
+        this.timerId = setTimeout(()=>{
+          axios.get(this.audiosUrl)
+          .then(response => {
+            this.audios = response.data.data
+            this.playlistLoaded = true
+            this.playlistLoading = false
 
-        axios.get(this.audiosUrl)
-        .then(response => {
-          this.audios = response.data.data
-          this.playlistLoaded = true
+            if (this.audios.length > 0) {
+              this.selectAudio(0)
+            }
 
-          if (this.audios.length > 0) {
-            this.selectAudio(0)
-          }
-
-          this.success()
-        })
-        .catch(error => {
-          if (error.response) {
-            console.error(error.response)
-          } else if (error.request) {
-            console.error(error.request)
-          } else {
-            console.error(error.message)
-          }
-          console.error(error.config)
-        })
-        .finally(() => {
-          this.complete()
-        })
+            this.success()
+          })
+          .catch(error => {
+            if (error.response) {
+              console.error(error.response)
+            } else if (error.request) {
+              console.error(error.request)
+            } else {
+              console.error(error.message)
+            }
+            console.error(error.config)
+          })
+          .finally(() => {
+            this.complete()
+          })
+        }, this.playlistTimerDelay)
       }
     },
     playAudio() {
