@@ -6,13 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Validation\Blog\ProjectValidation;
-use App\Components\FlashMessages;
 use App\Models\Blog\Project;
 
 class ProjectController extends Controller
 {
-    use FlashMessages;
-
     /**
      * Display a listing of projects.
      *

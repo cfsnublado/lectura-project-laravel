@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Components\FlashMessages;
 use App\Validation\Blog\PostValidation;
 use App\Models\Blog\Project;
 use App\Models\Blog\Post;
@@ -13,8 +12,6 @@ use App\Models\Blog\PostAudio;
 
 class PostController extends Controller
 {
-    use FlashMessages;
-
     /**
      * Show a post by its slug.
      *

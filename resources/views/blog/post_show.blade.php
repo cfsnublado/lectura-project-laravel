@@ -60,7 +60,7 @@ v-bind:class="[{ 'is-loading': srcLoading }]"
 
 <div class="audio-player-controls">
 
-<div class="player-control playlist-toggle" style="width: 30px;"> 
+<div class="player-control playlist-toggle"> 
 <a href="#" @click.prevent="togglePlaylist">
 <transition name="fade-transition">
 <i class="fas fa-chevron-up" v-if="playlistLoaded"></i>
