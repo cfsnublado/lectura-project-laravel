@@ -16,12 +16,19 @@
 @endsection
 
 @section('content')
-@include('blog.includes.forms.project_edit_form')
+@include(
+'blog.includes.forms.project_form',
+[
+    'formId' => 'project-edit-form',
+    'formActionUrl' => route('blog.project.update', ['id' => $project->id]),
+    'submitLabel' => __('messages.label_update')
+]
+)
 @endsection
 
 @section('modal')
 @include(
-'blog/includes/project_delete_modal',
+'blog.includes.project_delete_modal',
 ['modalId' => 'delete-project', 'modalName' => 'confirmation-modal']
 )
 @endsection

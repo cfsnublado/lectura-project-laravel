@@ -18,5 +18,12 @@
 @endsection
 
 @section('content')
-@include('blog.includes.forms.post_audio_edit_form')
+@include(
+'blog.includes.forms.post_audio_form',
+[
+    'formId' => 'post-audio-edit-form',
+    'formActionUrl' => route('blog.post_audio.update', ['id' => $postAudio->id]),
+    'submitLabel' => __('messages.label_update')
+]
+)
 @endsection

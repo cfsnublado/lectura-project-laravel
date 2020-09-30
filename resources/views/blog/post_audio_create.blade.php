@@ -16,5 +16,12 @@
 @endsection
 
 @section('content')
-@include('blog.includes.forms.post_audio_create_form')
+@include(
+'blog.includes.forms.post_audio_form',
+[
+    'formId' => 'post-audio-create-form',
+    'formActionUrl' => route('blog.post_audio.store', ['post_id' => $post->id]),
+    'submitLabel' => __('messages.label_create')
+]
+)
 @endsection

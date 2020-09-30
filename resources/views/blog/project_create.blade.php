@@ -21,5 +21,12 @@
 @section('project_create_link_active', 'is-active')
 
 @section('content')
-@include('blog.includes.forms.project_create_form')
+@include(
+'blog.includes.forms.project_form',
+[
+    'formId' => 'project-create-form',
+    'formActionUrl' => route('blog.project.store'),
+    'submitLabel' => __('messages.label_create')
+]
+)
 @endsection

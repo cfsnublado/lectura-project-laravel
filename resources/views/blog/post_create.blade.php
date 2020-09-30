@@ -16,5 +16,12 @@
 @endsection
 
 @section('content')
-@include('blog.includes.forms.post_create_form')
+@include(
+'blog.includes.forms.post_form',
+[
+    'formId' => 'post-create-form',
+    'formActionUrl' => route('blog.post.store', ['project_id' => $project->id]),
+    'submitLabel' => __('messages.label_create')
+]
+)
 @endsection

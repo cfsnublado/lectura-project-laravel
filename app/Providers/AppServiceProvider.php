@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-use App\Components\FlashMessages;
+use App\Traits\FlashMessages;
 
 class AppServiceProvider extends ServiceProvider
 {
