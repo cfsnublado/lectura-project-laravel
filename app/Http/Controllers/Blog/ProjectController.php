@@ -96,6 +96,7 @@ class ProjectController extends Controller
         );
         $project = Project::create([
             'owner_id' => Auth::user()->id,
+            'language' => $validated['language'],
             'name' => $validated['name'],
             'description' => $validated['description'],
         ]);
@@ -133,6 +134,7 @@ class ProjectController extends Controller
             $request,
             ProjectValidation::rulesUpdate($project->id)
         );
+        $project->language = $validated['language'];
         $project->name =  $validated['name'];
         $project->description = $validated['description'];
         $project->save();

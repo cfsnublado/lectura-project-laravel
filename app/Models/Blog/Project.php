@@ -17,7 +17,7 @@ class Project extends Model implements LanguageExclusive
     protected $primaryKey = 'id';
     protected $with = ['owner.profile'];
     protected $fillable = [
-        'owner_id', 'name', 'description',
+        'owner_id', 'language', 'name', 'description',
     ];
 
     /**

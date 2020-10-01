@@ -19,12 +19,7 @@ id="name"
 class="input"
 type="text" 
 name="name" 
-value="
-@if(isset($post))
-{{ old('name', $post->name) }}
-@else {{ old('name') }}
-@endif
-"
+value="{{ old('name', (isset($post)) ? $post->name : '') }}"
 required="required"
 >
 </div>
@@ -53,11 +48,7 @@ name="description"
 cols="40" 
 rows="2"
 >
-@if(isset($post))
-{{ old('description', $post->description) }}
-@else
-{{ old('description') }}
-@endif
+{{ old('description', (isset($post)) ? $post->description : '') }}
 </textarea>
 </div>
 
@@ -85,11 +76,7 @@ name="content"
 cols="40" 
 rows="8"
 >
-@if(isset($post))
-{{ old('content', $post->content) }}
-@else
-{{ old('content') }}
-@endif 
+{{ old('content', (isset($post)) ? $post->content : '') }}
 </textarea>
 </div>
 

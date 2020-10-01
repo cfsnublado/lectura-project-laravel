@@ -9,6 +9,34 @@ novalidate
 
 <div class="field">
 
+<label class="label" for="language">
+{{ __('messages.label_language') }}
+</label>
+
+<div class="control">
+<div class="select">
+<select id="language" name="language">
+@if(isset($project))
+@foreach (App\Models\Blog\Project::LANGUAGES as $key => $value)
+<option value="{{ $key }}" {{ ($key == $project->language) ? 'selected' : '' }}>
+{{ $value }}
+</option>
+@endforeach
+@else
+@foreach (App\Models\Blog\Project::LANGUAGES as $key => $value)
+<option value="{{ $key }}" {{ ($key == old('language')) ? 'selected' : '' }}>
+{{ $value }}
+</option>
+@endforeach
+@endif
+</select>
+</div>
+</div>
+
+</div>
+
+<div class="field">
+
 <label class="label" for="name">
 {{ __('messages.label_name') }}
 </label>
@@ -19,12 +47,7 @@ id="name"
 class="input"
 type="text" 
 name="name" 
-value="
-@if(isset($project))
-{{ old('name', $project->name) }}
-@else {{ old('name') }}
-@endif
-"
+value="{{ old('name', (isset($project)) ? $project->name : '') }}"
 required="required"
 >
 </div>
@@ -53,11 +76,7 @@ name="description"
 cols="40" 
 rows="2"
 >
-@if(isset($project))
-{{ old('description', $project->description) }}
-@else
-{{ old('description') }}
-@endif 
+{{ old('description', (isset($project)) ? $project->description : '') }}
 </textarea>
 </div>
 

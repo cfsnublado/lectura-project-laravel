@@ -19,12 +19,7 @@ id="name"
 class="input"
 type="text" 
 name="name" 
-value="
-@if(isset($postAudio))
-{{ old('name', $postAudio->name) }}
-@else
-{{ old('name') }}
-@endif"
+value="{{ old('name', (isset($postAudio)) ? $postAudio->name : '') }}"
 required="required"
 >
 </div>
@@ -53,11 +48,7 @@ name="description"
 cols="40" 
 rows="3"
 >
-@if(isset($postAudio))
-{{ old('description', $postAudio->description) }}
-@else
-{{ old('description') }}
-@endif  
+{{ old('description', (isset($postAudio)) ? $postAudio->description : '') }} 
 </textarea>
 </div>
 
@@ -83,12 +74,7 @@ id="audio_url"
 class="input"
 type="text" 
 name="audio_url" 
-value="
-@if(isset($postAudio))
-{{ old('audio_url', $postAudio->audio_url) }}
-@else
-{{ old('audio_url') }}
-@endif"
+value="{{ old('audio_url', (isset($postAudio)) ? $postAudio->audio_url : '') }}"
 required="required"
 >
 </div>
