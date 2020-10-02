@@ -9,34 +9,6 @@ novalidate
 
 <div class="field">
 
-<label class="label" for="language">
-{{ __('messages.label_language') }}
-</label>
-
-<div class="control">
-<div class="select">
-<select id="language" name="language">
-@if(isset($project))
-@foreach (App\Models\Blog\Project::LANGUAGES as $key => $value)
-<option value="{{ $key }}" {{ ($key == $project->language) ? 'selected' : '' }}>
-{{ $value }}
-</option>
-@endforeach
-@else
-@foreach (App\Models\Blog\Project::LANGUAGES as $key => $value)
-<option value="{{ $key }}" {{ ($key == old('language')) ? 'selected' : '' }}>
-{{ $value }}
-</option>
-@endforeach
-@endif
-</select>
-</div>
-</div>
-
-</div>
-
-<div class="field">
-
 <label class="label" for="name">
 {{ __('messages.label_name') }}
 </label>

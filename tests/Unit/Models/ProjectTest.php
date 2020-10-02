@@ -35,7 +35,7 @@ class ProjectTest extends TestCase
     
         $this->assertTrue($project->relationLoaded('owner'));
     }
-
+    
     /**
      * Test if slug is generated when name is manipulated.
      *

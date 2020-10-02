@@ -30,6 +30,7 @@ class PostSeeder extends Seeder
         Post::create([
             'creator_id' => $user->id,
             'project_id' => $project->id,
+            'language' => 'es',
             'name' => 'Medio rey: sinopsis',
             'description' => 'Un fragmento del libro _Medio rey_, de Joe Abercrombie.',
             'content' => '

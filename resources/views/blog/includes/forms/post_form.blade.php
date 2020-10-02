@@ -9,6 +9,34 @@ novalidate
 
 <div class="field">
 
+<label class="label" for="language">
+{{ __('messages.label_language') }}
+</label>
+
+<div class="control">
+<div class="select">
+<select id="language" name="language">
+@if(isset($post))
+@foreach (App\Models\Blog\Post::LANGUAGES as $key => $value)
+<option value="{{ $key }}" {{ ($key == $post->language) ? 'selected' : '' }}>
+{{ $value }}
+</option>
+@endforeach
+@else
+@foreach (App\Models\Blog\Post::LANGUAGES as $key => $value)
+<option value="{{ $key }}" {{ ($key == old('language')) ? 'selected' : '' }}>
+{{ $value }}
+</option>
+@endforeach
+@endif
+</select>
+</div>
+</div>
+
+</div>
+
+<div class="field">
+
 <label class="label" for="name">
 {{ __('messages.label_name') }}
 </label>
@@ -110,7 +138,7 @@ inline-template
 >
 
 <button 
-id="project-delete-trigger" 
+id="post-delete-trigger" 
 class="button is-danger"
 @click.prevent="confirmDelete"
 >

@@ -39,11 +39,13 @@ class ProjectControllerTest extends TestCase
     public function testUpdateSuccess()
     {
         $data = [
+            'language' => 'en',
             'owner_id' => $this->projectOwner->id,
             'name' => 'Test Project',
             'description' => 'This is a test project'
         ];
         $updatedData = [
+            'language' => 'es',
             'name' => 'Another Test Project',
             'description' => 'This is another test project.'
         ];
@@ -58,6 +60,7 @@ class ProjectControllerTest extends TestCase
         $response->assertRedirect(
             route('blog.project.show', ['slug' => $project->slug]),
         );
+        $this->assertEquals($project->language, $updatedData['language']);
         $this->assertEquals($project->name, $updatedData['name']);
         $this->assertEquals($project->description, $updatedData['description']);
     }

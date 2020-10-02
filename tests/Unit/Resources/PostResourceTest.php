@@ -45,6 +45,7 @@ class PostResourceTest extends TestCase
         $data = $postResource->toArray(request());
         $expectedData = [
             'id' => $this->post->id,
+            'language' => $this->post->language,
             'name' => $this->post->name,
             'slug' => $this->post->slug,
             'description' => $this->post->description,

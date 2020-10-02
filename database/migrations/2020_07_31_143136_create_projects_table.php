@@ -19,7 +19,6 @@ class CreateProjectsTable extends Migration
             $table->foreign('owner_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
-            $table->string('language')->default('en');
             $table->string('name')->unique();
             $table->string('slug');
             $table->text('description')->nullable();

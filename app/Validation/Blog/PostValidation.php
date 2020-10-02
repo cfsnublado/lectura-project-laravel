@@ -8,6 +8,7 @@ class PostValidation
     {
         return [
             'name' => 'required|unique:posts,name,NULL,id,project_id,' . $projectId,
+            'language' => 'required',
             'description' => '',
             'content' => 'required',
         ];
@@ -17,6 +18,7 @@ class PostValidation
     {
         return [
             'name' => 'required|unique:posts,name,' . $id . ',id,project_id,' . $projectId,
+            'language' => 'required',
             'description' => '',
             'content' => 'required',
         ];

@@ -45,6 +45,20 @@ class PostTest extends TestCase
     }
 
     /**
+     *
+     */
+    public function testDefaultValues()
+    {
+        $post = Post::create([
+            'name' => 'Test post',
+            'creator_id' => $this->user->id,
+            'project_id' => $this->project->id,
+            'content' => 'asdf'
+        ]);
+        $this->assertEqual('en', $post->language);
+    }
+
+    /**
      * Test if slug is generated when name is manipulated.
      *
      * @return void

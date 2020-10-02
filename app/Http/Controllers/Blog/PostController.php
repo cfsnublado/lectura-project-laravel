@@ -67,6 +67,7 @@ class PostController extends Controller
         $post = Post::create([
             'creator_id' => Auth::user()->id,
             'project_id' => $project->id,
+            'language' => $validated['language'],
             'name' => $validated['name'],
             'description' => $validated['description'],
             'content' => $validated['content'],
@@ -112,6 +113,7 @@ class PostController extends Controller
             $request,
             PostValidation::rulesUpdate($id, $post->project_id)
         );
+        $post->language = $validated['language'];
         $post->name =  $validated['name'];
         $post->description = $validated['description'];
         $post->content = $validated['content'];

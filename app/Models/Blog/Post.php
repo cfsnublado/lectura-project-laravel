@@ -5,8 +5,9 @@ namespace App\Models\Blog;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
+use App\Interfaces\LanguageExclusive;
 
-class Post extends Model
+class Post extends Model implements LanguageExclusive
 {
     use HasFactory;
     
@@ -16,8 +17,8 @@ class Post extends Model
     protected $primaryKey = 'id';
     protected $with = ['creator.profile', 'project'];
     protected $fillable = [
-        'project_id', 'creator_id', 'name',
-        'description', 'content'
+        'project_id', 'creator_id', 'language',
+        'name', 'description', 'content'
     ];
 
     /**
@@ -32,6 +33,24 @@ class Post extends Model
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value, '-');
     }
+
+    /**
+     *
+     */
+    public function setLanguageAttribute($value)
+    {
+        if (array_key_exists($value, self::LANGUAGES)) {
+            $this->attributes['language'] = $value;
+        }
+    }
+
+   /**
+    * 
+    */
+   public function getLanguageValueAttribute()
+   {
+      return self::LANGUAGES[$this->attributes['language']];
+   }
 
     /**
      * Relationships

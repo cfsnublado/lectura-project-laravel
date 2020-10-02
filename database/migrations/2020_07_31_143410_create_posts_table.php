@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
             $table->foreign('project_id')
             ->references('id')->on('projects')
             ->onDelete('cascade');
+            $table->string('language')->default('en');
             $table->string('name');
             $table->string('slug');
             $table->text('description')->nullable();
