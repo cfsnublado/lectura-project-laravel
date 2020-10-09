@@ -31,6 +31,37 @@ class ProjectControllerTest extends TestCase
     }
 
     /**
+     * Test if project stored successfully.
+     *
+     * @return void
+     */
+    public function testStoreSuccess()
+    {
+        $data = [
+            'name' => 'Test Project',
+            'description' => 'This is a test project.'
+        ];
+        $this->assertFalse(Project::where('name', $data['name'])->exists());
+
+        $this->actingAs($this->user);
+        $response = $this->post(
+            route('blog.project.store'),
+            $data
+        );
+        $project = Project::where('name', $data['name'])->firstOrFail();
+        $response->assertStatus(302);
+        $response->assertRedirect(
+            route('blog.project.show', ['slug' => $project->slug]),
+        );
+        $response->assertRedirect(
+            route('blog.project.show', ['slug' => $project->slug]),
+        );
+        $this->assertEquals($project->owner_id, $this->user->id);
+        $this->assertEquals($project->name, $data['name']);
+        $this->assertEquals($project->description, $data['description']);
+    }
+
+    /**
      * Test if project updated successfully.
      *
      * @return void
@@ -39,13 +70,11 @@ class ProjectControllerTest extends TestCase
     public function testUpdateSuccess()
     {
         $data = [
-            'language' => 'en',
             'owner_id' => $this->projectOwner->id,
             'name' => 'Test Project',
             'description' => 'This is a test project'
         ];
         $updatedData = [
-            'language' => 'es',
             'name' => 'Another Test Project',
             'description' => 'This is another test project.'
         ];
@@ -60,16 +89,47 @@ class ProjectControllerTest extends TestCase
         $response->assertRedirect(
             route('blog.project.show', ['slug' => $project->slug]),
         );
-        $this->assertEquals($project->language, $updatedData['language']);
         $this->assertEquals($project->name, $updatedData['name']);
         $this->assertEquals($project->description, $updatedData['description']);
     }
 
+    // Access permissions
+
     /**
+     * Test permissions for create.
      *
      * @return void
      */
-    public function testEdit()
+    public function testPermissionsCreate()
+    {
+        // Unauthenticated
+        $response = $this->get(
+            route('blog.project.create')
+        );
+        $response->assertStatus(302);
+        $response->assertRedirect(route('security.login'));
+
+        // User
+        $this->actingAs($this->user);
+        $response = $this->get(
+            route('blog.project.create')
+        );
+        $response->assertStatus(200);
+
+        // Superuser
+        $this->actingAs($this->superuser);
+        $response = $this->get(
+            route('blog.project.create')
+        );
+        $response->assertStatus(200);
+    }
+
+    /**
+     * Test permissions for edit.
+     *
+     * @return void
+     */
+    public function testPermissionsEdit()
     {
         $project = Project::factory()->create(
             ['owner_id' => $this->projectOwner->id]
@@ -105,11 +165,12 @@ class ProjectControllerTest extends TestCase
     }
 
     /**
+     * Test permissions for update.
      *
      * @return void
      */
 
-    public function testUpdate()
+    public function testPermissionsUpdate()
     {
         $data = [
             'owner_id' => $this->projectOwner->id,
@@ -148,6 +209,7 @@ class ProjectControllerTest extends TestCase
         $response->assertRedirect(
             route('blog.project.show', ['slug' => $project->slug]),
         );
+
         $project->delete();
         $project = Project::create($data);
 

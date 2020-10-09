@@ -467,7 +467,8 @@ const PostAudio = {
       editUrl: this.initEditUrl,
       deleteUrl: this.initDeleteUrl,
       postViewUrl: this.initPostViewUrl,
-      idPlaceholder: 0
+      idPlaceholder: 0,
+      slugPlaceholder: 'zzz'
     }
   },
   methods: {
@@ -494,6 +495,11 @@ const PostAudio = {
     if (this.initEditUrl) {
       this.editUrl = this.initEditUrl
         .replace(this.idPlaceholder, this.postAudio.id)
+    }
+
+    if (this.initPostViewUrl) {
+      this.postViewUrl = this.initPostViewUrl
+        .replace(this.slugPlaceholder, this.postAudio.post_slug)
     }
   }
 }

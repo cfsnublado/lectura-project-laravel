@@ -45,24 +45,38 @@ inline-template
 
 <div class="box project-box">
 
-<div v-if="isAdmin" class="box-top">
+<article class="media">
 
-<div class="box-top-left"></div>
+<div class="media-left">
+<figure class="image is-128x128">
+<img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+</figure>
+</div>
 
-<div class="box-top-right">
+<div class="media-content">
 
-<div class="box-controls">
-
-<span
-class="control"
->
 <a
 href="#"
-@click.prevent="edit"
+@click.prevent="view"
 >
-<i class="fas fa-edit fa-fw"></i>
+<div
+class="name"
+v-html="markdownToHtml(project.name)"
+>
+</div>
 </a>
-</span>
+
+<small>
+<div 
+class="desc"
+v-html="markdownToHtml(project.description)"
+>
+</div>
+</small>
+
+</div>
+
+<div v-if="isAdmin" class="media-right">
 
 <ajax-delete
 delete-confirm-id="delete-project"
@@ -72,44 +86,21 @@ delete-confirm-id="delete-project"
 inline-template
 >
 
-<span class="control">
 <a
 :id="('project-delete-' + id)"
+class="delete"
 href="#"
 @click.prevent="confirmDelete"
 >
 <i class="fas fa-times-circle fa-fw"></i>
 </a>
-</span>
 
 </ajax-delete>
 
-</div><!-- box-controls -->
-
-</div><!-- box-top-right -->
-
-</div><!-- box-top -->
-
-<div class="box-content">
-
-<a
-href="#"
-@click.prevent="view"
->
-<span
-class="name"
-v-html="markdownToHtml(project.name)"
->
-</span>
-</a>
-
-<div 
-class="desc"
-v-html="markdownToHtml(project.description)"
->
 </div>
 
-</div><!-- box-content -->
+</article>
+
 </div><!-- box -->
 
 </transition>

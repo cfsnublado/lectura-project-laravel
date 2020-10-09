@@ -10,7 +10,12 @@
 
 @section('content')
 <div id="projects-scroll-top"></div>
+
+<div class="columns is-multiline">
+<div class="column is-10 is-offset-1">
 @include('blog.includes.vue.projects')
+</div>
+</div>
 @endsection
 
 @section('modal')

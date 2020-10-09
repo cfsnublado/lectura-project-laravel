@@ -13368,36 +13368,52 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
 }
 
 /* line 77, ../scss/cfs/reading/_reading.scss */
-.project-box,
+.project-box {
+  margin-bottom: 1.875rem;
+}
+/* line 80, ../scss/cfs/reading/_reading.scss */
+.project-box .media {
+  align-items: center;
+}
+/* line 84, ../scss/cfs/reading/_reading.scss */
+.project-box .media-right {
+  align-self: flex-start;
+}
+/* line 88, ../scss/cfs/reading/_reading.scss */
+.project-box .name {
+  font-weight: bold;
+}
+/* line 92, ../scss/cfs/reading/_reading.scss */
+.project-box .desc {
+  margin-top: 20px;
+}
+
+/* line 97, ../scss/cfs/reading/_reading.scss */
 .post-box,
 .post-audio-box {
   margin-bottom: 1.875rem;
   text-align: center;
 }
-/* line 84, ../scss/cfs/reading/_reading.scss */
-.project-box .name,
+/* line 103, ../scss/cfs/reading/_reading.scss */
 .post-box .name,
 .post-audio-box .name {
   font-size: 1.625rem;
   margin-bottom: 1.25rem;
 }
-/* line 89, ../scss/cfs/reading/_reading.scss */
-.project-box .name p,
+/* line 108, ../scss/cfs/reading/_reading.scss */
 .post-box .name p,
 .post-audio-box .name p {
   margin-top: 0;
   margin-bottom: 0;
 }
-/* line 98, ../scss/cfs/reading/_reading.scss */
-.project-box .box-content,
+/* line 117, ../scss/cfs/reading/_reading.scss */
 .post-box .box-content,
 .post-audio-box .box-content {
   padding-right: 1rem;
   padding-left: 1rem;
 }
 
-/* line 107, ../scss/cfs/reading/_reading.scss */
-.project-box .box-top,
+/* line 125, ../scss/cfs/reading/_reading.scss */
 .post-box .box-top,
 .post-audio-box .box-top {
   display: flex;
@@ -13405,9 +13421,7 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   justify-content: space-between;
   align-items: center;
 }
-/* line 115, ../scss/cfs/reading/_reading.scss */
-.project-box .box-top .box-top-left,
-.project-box .box-top .box-top-right,
+/* line 133, ../scss/cfs/reading/_reading.scss */
 .post-box .box-top .box-top-left,
 .post-box .box-top .box-top-right,
 .post-audio-box .box-top .box-top-left,
@@ -13415,69 +13429,64 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   display: flex;
   align-items: center;
 }
-/* line 123, ../scss/cfs/reading/_reading.scss */
-.project-box .box-controls,
+/* line 141, ../scss/cfs/reading/_reading.scss */
 .post-box .box-controls,
 .post-audio-box .box-controls {
   display: flex;
   justify-content: flex-end;
 }
-/* line 128, ../scss/cfs/reading/_reading.scss */
-.project-box .box-controls .control,
+/* line 146, ../scss/cfs/reading/_reading.scss */
 .post-box .box-controls .control,
 .post-audio-box .box-controls .control {
   padding-left: 0.625rem;
 }
-/* line 131, ../scss/cfs/reading/_reading.scss */
-.project-box .box-controls .control a,
+/* line 149, ../scss/cfs/reading/_reading.scss */
 .post-box .box-controls .control a,
 .post-audio-box .box-controls .control a {
   font-size: 1rem;
   color: #aaa;
 }
-/* line 136, ../scss/cfs/reading/_reading.scss */
-.project-box .box-controls .control a:hover,
+/* line 154, ../scss/cfs/reading/_reading.scss */
 .post-box .box-controls .control a:hover,
 .post-audio-box .box-controls .control a:hover {
   color: #555;
 }
 
-/* line 145, ../scss/cfs/reading/_reading.scss */
+/* line 163, ../scss/cfs/reading/_reading.scss */
 .post-audio-box .user-details {
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-/* line 154, ../scss/cfs/reading/_reading.scss */
+/* line 172, ../scss/cfs/reading/_reading.scss */
 .post-view .post-name {
   font-size: 3.125rem;
 }
-/* line 158, ../scss/cfs/reading/_reading.scss */
+/* line 176, ../scss/cfs/reading/_reading.scss */
 .post-view .post-content {
   font-size: 1.375rem;
   margin-top: 50px;
   margin-bottom: 60px;
 }
-/* line 165, ../scss/cfs/reading/_reading.scss */
+/* line 183, ../scss/cfs/reading/_reading.scss */
 .post-view .post-audio {
   margin-top: 0.625rem;
   margin-bottom: 1.875rem;
   text-align: center;
 }
 
-/* line 173, ../scss/cfs/reading/_reading.scss */
+/* line 191, ../scss/cfs/reading/_reading.scss */
 .post-view-section {
   padding-bottom: 6.25rem;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 179, ../scss/cfs/reading/_reading.scss */
+  /* line 197, ../scss/cfs/reading/_reading.scss */
   .post-view .post-name {
     font-size: 2rem;
   }
 
-  /* line 187, ../scss/cfs/reading/_reading.scss */
-  .project-box .name,
+  /* line 204, ../scss/cfs/reading/_reading.scss */
   .post-box .name,
   .post-audio-box .name {
     font-size: 1.125rem;

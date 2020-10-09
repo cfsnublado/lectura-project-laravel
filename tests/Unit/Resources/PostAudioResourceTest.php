@@ -55,9 +55,13 @@ class PostAudioResourceTest extends TestCase
             'slug' => $this->postAudio->slug,
             'description' => $this->postAudio->description,
             'audio_url' => $this->postAudio->audio_url,
+            'creator_id' => $this->postAudio->creator_id,
             'creator_username' => $this->postAudio->creator->username,
             'creator_first_name' => $this->postAudio->creator->first_name,
             'creator_last_name' => $this->postAudio->creator->last_name,
+            'post_id' => $this->postAudio->post_id,
+            'post_name' => $this->postAudio->post->name,
+            'post_slug' => $this->postAudio->post->slug,
             'post_url' => route(
                 'api.blog.post.show',
                 ['post' => $this->postAudio->post_id]

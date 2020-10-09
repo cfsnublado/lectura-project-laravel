@@ -38,6 +38,7 @@ v-for="(postAudio, index) in postAudios"
 :key="postAudio.id"
 :init-post-audio="postAudio"
 :init-is-admin="isAdmin"
+init-post-view-url="{{ $postViewUrl }}"
 init-edit-url="{{ $postAudioEditUrl }}"
 init-delete-url="{{ $postAudioDeleteUrl }}"
 @delete-post-audio="deletePostAudio(index)"
@@ -94,16 +95,11 @@ href="#"
 
 <div class="box-content">
 
-<a
-href="#"
-@click.prevent="view"
->
 <span
 class="name"
 v-html="markdownToHtml(postAudio.name)"
 >
 </span>
-</a>
 
 <div 
 class="user-details"
