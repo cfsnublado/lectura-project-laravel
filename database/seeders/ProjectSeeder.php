@@ -27,6 +27,12 @@ class ProjectSeeder extends Seeder
         ]);
         Project::create([
             'owner_id' => $user->id,
+            'uuid' => '67b6cc45-4ffe-4ce1-9dce-ac0d8945c16d',
+            'name' => 'El arte de pensar',
+            'description' => 'Cómo los grandes filósofos pueden estimular nuestro pensamiento crítico - José Carlos Ruiź',
+        ]);
+        Project::create([
+            'owner_id' => $user->id,
             'uuid' => '23c8db97-cc12-4bcd-8458-2425ee5b58f1',
             'name' => 'El sutil arte de que te importe un carajo',
             'description' => 'Un enfoque disruptivo para vivir una buena vida - Mark Manson',
