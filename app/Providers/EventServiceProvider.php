@@ -8,8 +8,10 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use App\Events\UserCreated as UserCreatedEvent;
 use App\Events\UserCreating as UserCreatingEvent;
+use App\Events\ProjectCreating as ProjectCreatingEvent;
 use App\Listeners\UserCreated as UserCreatedListener;
 use App\Listeners\UserCreating as UserCreatingListener;
+use App\Listeners\ProjectCreating as ProjectCreatingListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -28,6 +30,9 @@ class EventServiceProvider extends ServiceProvider
         UserCreatingEvent::class => [
             UserCreatingListener::class,
         ],
+        ProjectCreatingEvent::class => [
+            ProjectCreatingListener::class,
+        ]
     ];
 
     /**

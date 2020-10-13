@@ -38,6 +38,7 @@ class ProjectResourceTest extends TestCase
         $data = $projectResource->toArray(request());
         $expectedData = [
             'id' => $this->project->id,
+            'uuid' => $this->project->uuid,
             'name' => $this->project->name,
             'slug' => $this->project->slug,
             'description' => $this->project->description,

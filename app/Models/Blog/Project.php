@@ -15,8 +15,11 @@ class Project extends Model
     protected $table = 'projects';
     protected $primaryKey = 'id';
     protected $with = ['owner.profile'];
+    protected $dispatchesEvents = [
+        'creating' => \App\Events\ProjectCreating::class,
+    ];
     protected $fillable = [
-        'owner_id', 'name', 'description',
+        'uuid', 'owner_id', 'name', 'description',
     ];
 
     /**

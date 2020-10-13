@@ -51,4 +51,44 @@ class ProjectTest extends TestCase
 
         $this->assertEquals($project->slug, $slug);
     }
+
+    /**
+     * Test uuid value. It should be generated only
+     * if not provided in the constructor.
+     *
+     * @return void
+     */
+    public function testUuidProvidedInConstructor()
+    {
+        $uuid = '7e204342-62c6-4b94-b177-f97acd6ec5af';
+        $project = Project::factory()->create(
+            [
+                'owner_id' => $this->user->id,
+                'uuid' => $uuid,
+                'name' => $name,
+            ]
+        );
+        $project->refresh();
+        $this->assertEquals($project->uuid, $uuid);
+    }
+
+    /**
+     * Test if uuid value generated if it's not provided
+     * in the constructor.
+     *
+     * @return void
+     */
+    public function testUuidGeneratedOnCreate()
+    {
+        $user = User::factory()->create(['id' => '']);
+        $project = Project::factory()->create(
+            [
+                'owner_id' => $this->user->id,
+                'uuid' => '',
+                'name' => $name,
+            ]
+        );
+        $this->assertTrue(is_string($project->uuid));
+        $this->assertEquals(mb_strlen($project->uuid, 'utf8'), 36);
+    }
 }

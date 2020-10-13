@@ -36,7 +36,8 @@ class PostImportExportController extends Controller
                 [
                     ['project_id', $project->id],
                     ['name', $data->name]
-                ])->first();
+                ]
+            )->first();
 
             if ($post) {
                 $this->authorize('replace', $post);
@@ -44,7 +45,6 @@ class PostImportExportController extends Controller
             } else {
                 $this->authorize('createPost', $project);
             }
-
             $validator = Validator::make(
                 json_decode($request->getContent(), true),
                 PostValidation::rulesStore($project->id)

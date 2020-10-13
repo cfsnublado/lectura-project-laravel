@@ -23,8 +23,16 @@ class PostJsonValidator
         $schema = '{
             "type": "object",
             "properties": {
+                "project_uuid": {
+                    "type": "string"
+                },
                 "project_name": {
                     "type": "string"
+                },
+                "language": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 2
                 },
                 "name": {
                     "type": "string"
@@ -53,7 +61,10 @@ class PostJsonValidator
                     }
                 }
             },
-            "required": ["project_name", "name", "content", "post_audios"],
+            "required": [
+                "project_uuid", "project_name", "language",
+                "name", "content", "post_audios"
+            ],
             "additionalProperties": false
         }';
 

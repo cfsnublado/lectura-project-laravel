@@ -21,21 +21,19 @@ class ProjectSeeder extends Seeder
         $user = User::where('username', 'cfs')->firstOrFail();
         Project::create([
             'owner_id' => $user->id,
+            'uuid' => '98eaba9e-ac37-4f44-96d6-3855b88a8885',
             'name' => 'Medio rey',
             'description' => 'Primer libro de la trilogía _El mar quebrado_, de Joe Abercrombie',
         ]);
         Project::create([
             'owner_id' => $user->id,
-            'name' => 'El arte de pensar',
-            'description' => 'Cómo los grandes filósofos pueden estimular nuestro pensamiento crítico.<br><br>José Carlos Ruiz',
+            'uuid' => '6b91e839-4a4e-4abf-bf99-bad9f2b69172',
+            'name' => 'Until the End of Time',
+            'description' => 'Mind, Matter, and Our Search for Meaning in an Evolving Universe - Brian Greene',
         ]);
         Project::create([
             'owner_id' => $user->id,
-            'name' => 'El sutil arte de que te importe un carajo',
-            'description' => 'Un enfoque disruptivo para vivir una buena vida<br><br>Escrito por Mark Manson<br>Traducido por Anna Roig',
-        ]);
-        Project::create([
-            'owner_id' => $user->id,
+            'uuid' => '235e9686-1618-4025-8433-f50f1112bb7e',
             'name' => 'Test project',
             'description' => 'This is a test project',
         ]);
