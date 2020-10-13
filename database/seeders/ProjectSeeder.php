@@ -23,7 +23,13 @@ class ProjectSeeder extends Seeder
             'owner_id' => $user->id,
             'uuid' => '98eaba9e-ac37-4f44-96d6-3855b88a8885',
             'name' => 'Medio rey',
-            'description' => 'Primer libro de la trilogía _El mar quebrado_, de Joe Abercrombie',
+            'description' => 'Primer libro de la trilogía _El mar quebrado_ - Joe Abercrombie',
+        ]);
+        Project::create([
+            'owner_id' => $user->id,
+            'uuid' => '23c8db97-cc12-4bcd-8458-2425ee5b58f1',
+            'name' => 'El sutil arte de que te importe un carajo',
+            'description' => 'Un enfoque disruptivo para vivir una buena vida - Mark Manson',
         ]);
         Project::create([
             'owner_id' => $user->id,
