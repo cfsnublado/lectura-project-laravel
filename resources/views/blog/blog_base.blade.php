@@ -53,6 +53,16 @@ href="{{ route('blog.project.edit', ['slug' => $project->slug]) }}"
 {{ __('messages.label_edit_project') }}
 </a>
 </li>
+
+<li>
+<a 
+id="sidebar-nav-project-download" 
+href="{{ route('blog.project.download', ['id' => $project->id]) }}"
+>
+<i class="menu-icon fas fa-download fa-fw"></i> 
+{{ __('messages.label_export_project') }}
+</a>
+</li>
 @endcan
 
 @can('createPost', $project)

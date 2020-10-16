@@ -18,7 +18,7 @@ class PostImportExportController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:sanctum')->except(['index', 'show']);
+        $this->middleware('auth:sanctum');
     }
 
     /**
@@ -31,7 +31,10 @@ class PostImportExportController extends Controller
         $schemaResult = $validator->schemaValidation($data);
 
         if ($schemaResult->isValid()) {
-            $project = Project::where('name', $data->project_name)->firstOrFail();
+            $project = Project::where([
+                ['uuid', $data->project_uuid],
+                ['name', $data->project_name]
+            ])->firstOrFail();
             $post = Post::where(
                 [
                     ['project_id', $project->id],
@@ -66,12 +69,12 @@ class PostImportExportController extends Controller
             ]);
 
             // Add post audios
-            foreach ($data->post_audios as $postAudio) {
+            foreach ($data->post_audios as $postAudioData) {
                 PostAudio::create([
                     'post_id' => $post->id,
                     'creator_id' => Auth::user()->id,
-                    'name' => $postAudio->name,
-                    'audio_url' => $postAudio->audio_url
+                    'name' => $postAudioData->name,
+                    'audio_url' => $postAudioData->audio_url
                 ]);
             }
 
@@ -86,10 +89,11 @@ class PostImportExportController extends Controller
     }
 
     /**
-     *
+     * Download post json from page.
      */
     public function downloadJson($id) {
         $post = Post::findOrFail($id);
+        $project = $post->project;
         $postAudioData = [];
 
         foreach ($post->post_audios as $postAudio) {
@@ -100,7 +104,9 @@ class PostImportExportController extends Controller
         }
 
         $data = json_encode([
-            'project_name' => $post->project->name,
+            'project_uuid' => $project->uuid,
+            'project_name' => $project->name,
+            'language' => $post->language,
             'name' => $post->name,
             'description' => $post->description,
             'content' => $post->content,

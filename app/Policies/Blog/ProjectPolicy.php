@@ -29,27 +29,11 @@ class ProjectPolicy
     }
 
     /**
-     * Determine if user can create a project post.
      *
-     * @param  \App\Models\User\User  $user
-     * @param  \App\Models\Blog\Project  $project
-     * @return boolean
      */
-    public function createPost(User $user, Project $project)
+    public function replace(User $user, Project $project)
     {
-        return $this->isProjectOwner($user, $project) || $this->isMember($user, $project->id);
-    }
-
-    /**
-     * Determine if user can create a project post audio.
-     *
-     * @param  \App\Models\User\User  $user
-     * @param  \App\Models\Blog\Project  $project
-     * @return boolean
-     */
-    public function createPostAudio(User $user, Project $project)
-    {
-        return $this->isProjectOwner($user, $project) || $this->isMember($user, $project->id);
+        return $this->isProjectOwner($user, $project);
     }
 
     /**
@@ -85,5 +69,29 @@ class ProjectPolicy
     public function delete(User $user, Project $project)
     {
         return $this->isProjectOwner($user, $project);
+    }
+
+    /**
+     * Determine if user can create a project post.
+     *
+     * @param  \App\Models\User\User  $user
+     * @param  \App\Models\Blog\Project  $project
+     * @return boolean
+     */
+    public function createPost(User $user, Project $project)
+    {
+        return $this->isProjectOwner($user, $project) || $this->isMember($user, $project->id);
+    }
+
+    /**
+     * Determine if user can create a project post audio.
+     *
+     * @param  \App\Models\User\User  $user
+     * @param  \App\Models\Blog\Project  $project
+     * @return boolean
+     */
+    public function createPostAudio(User $user, Project $project)
+    {
+        return $this->isProjectOwner($user, $project) || $this->isMember($user, $project->id);
     }
 }

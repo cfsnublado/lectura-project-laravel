@@ -18,6 +18,13 @@ Route::prefix('user')->group(function() {
 });
 
 Route::prefix('blog')->group(function() {
+    Route::post(
+        'projects/import',
+        [
+            'as' => 'api.blog.project.import',
+            'uses' => 'Blog\ProjectImportExportController@import',
+        ]
+    );
     Route::apiResource('projects', 'Blog\ProjectApiController')->names([
         'index' => 'api.blog.projects.list',
         'show' => 'api.blog.project.show',

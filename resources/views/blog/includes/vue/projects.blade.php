@@ -72,6 +72,16 @@ v-html="markdownToHtml(project.description)"
 
 <div v-if="isAdmin" class="media-right">
 
+<span class="control">
+<a
+:id="('project-edit-' + project.id)"
+href="#"
+@click.prevent="edit"
+>
+<i class="fas fa-edit fa-fw"></i>
+</a>
+</span>
+
 <ajax-delete
 delete-confirm-id="delete-project"
 :delete-url="deleteUrl"
@@ -80,14 +90,15 @@ delete-confirm-id="delete-project"
 inline-template
 >
 
+<span class="control">
 <a
 :id="('project-delete-' + id)"
-class="delete"
 href="#"
 @click.prevent="confirmDelete"
 >
 <i class="fas fa-times-circle fa-fw"></i>
 </a>
+</span>
 
 </ajax-delete>
 

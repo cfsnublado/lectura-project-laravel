@@ -48,58 +48,15 @@ inline-template
 
 <div class="box post-audio-box">
 
-<div v-if="isAdmin" class="box-top">
+<article class="media">
 
-<div class="box-top-left"></div>
+<div class="media-content">
 
-<div class="box-top-right">
-
-<div class="box-controls">
-
-<span
-class="control"
->
-<a
-href="#"
-@click.prevent="edit"
->
-<i class="fas fa-edit fa-fw"></i>
-</a>
-</span>
-
-<ajax-delete
-delete-confirm-id="delete-post-audio"
-:delete-url="deleteUrl"
-:id="postAudio.id"
-@ajax-success="remove"
-inline-template
->
-
-<span class="control">
-<a
-:id="('post-audio-delete-' + id)"
-href="#"
-@click.prevent="confirmDelete"
->
-<i class="fas fa-times-circle fa-fw"></i>
-</a>
-</span>
-
-</ajax-delete>
-
-</div><!-- box-controls -->
-
-</div><!-- box-top-right -->
-
-</div><!-- box-top -->
-
-<div class="box-content">
-
-<span
+<div
 class="name"
 v-html="markdownToHtml(postAudio.name)"
 >
-</span>
+</div>
 
 <div 
 class="user-details"
@@ -127,7 +84,7 @@ inline-template
 >
 
 <div 
-class="box-audio-player-container center"
+class="box-audio-player-container"
 v-cloak
 >
 
@@ -196,9 +153,47 @@ class="play-bar"
 </div><!-- audio-player-container -->
 
 </single-audio-player>
+</div><!-- player -->
+
+</div><!-- media-content -->
+
+<div v-if="isAdmin" class="media-right">
+
+<span
+class="control"
+>
+<a
+href="#"
+@click.prevent="edit"
+>
+<i class="fas fa-edit fa-fw"></i>
+</a>
+</span>
+
+<ajax-delete
+delete-confirm-id="delete-post-audio"
+:delete-url="deleteUrl"
+:id="postAudio.id"
+@ajax-success="remove"
+inline-template
+>
+
+<span class="control">
+<a
+:id="('post-audio-delete-' + id)"
+href="#"
+@click.prevent="confirmDelete"
+>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+</span>
+
+</ajax-delete>
+
 </div>
 
-</div><!-- box-content -->
+</article>
+
 </div><!-- box -->
 
 </transition>

@@ -49,18 +49,36 @@ inline-template
 
 <div class="box post-box">
 
-<div v-if="isAdmin" class="box-top">
+<article class="media">
 
-<div class="box-top-left"></div>
+<div class="media-content">
 
-<div class="box-top-right">
-
-<div class="box-controls">
-
-<span
-class="control"
->
 <a
+href="#"
+@click.prevent="view"
+>
+<span
+class="name"
+v-html="markdownToHtml(post.name)"
+>
+</span>
+</a>
+
+<small>
+<div 
+class="desc"
+v-html="markdownToHtml(post.description)"
+>
+</div>
+</small>
+
+</div><!-- media-content -->
+
+<div v-if="isAdmin" class="media-right">
+
+<span class="control">
+<a
+:id="('post-edit-' + post.id)"
 href="#"
 @click.prevent="edit"
 >
@@ -75,7 +93,6 @@ delete-confirm-id="delete-post"
 @ajax-success="remove"
 inline-template
 >
-
 <span class="control">
 <a
 :id="('post-delete-' + id)"
@@ -85,36 +102,12 @@ href="#"
 <i class="fas fa-times-circle fa-fw"></i>
 </a>
 </span>
-
 </ajax-delete>
 
-</div><!-- box-controls -->
 
-</div><!-- box-top-right -->
+</div><!-- media-right -->
 
-</div><!-- box-top -->
-
-<div class="box-content">
-
-<a
-href="#"
-@click.prevent="view"
->
-<span
-class="name"
-v-html="markdownToHtml(post.name)"
->
-</span>
-</a>
-
-<div 
-class="desc"
-v-html="markdownToHtml(post.description)"
->
 </div>
-
-</div><!-- box-content -->
-</div><!-- box -->
 
 </transition>
 

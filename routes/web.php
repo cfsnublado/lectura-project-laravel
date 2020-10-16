@@ -150,6 +150,13 @@ Route::middleware(['locale'])->prefix($locale)->group(function () {
             ]
         );
         Route::get(
+            'project/{id}/download',
+            [
+                'as' => 'blog.project.download',
+                'uses' => 'Blog\ProjectImportExportController@downloadJson'
+            ]
+        );
+        Route::get(
             'post/{slug}',
             [
                 'as' => 'blog.post.show',

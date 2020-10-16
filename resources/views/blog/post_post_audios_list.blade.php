@@ -19,7 +19,12 @@
 
 @section('content')
 <div id="post-audios-scroll-top"></div>
+
+<div class="columns is-multiline">
+<div class="column is-8 is-offset-2">
 @include('blog.includes.vue.post_audios')
+</div>
+</div>
 @endsection
 
 @section('modal')

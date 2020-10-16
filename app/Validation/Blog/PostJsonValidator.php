@@ -2,23 +2,11 @@
 
 namespace App\Validation\Blog;
 
-use Opis\JsonSchema\Validator as SchemaValidator;
-use Opis\JsonSchema\Schema;
+use App\Validation\JsonValidator;
 
-class PostJsonValidator
+class PostJsonValidator extends JsonValidator
 {
-    /**
-     *
-     */
-    public function schemaValidation($json)
-    {
-        $validator = new SchemaValidator();
-        $schema = Schema::fromJsonString($this->schema());
-
-        return $validator->schemaValidation($json, $schema);
-    }
-
-    private function schema()
+    protected function schema()
     {
         $schema = '{
             "type": "object",
@@ -63,7 +51,7 @@ class PostJsonValidator
             },
             "required": [
                 "project_uuid", "project_name", "language",
-                "name", "content", "post_audios"
+                "name", "description", "content", "post_audios"
             ],
             "additionalProperties": false
         }';

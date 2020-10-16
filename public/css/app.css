@@ -13368,119 +13368,61 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
 }
 
 /* line 77, ../scss/cfs/reading/_reading.scss */
-.project-box {
-  margin-bottom: 1.875rem;
-}
-/* line 86, ../scss/cfs/reading/_reading.scss */
-.project-box .name {
-  font-weight: bold;
-}
-/* line 90, ../scss/cfs/reading/_reading.scss */
-.project-box .desc {
-  margin-top: 20px;
-}
-
-/* line 95, ../scss/cfs/reading/_reading.scss */
+.project-box,
 .post-box,
 .post-audio-box {
   margin-bottom: 1.875rem;
-  text-align: center;
 }
-/* line 101, ../scss/cfs/reading/_reading.scss */
+/* line 88, ../scss/cfs/reading/_reading.scss */
+.project-box .name,
 .post-box .name,
 .post-audio-box .name {
-  font-size: 1.625rem;
-  margin-bottom: 1.25rem;
+  font-weight: bold;
 }
-/* line 106, ../scss/cfs/reading/_reading.scss */
-.post-box .name p,
-.post-audio-box .name p {
-  margin-top: 0;
-  margin-bottom: 0;
+/* line 92, ../scss/cfs/reading/_reading.scss */
+.project-box .desc,
+.post-box .desc,
+.post-audio-box .desc {
+  margin-top: 20px;
 }
-/* line 115, ../scss/cfs/reading/_reading.scss */
-.post-box .box-content,
-.post-audio-box .box-content {
-  padding-right: 1rem;
-  padding-left: 1rem;
+/* line 96, ../scss/cfs/reading/_reading.scss */
+.project-box .control a,
+.post-box .control a,
+.post-audio-box .control a {
+  color: rgba(10, 10, 10, 0.2);
 }
-
-/* line 123, ../scss/cfs/reading/_reading.scss */
-.post-box .box-top,
-.post-audio-box .box-top {
-  display: flex;
-  margin-bottom: 0.625rem;
-  justify-content: space-between;
-  align-items: center;
-}
-/* line 131, ../scss/cfs/reading/_reading.scss */
-.post-box .box-top .box-top-left,
-.post-box .box-top .box-top-right,
-.post-audio-box .box-top .box-top-left,
-.post-audio-box .box-top .box-top-right {
-  display: flex;
-  align-items: center;
-}
-/* line 139, ../scss/cfs/reading/_reading.scss */
-.post-box .box-controls,
-.post-audio-box .box-controls {
-  display: flex;
-  justify-content: flex-end;
-}
-/* line 144, ../scss/cfs/reading/_reading.scss */
-.post-box .box-controls .control,
-.post-audio-box .box-controls .control {
-  padding-left: 0.625rem;
-}
-/* line 147, ../scss/cfs/reading/_reading.scss */
-.post-box .box-controls .control a,
-.post-audio-box .box-controls .control a {
-  font-size: 1rem;
-  color: #aaa;
-}
-/* line 152, ../scss/cfs/reading/_reading.scss */
-.post-box .box-controls .control a:hover,
-.post-audio-box .box-controls .control a:hover {
-  color: #555;
+/* line 99, ../scss/cfs/reading/_reading.scss */
+.project-box .control a:hover,
+.post-box .control a:hover,
+.post-audio-box .control a:hover {
+  color: rgba(10, 10, 10, 0.3);
 }
 
-/* line 161, ../scss/cfs/reading/_reading.scss */
-.post-audio-box .user-details {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-/* line 170, ../scss/cfs/reading/_reading.scss */
+/* line 108, ../scss/cfs/reading/_reading.scss */
 .post-view .post-name {
   font-size: 3.125rem;
 }
-/* line 174, ../scss/cfs/reading/_reading.scss */
+/* line 112, ../scss/cfs/reading/_reading.scss */
 .post-view .post-content {
   font-size: 1.375rem;
   margin-top: 50px;
   margin-bottom: 60px;
 }
-/* line 181, ../scss/cfs/reading/_reading.scss */
+/* line 119, ../scss/cfs/reading/_reading.scss */
 .post-view .post-audio {
   margin-top: 0.625rem;
   margin-bottom: 1.875rem;
   text-align: center;
 }
 
-/* line 189, ../scss/cfs/reading/_reading.scss */
+/* line 127, ../scss/cfs/reading/_reading.scss */
 .post-view-section {
   padding-bottom: 6.25rem;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 195, ../scss/cfs/reading/_reading.scss */
+  /* line 133, ../scss/cfs/reading/_reading.scss */
   .post-view .post-name {
     font-size: 2rem;
-  }
-
-  /* line 202, ../scss/cfs/reading/_reading.scss */
-  .post-box .name,
-  .post-audio-box .name {
-    font-size: 1.125rem;
   }
 }
