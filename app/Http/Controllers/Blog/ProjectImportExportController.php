@@ -79,10 +79,9 @@ class ProjectImportExportController extends Controller
                         'audio_url' => $postAudioData->audio_url
                     ]);
                 }
-
-                return response()->json(['message' => 'Success'], 200);
             }
 
+            return response()->json(['message' => 'Success'], 200);
         } else {
             $error = $schemaResult->getFirstError();
             return response()->json(
