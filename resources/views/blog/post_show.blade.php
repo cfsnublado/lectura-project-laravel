@@ -53,10 +53,16 @@ class="audio-player"
 v-bind:class="[{ 'is-loading': srcLoading }]"
 >
 
+<!--
 <div class="audio-title">
-<span v-if="playlistLoaded && !srcLoading">[[ selectedAudio.creator_username ]] - [[ selectedAudio.name ]]</span>
+<transition name="fade-transition">
+<span v-if="playlistLoaded && !srcLoading">
+[[ selectedAudio.creator_username ]] - [[ selectedAudio.name ]]
+</span>
+</transition>
 <span v-else>&nbsp;</span>
 </div>
+-->
 
 <div class="audio-player-controls">
 

@@ -26,7 +26,7 @@ href="{{ route('blog.post.create', ['project_slug' => $project->slug]) }}"
 
 <div 
 v-if="processing"
-class="processing-icon is-centered is-large"
+class="processing-icon is-large"
 >
 <i class="fas fa-cog fa-spin"></i>
 </div>
