@@ -10895,11 +10895,6 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 }
 
 /* line 8, ../scss/cfs/_app.scss */
-.theme-cloudy {
-  background: #f9f9f9;
-}
-
-/* line 12, ../scss/cfs/_app.scss */
 .small-caps-header {
   font-size: 1rem;
   font-weight: bold;
@@ -10908,7 +10903,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   color: #aaa;
 }
 
-/* line 23, ../scss/cfs/_app.scss */
+/* line 19, ../scss/cfs/_app.scss */
 .page-header {
   font-size: 1.75rem;
   margin-top: 0.625rem;
@@ -11907,7 +11902,7 @@ body.has-navbar-fixed-bottom {
   display: block;
   line-height: 1.5;
   position: relative;
-  padding: 0.5rem 0.75rem;
+  padding: 0rem 0.75rem;
   color: #4a4a4a;
 }
 /* line 202, ../../prototype/scss/cfs/_navbar.scss */
@@ -12870,17 +12865,17 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
 }
 /* line 120, ../scss/cfs/_audio_player.scss */
 .audio-player-controls > div.player-control {
+  padding-right: 20px;
   border-right: 1px solid #e0e0e0;
 }
-/* line 123, ../scss/cfs/_audio_player.scss */
+/* line 125, ../scss/cfs/_audio_player.scss */
 .audio-player-controls > div.player-control:last-child {
   border-right: none;
 }
-/* line 127, ../scss/cfs/_audio_player.scss */
+/* line 129, ../scss/cfs/_audio_player.scss */
 .audio-player-controls > div.player-control a {
   display: block;
   line-height: 0;
-  padding: 1em;
   text-decoration: none;
   color: #404040;
 }
@@ -12889,7 +12884,7 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
 .audio-progress-container {
   width: 25rem;
   height: 30px;
-  padding: 10px 10px 10px 12px;
+  padding-top: 10px;
 }
 /* line 146, ../scss/cfs/_audio_player.scss */
 .audio-progress-container .audio-progress {
@@ -12928,23 +12923,23 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
 
 /* line 190, ../scss/cfs/_audio_player.scss */
 .audio-player-time {
-  display: flex;
-  font-size: 14px;
-  justify-content: space-between;
+  font-size: 0.875rem;
 }
-/* line 197, ../scss/cfs/_audio_player.scss */
+/* line 193, ../scss/cfs/_audio_player.scss */
 .audio-player-time .audio-player-time-current {
   font-weight: 700;
+  min-width: 45px;
   padding-left: 5px;
 }
-/* line 203, ../scss/cfs/_audio_player.scss */
+/* line 200, ../scss/cfs/_audio_player.scss */
 .audio-player-time .audio-player-time-total {
+  min-width: 45px;
   padding-right: 5px;
   opacity: 0.5;
 }
 
 /* Playlist */
-/* line 211, ../scss/cfs/_audio_player.scss */
+/* line 209, ../scss/cfs/_audio_player.scss */
 .audio-playlist {
   -moz-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
@@ -12963,16 +12958,16 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   background-color: #444;
 }
 
-/* line 227, ../scss/cfs/_audio_player.scss */
+/* line 225, ../scss/cfs/_audio_player.scss */
 .audio-playlist a.playlist-close {
   color: #c9c9c9;
 }
-/* line 230, ../scss/cfs/_audio_player.scss */
+/* line 228, ../scss/cfs/_audio_player.scss */
 .audio-playlist a.playlist-close:hover {
   color: #444;
 }
 
-/* line 235, ../scss/cfs/_audio_player.scss */
+/* line 233, ../scss/cfs/_audio_player.scss */
 .audio-playlist ul {
   overflow: auto;
   max-height: 250px;
@@ -12980,12 +12975,12 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   padding: 0;
 }
 
-/* line 243, ../scss/cfs/_audio_player.scss */
+/* line 241, ../scss/cfs/_audio_player.scss */
 .audio-playlist li {
   list-style: none;
 }
 
-/* line 247, ../scss/cfs/_audio_player.scss */
+/* line 245, ../scss/cfs/_audio_player.scss */
 .audio-playlist li a {
   display: block;
   padding: 10px 0;
@@ -12994,12 +12989,12 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   outline: none;
 }
 
-/* line 257, ../scss/cfs/_audio_player.scss */
+/* line 255, ../scss/cfs/_audio_player.scss */
 .audio-playlist li:last-child a {
   border-bottom: 0;
 }
 
-/* line 261, ../scss/cfs/_audio_player.scss */
+/* line 259, ../scss/cfs/_audio_player.scss */
 .audio-playlist li a:hover,
 .audio-playlist li a:focus,
 .audio-playlist li a:active {
@@ -13007,87 +13002,87 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   color: #444;
 }
 
-/* line 269, ../scss/cfs/_audio_player.scss */
+/* line 267, ../scss/cfs/_audio_player.scss */
 .audio-playlist li a span {
   color: #444;
 }
 
 /* Themes (apply to container) */
-/* line 275, ../scss/cfs/_audio_player.scss */
+/* line 273, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player {
   background-color: #444;
 }
-/* line 280, ../scss/cfs/_audio_player.scss */
+/* line 278, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player.playlist-open .playlist-toggle a {
   color: #00c85f;
 }
-/* line 286, ../scss/cfs/_audio_player.scss */
+/* line 284, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player .audio-player {
   color: #eee;
   border: none;
   background-color: #444;
 }
-/* line 291, ../scss/cfs/_audio_player.scss */
+/* line 289, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player .audio-player a {
   color: #eee;
 }
-/* line 295, ../scss/cfs/_audio_player.scss */
+/* line 293, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player .audio-player .audio-player-time-total {
   opacity: 1;
 }
-/* line 300, ../scss/cfs/_audio_player.scss */
+/* line 298, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player .audio-playlist {
   color: #c9c9c9;
   background-color: #444;
 }
-/* line 305, ../scss/cfs/_audio_player.scss */
+/* line 303, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player .audio-playlist a.playlist-close {
   color: #c9c9c9;
 }
-/* line 308, ../scss/cfs/_audio_player.scss */
+/* line 306, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player .audio-playlist a.playlist-close:hover {
   color: #00c85f;
 }
-/* line 313, ../scss/cfs/_audio_player.scss */
+/* line 311, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player .audio-playlist li div.selected-audio {
   display: block;
   padding: 10px 0;
   border-bottom: 1px solid #c9c9c9;
 }
-/* line 320, ../scss/cfs/_audio_player.scss */
+/* line 318, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player .audio-playlist li div.selected-audio .audio-creator {
   color: #eee;
 }
-/* line 324, ../scss/cfs/_audio_player.scss */
+/* line 322, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player .audio-playlist li div.selected-audio .audio-name {
   color: #00c85f;
 }
-/* line 329, ../scss/cfs/_audio_player.scss */
+/* line 327, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player .audio-playlist li a {
   color: #c9c9c9;
   border-bottom: 1px solid #c9c9c9;
 }
-/* line 334, ../scss/cfs/_audio_player.scss */
+/* line 332, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player .audio-playlist li a.selected-audio {
   color: #00c85f;
 }
-/* line 338, ../scss/cfs/_audio_player.scss */
+/* line 336, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player .audio-playlist li a:hover,
 .audio-player-container.dark-player .audio-playlist li a:focus,
 .audio-player-container.dark-player .audio-playlist li a:active {
   color: #00c85f;
 }
-/* line 344, ../scss/cfs/_audio_player.scss */
+/* line 342, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player .audio-playlist li a span.audio-creator {
   color: #eee;
 }
-/* line 348, ../scss/cfs/_audio_player.scss */
+/* line 346, ../scss/cfs/_audio_player.scss */
 .audio-player-container.dark-player .audio-playlist li a span.audio-name {
   color: #eee;
 }
 
 @media screen and (max-width: 599px) {
-  /* line 354, ../scss/cfs/_audio_player.scss */
+  /* line 352, ../scss/cfs/_audio_player.scss */
   .audio-player {
     width: 100%;
   }
@@ -13249,11 +13244,6 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
 /* line 25, ../scss/cfs/_dbx.scss */
 .dbx-files .dbx-filename {
   font-size: 1.125rem;
-}
-
-/* line 1, ../scss/cfs/_themes.scss */
-.theme-cloudy {
-  background: #f9f9f9;
 }
 
 /* line 1, ../../prototype/scss/cfs/vue/_vue.scss */
@@ -13425,4 +13415,120 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   .post-view .post-name {
     font-size: 2rem;
   }
+}
+/* line 1, ../../prototype/scss/cfs/themes/_theme_cloudy.scss */
+.theme-cloudy {
+  background: #f9f9f9;
+}
+
+/* line 31, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark {
+  background-color: #1c1c1c;
+  color: #c2c2c2;
+}
+/* line 37, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark strong {
+  color: #4a4a4a;
+}
+/* line 42, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .breadcrumb a {
+  color: #5A80ad;
+}
+/* line 48, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .navbar {
+  background-color: #202020;
+}
+/* line 52, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .navbar.is-bordered {
+  border-bottom: 1px solid #2f2f2f;
+}
+/* line 56, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .navbar-item {
+  color: #dbdbdb;
+}
+/* line 59, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .navbar-item:hover {
+  color: #fff;
+  background-color: #232323;
+}
+/* line 67, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .sidebar {
+  background-color: #202020;
+  border-right: 1px solid #2f2f2f;
+}
+/* line 72, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .sidebar-trigger {
+  color: #dbdbdb;
+}
+/* line 75, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .sidebar-trigger:hover {
+  color: #fff;
+}
+/* line 80, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .sidebar-navbar {
+  background-color: #202020;
+  border-bottom: 1px solid #2f2f2f;
+}
+/* line 85, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .sidebar .menu-list li a {
+  color: #909090;
+}
+/* line 88, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .sidebar .menu-list li a:hover {
+  background-color: #303030;
+  color: #fff;
+}
+/* line 93, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .sidebar .menu-list li a.is-active {
+  color: #fff;
+  background-color: #303030;
+}
+/* line 99, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .sidebar-footer {
+  border-top: 1px solid #2f2f2f;
+}
+/* line 103, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .menu-label {
+  color: #909090;
+}
+/* line 109, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .input, body.theme-dark .textarea {
+  color: #eee;
+  background-color: #333;
+  border-color: #333;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+/* line 118, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .box {
+  color: #eee;
+  background-color: #282828;
+}
+/* line 123, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .project-box a {
+  color: #fff;
+}
+/* line 126, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .project-box a:hover {
+  color: #00bc68;
+}
+/* line 133, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .project-box .delete {
+  color: #eee;
+  background-color: #333;
+}
+/* line 137, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .project-box .delete:hover {
+  background-color: #444;
+}
+/* line 144, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .post-view .post-name {
+  color: #eee;
+}
+/* line 148, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .post-view .post-content {
+  color: #c2c2c2;
+}
+/* line 152, ../../prototype/scss/cfs/themes/_theme_dark.scss */
+body.theme-dark .post-view .post-content blockquote {
+  color: #ddd;
 }

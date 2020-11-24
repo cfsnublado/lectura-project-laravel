@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('body_classes')
-sidebar-adaptable theme-cloudy @if(Session::get('sidebar_locked', false)) sidebar-expanded @endif
+sidebar-adaptable theme-dark @if(Session::get('sidebar_locked', false)) sidebar-expanded @endif
 @endsection
 
 @section('content_top')

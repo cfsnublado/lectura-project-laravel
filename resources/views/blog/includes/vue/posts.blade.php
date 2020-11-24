@@ -104,7 +104,6 @@ href="#"
 </span>
 </ajax-delete>
 
-
 </div><!-- media-right -->
 
 </div>

@@ -22,7 +22,7 @@
 </head>
 
 <body
-class="@section('body_classes') theme-cloudy @show"
+class="@section('body_classes') theme-dark @show"
 style="min-height: 100vh;"
 >
 

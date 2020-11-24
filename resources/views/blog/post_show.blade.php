@@ -64,34 +64,6 @@ v-bind:class="[{ 'is-loading': srcLoading }]"
 </div>
 -->
 
-<div class="audio-player-controls">
-
-<div class="player-control playlist-toggle"> 
-<a href="#" @click.prevent="togglePlaylist">
-<transition name="fade-transition">
-<i class="fas fa-chevron-up" v-if="playlistLoaded"></i>
-</transition>
-</a> 
-</div>
-
-<div class="player-control">
-
-<a href="#" v-if="srcLoading || playlistLoading">
-<i class="fas fa-spinner fa-pulse"></i>
-</a>
-
-<a 
-href="#"
-title="Play/Pause"
-@click.prevent="playing = !playing" 
-v-else
->
-<i v-if="!playing" class="fas fa-play"></i>
-<i v-else class="fas fa-pause"></i>
-</a>
-
-</div>
-
 <div class="audio-progress-container">
 
 <div class="audio-progress">
@@ -115,14 +87,43 @@ class="play-bar"
 
 </div><!-- progress -->
 
-<div class="audio-player-time">
-
-<div class="audio-player-time-current">[[ currentTime ]]</div>
-<div class="audio-player-time-total">[[ durationTime ]]</div>
-
-</div><!-- audio-player-time -->
-
 </div><!-- progress-container -->
+
+<div class="audio-player-controls">
+
+<div class="player-control">
+
+<a href="#" v-if="srcLoading || playlistLoading">
+<i class="fas fa-spinner fa-pulse"></i>
+</a>
+
+<a 
+href="#"
+title="Play/Pause"
+@click.prevent="playing = !playing" 
+v-else
+>
+<i v-if="!playing" class="fas fa-play"></i>
+<i v-else class="fas fa-pause"></i>
+</a>
+
+</div>
+
+<div class="player-control playlist-toggle"> 
+<a href="#" @click.prevent="togglePlaylist">
+<transition name="fade-transition">
+<i class="fas fa-chevron-up" v-if="playlistLoaded"></i>
+</transition>
+</a> 
+</div>
+
+<div class="player-control audio-player-time">
+
+<span class="audio-player-time-current">[[ currentTime ]]</span>
+&nbsp;/&nbsp;
+<span class="audio-player-time-total">[[ durationTime ]]</span>
+
+</div>
 
 </div><!-- audio-player-controls -->
 
